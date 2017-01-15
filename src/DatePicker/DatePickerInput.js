@@ -1,9 +1,12 @@
 import React, {Component} from 'react';
-import Input from '../Input';
-import styles from './DatePickerInput.scss';
 import omit from 'lodash.omit';
 
+import Input from '../Input';
+
+import styles from './DatePickerInput.scss';
+
 export default class DatePickerInput extends Component {
+
   static propTypes = {
     onClick: React.PropTypes.func,
     value: React.PropTypes.string,
@@ -11,10 +14,6 @@ export default class DatePickerInput extends Component {
     style: React.PropTypes.object,
     onChange: React.PropTypes.func
   };
-
-  renderIcon() {
-    return <div className={styles.icon}/>;
-  }
 
   render() {
     const unWantedProps = ['value', 'style'];
@@ -25,7 +24,7 @@ export default class DatePickerInput extends Component {
         <Input
           ref={Input => this.input = Input}
           value={this.props.value}
-          iconLeft={this.renderIcon()}
+          prefix={<div className={styles.icon}/>}
           onEnterPressed={() => this.blur()}
           onEscapePressed={() => this.blur()}
           {...desiredProps}

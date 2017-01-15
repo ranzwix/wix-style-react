@@ -151,6 +151,29 @@ describe('DropdownLayout', () => {
     expect(driver.isOptionSelected(0)).toBeTruthy();
   });
 
+  it('should hover when mouse enter and unhover when mouse leave when overrideStyle is true', () => {
+    const options = [
+      {id: 0, value: 'Option 1', overrideStyle: true},
+    ];
+
+    const driver = createDriver({options});
+
+    driver.mouseEnterAtOption(0);
+    expect(driver.isOptionHoveredWithGlobalClassName(0)).toBeTruthy();
+    driver.mouseLeaveAtOption(0);
+    expect(driver.isOptionHoveredWithGlobalClassName(0)).toBeFalsy();
+  });
+
+  it('should select the chosen value when overrideStyle is true', () => {
+    const selectedId = 0;
+    const options = [
+      {id: 0, value: 'Option 1', overrideStyle: true},
+    ];
+    const driver = createDriver({options, selectedId});
+
+    expect(driver.isOptionSelectedWithGlobalClassName(0)).toBeTruthy();
+  });
+
   describe('testkit', () => {
     it('should create new driver', () => {
       const div = document.createElement('div');

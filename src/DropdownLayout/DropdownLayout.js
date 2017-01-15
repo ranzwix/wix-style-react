@@ -168,11 +168,12 @@ class DropdownLayout extends React.Component {
   renderItem({option, idx, selected, hovered, disabled, overrideStyle}) {
     const optionClassName = classNames({
       [styles.option]: !overrideStyle,
-      [styles.selected]: selected,
-      [styles.hovered]: hovered,
+      [styles.selected]: selected && !overrideStyle,
+      wixstylereactSelected: selected && overrideStyle, //global class for items that use the overrideStyle
+      [styles.hovered]: hovered && !overrideStyle,
+      wixstylereactHovered: hovered && overrideStyle, //global class for items that use the overrideStyle
       [styles.disabled]: disabled,
     });
-
     return (
       <div
         className={optionClassName}

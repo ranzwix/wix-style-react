@@ -204,72 +204,21 @@ export default React.createClass({
     this.bubbleOnChange({time, am});
   },
 
-  renderMinus() {
-    return (
-      <div
-        className={classNames(styles.timeButton, styles.minus)}
-        onClick={this.handleMinus}
-        >
-        <svg width="10px" height="4px" viewBox="0 0 10 4" version="1.1">
-          <g id="Styleguides" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
-            <g id="Calendar" transform="translate(-819.000000, -491.000000)" stroke="#3899EC">
-              <g id="Date-Copy" transform="translate(480.000000, 468.000000)">
-                <g id="02-Inputs-/-Text-Field-Presets-/-Number" transform="translate(252.000000, 0.000000)">
-                  <g id="up-/down" transform="translate(88.000000, 9.000000)">
-                    <polyline id="Shape" points="8 14 4 18 0 14"/>
-                  </g>
-                </g>
-              </g>
-            </g>
-          </g>
-        </svg>
-      </div>
-    );
-  },
-
-  renderPlus() {
-    return (
-      <div
-        className={classNames(styles.timeButton, styles.plus)}
-        onClick={this.handlePlus}
-        >
-        <svg width="10px" height="4px" viewBox="0 0 10 4" version="1.1">
-          <g id="Styleguides" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
-            <g id="Calendar" transform="translate(-819.000000, -477.000000)" stroke="#3899EC">
-              <g id="Date-Copy" transform="translate(480.000000, 468.000000)">
-                <g id="02-Inputs-/-Text-Field-Presets-/-Number" transform="translate(252.000000, 0.000000)">
-                  <g id="up-/down" transform="translate(88.000000, 9.000000)">
-                    <polyline id="Shape" transform="translate(4.000000, 2.000000) scale(1, -1) translate(-4.000000, -2.000000) " points="8 0 4 4 0 0"/>
-                  </g>
-                </g>
-              </g>
-            </g>
-          </g>
-        </svg>
-      </div>
-    );
-  },
-
-  renderStepper() {
-    return (
-      <div className={styles.stepper}>
-        {this.renderPlus()}
-        {this.renderMinus()}
-      </div>
-    );
-  },
-
   renderTimeTextbox() {
     return (
       <div className={styles.input}>
-        {this.state.ampmMode && this.renderAmPm()}
-        {this.renderStepper()}
         <Input
           ref={'input'}
           value={this.state.text}
           onFocus={this.handleFocus}
           onChange={this.handleInputChange}
           onBlur={this.handleInputBlur}
+          suffix={
+            <Input.Group>
+              {this.state.ampmMode && this.renderAmPm()}
+              <Input.Ticker onUp={this.handlePlus} onDown={this.handleMinus}/>
+            </Input.Group>
+          }
           />
       </div>
     );

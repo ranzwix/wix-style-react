@@ -34,44 +34,14 @@
 }
 
 .ampm {
-    position: absolute;
-    height: 14px;
     font-size: 14px;
-    z-index: 1;
-    top: 0; bottom: 0; left: 30px; right: 0;
-    margin: auto;
+    line-height: 14px;
     text-transform: uppercase;
     color: $D10;
     @include FontRoman();
-
-    &:hover {
-        color: $B10;
-    }
+    &:hover { color: $B10; }
 }
 
 .input {
-    position: relative;
-    text-align: left;
     cursor: pointer;
-    text-align: center;
-    background-color: transparent;
-}
-
-.stepper {
-  position: absolute;
-  width: 5px;
-  right: 0;
-  z-index: 1;
-  margin-right: 15px;
-}
-
-.timeButton {
-    cursor: pointer;
-    // .Unselectable();
-}
-
-.plus {
-}
-
-.minus {
 }
