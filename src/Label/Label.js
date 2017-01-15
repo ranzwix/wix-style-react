@@ -4,10 +4,10 @@ import WixComponent from '../WixComponent';
 
 class Label extends WixComponent {
   render() {
-    const {appearance, children, for: forAttr} = this.props;
+    const {appearance, id, children, for: forAttr} = this.props;
     const className = typography[convertFromUxLangToCss(appearance)];
     return (
-      <label className={className} htmlFor={forAttr}>
+      <label className={className} id={id} htmlFor={forAttr}>
         {children}
       </label>
     );
@@ -24,7 +24,8 @@ Label.propTypes = {
     'T3', 'T3.1', 'T3.2', 'T3.3', 'T3.4',
     'T4', 'T4.1', 'T4.2', 'T4.3',
     'T5', 'T5.1']),
-  children: React.PropTypes.any
+  children: React.PropTypes.any,
+  id: React.PropTypes.string
 };
 
 Label.defaultProps = {

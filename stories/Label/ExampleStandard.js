@@ -1,5 +1,4 @@
 import React from 'react';
-
 import {Label, Input} from 'wix-style-react';
 
 export default () =>
