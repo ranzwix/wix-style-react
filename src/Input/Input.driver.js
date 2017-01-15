@@ -1,43 +1,49 @@
 import React from 'react';
-import {shallow, mount} from 'enzyme';
-import Input from './Input';
-import styles from './Input.scss';
+import ReactTestUtils from 'react-addons-test-utils';
+import ReactDOM from 'react-dom';
+import Input from '../Input';
+import styles from '../Input.scss';
+import $ from 'jquery';
 
-const inputDriverFactory = component => ({
-  trigger: (trigger, event) => component.find('input').simulate(trigger, event),
-  clickClear: () => component.find(`.${styles.clear_button}`).simulate('click'),
-  getValue: () => component.find('input').props().value,
-  getDefaultValue: () => component.find('input').props().defaultValue,
-  getTabIndex: () => component.find('input').props().tabIndex,
-  hasExclamation: () => component.find('Exclamation').length > 0,
-  hasError: () => component.hasClass(styles.error),
-  getUnit: () => component.find(`.${styles.unit}`).text(),
-  hasMagnifyingGlass: () => component.find(`.${styles.magnifying_glass}`).length > 0,
-  hasClearButton: () => component.find(`.${styles.clear_button}`).length > 0,
-  isRTL: () => component.hasClass(styles.rtl),
-  hasEndWrapping: () => component.hasClass(styles.endpadding),
-  isFocusedStyle: () => component.find('input').hasClass(styles.focus),
-  isHoveredStyle: () => component.find('input').hasClass(styles.hover),
-  isOfStyle: style => component.hasClass(styles[style]),
-  isFocus: () => document.activeElement === component.find('input').node,
-  exists: () => component.find('input').length === 1,
-  hasIconLeft: () => component.hasClass(styles.iconLeft)
-});
+const inputDriverFactory = ({component, wrapper}) => {
+  const $component = $(component);
+  const input = $component.find('input')[0];
+  const clearButton = $(component).find(`.${styles.clearButton}`);
 
-const componentFactory = () => {
-  const createShallow = (props = {}) => {
-    return shallow(
-      <Input {...props}/>
-    );
+  return {
+    trigger: (trigger, event) => ReactTestUtils.Simulate[trigger](input, event),
+    focus: () => input.focus(),
+    clickClear: () => ReactTestUtils.Simulate.click(clearButton[0]),
+    enterText: keys => {
+      input.value = keys;
+      ReactTestUtils.Simulate.change(input);
+    },
+    getValue: () => input.value,
+    getDefaultValue: () => input.defaultValue,
+    getTabIndex: () => input.tabIndex,
+    getReadOnly: () => input.readOnly,
+    hasPrefix: () => $component.find(`.${styles.prefix}`).length === 1,
+    hasSuffix: () => $component.find(`.${styles.suffix}`).length === 1,
+    prefixComponentExists: style => $component.find(`.${styles.prefix} ${style}`).length === 1,
+    suffixComponentExists: style => $component.find(`.${styles.suffix} ${style}`).length === 1,
+    hasExclamation: () => $component.find(`.${styles.exclamation}`).length === 1,
+    hasError: () => component.classList.contains(styles.hasError),
+    getUnit: () => $component.find(`.${styles.unit}`)[0].textContent,
+    hasMagnifyingGlass: () => $component.find(`.${styles.magnifyingGlass}`).length === 1,
+    hasMenuArrow: () => $component.find(`.${styles.menuArrow}`).length === 1,
+    hasClearButton: () => clearButton.length > 0,
+    isRTL: () => component.className.indexOf(styles.rtl) >= 0,
+    isFocusedStyle: () => component.classList.contains(styles.hasFocus),
+    isHoveredStyle: () => component.classList.contains(styles.hasHover),
+    isOfStyle: style => component.className.indexOf(styles[style]) >= 0,
+    isOfSize: size => component.classList.contains(styles[`size-${size}`]),
+    isFocus: () => document.activeElement === input,
+    exists: () => $component.find('input').length > 0,
+    hasIconLeft: () => !$component.find(`.${styles.prefix}`).is(':empty'),
+    setProps: props => {
+      ReactDOM.render(<div ref={r => component = r}><Input {...props}/></div>, wrapper);
+    }
   };
-
-  const createMount = (props = {}) => {
-    return mount(
-      <Input {...props}/>
-    );
-  };
-
-  return {createShallow, createMount};
 };
 
-export {componentFactory, inputDriverFactory};
+export default inputDriverFactory;

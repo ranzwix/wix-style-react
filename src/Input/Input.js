@@ -1,5 +1,6 @@
-import React, {PropTypes, Component} from 'react';
+import React, {PropTypes} from 'react';
 import classNames from 'classnames';
+import WixComponent from '../WixComponent';
 
 import Ticker from './Ticker';
 import Unit from './Unit';
@@ -9,7 +10,7 @@ import InputSuffix from './InputSuffix';
 
 import styles from './Input.scss';
 
-class Input extends Component {
+class Input extends WixComponent {
 
   static Ticker = Ticker;
   static Unit = Unit;
@@ -50,7 +51,6 @@ class Input extends Component {
       onKeyUp,
       readOnly,
       size,
-      dataHook,
       iconLeft,
       prefix,
       suffix
@@ -77,10 +77,8 @@ class Input extends Component {
       [styles.hasFocus]: forceFocus || this.state.focus
     });
 
-    const myAttr = {'data-hook': dataHook};
-
     return (
-      <div className={classes} {...myAttr}>
+      <div className={classes}>
         <InputPrefix>{iconLeft}{prefix}</InputPrefix>
         <input
           ref={input => this.input = input}
@@ -190,7 +188,6 @@ Input.propTypes = {
   onKeyUp: PropTypes.func,
   iconLeft: PropTypes.object,
   readOnly: PropTypes.bool,
-  dataHook: PropTypes.string,
   size: PropTypes.oneOf(['small', 'normal', 'large']),
   prefix: PropTypes.node,
   suffix: PropTypes.node
