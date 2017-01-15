@@ -1,3 +1,5 @@
+import _ from 'lodash/fp';
+
 const labelDriverFactory = component => ({
   click: () => component.click(),
   getLabelText: () => component.getText(),
@@ -5,4 +7,8 @@ const labelDriverFactory = component => ({
   element: () => component
 });
 
-export default labelDriverFactory;
+const componentFactory = ({id}) => $(`#${id}`);
+
+const protractorLabelTestkitFactory = _.compose(labelDriverFactory, componentFactory);
+
+export {protractorLabelTestkitFactory};
