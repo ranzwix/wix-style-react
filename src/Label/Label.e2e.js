@@ -1,12 +1,10 @@
 import eyes from 'eyes.it';
-import labelDriverFactory from './Label.protractor.driver';
-import {protractorCreateDriverFactory} from '../test-common';
-
+import {labelTestkitFactory} from '../../testkit/protractor';
 
 describe('Label', () => {
   eyes.it('should focus on the input when clicked', () => {
-    const createDriverFactory = protractorCreateDriverFactory(labelDriverFactory);
-    const driver = createDriverFactory({dataHook: 'myDataHook'});
+
+    const driver = labelTestkitFactory({dataHook: 'myDataHook'});
 
     browser.get('iframe.html?selectedKind=7.%20Labels&selectedStory=7.1%20Standard');
 

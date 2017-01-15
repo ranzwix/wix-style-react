@@ -24,11 +24,7 @@ export const enzymeTestkitFactoryCreator = driverFactory => ({wrapper, dataHook}
 };
 
 // protractor
-export const protractorComponentFactory = ({dataHook}) => $(`[data-hook='${dataHook}']`);
-
-export const protractorCreateDriverFactory = driverFactory => _.compose(driverFactory, protractorComponentFactory);
-
-export const protractorTestkitFactoryCreator = driverFactory => dataHook => {
+export const protractorTestkitFactoryCreator = driver => ({dataHook}) => {
   const component = $(`[data-hook='${dataHook}']`);
-  return driverFactory(component);
+  return driver(component);
 };
