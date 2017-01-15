@@ -1,7 +1,9 @@
 import React, {PropTypes} from 'react';
 import s from './ButtonSelection.scss';
+import WixComponent from '../WixComponent';
 
-class ButtonSelection extends React.Component {
+class ButtonSelection extends WixComponent {
+
   componentWillMount() {
     const {value, buttonsNames} = this.props;
     if (value && (buttonsNames.every(b => b !== value))) {
@@ -10,9 +12,9 @@ class ButtonSelection extends React.Component {
   }
 
   render() {
-    const {value, buttonsNames, onChange, dataHook} = this.props;
+    const {value, buttonsNames, onChange} = this.props;
     return (
-      <div data-hook={dataHook} className={s.buttonsComplex}>
+      <div className={s.buttonsComplex}>
         {
           buttonsNames.map(buttonName =>
             <span
@@ -23,7 +25,7 @@ class ButtonSelection extends React.Component {
                   onChange(buttonName);
                 }
               }}
-              >
+            >
               {buttonName}
             </span>
           )
@@ -36,8 +38,7 @@ class ButtonSelection extends React.Component {
 ButtonSelection.propTypes = {
   buttonsNames: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
   onChange: PropTypes.func.isRequired,
-  value: PropTypes.string,
-  dataHook: PropTypes.string
+  value: PropTypes.string
 };
 
 ButtonSelection.displayName = 'ButtonSelection';

@@ -1,5 +1,4 @@
 import React from 'react';
-import _ from 'lodash/fp';
 import buttonSelectionDriverFactory from './ButtonSelection.driver';
 import {createDriverFactory} from '../test-common';
 import {buttonSelectionTestkitFactory} from '../../testkit';
