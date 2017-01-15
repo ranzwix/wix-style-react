@@ -6,6 +6,9 @@ export const buttonSelectionTestkitFactory = enzymeTestkitFactoryCreator(buttonS
 import inputDriverFactory from '../src/Input/Input.driver';
 export const inputTestkitFactory = enzymeTestkitFactoryCreator(inputDriverFactory);
 
+import labelDriverFactory from '../src/Label/Label.driver';
+export const labelTestkitFactory = enzymeTestkitFactoryCreator(labelDriverFactory);
+
 export {buttonTestkitFactory} from '../src/Button/testkit/Button.enzyme';
 export {toastTestkitFactory} from '../src/Toast/testkit/Toast.enzyme';
 export {dropdownTestkitFactory} from '../src/Dropdown/testKit/Dropdown.enzyme';

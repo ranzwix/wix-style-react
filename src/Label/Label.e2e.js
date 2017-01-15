@@ -1,10 +1,12 @@
 import eyes from 'eyes.it';
-import {protractorLabelTestkitFactory} from './testkit/Label.protractor';
+import labelDriverFactory from './Label.protractor.driver';
+import {protractorCreateDriverFactory} from '../test-common';
+
 
 describe('Label', () => {
   eyes.it('should focus on the input when clicked', () => {
-
-    const driver = protractorLabelTestkitFactory({id: 'label'});
+    const createDriverFactory = protractorCreateDriverFactory(labelDriverFactory);
+    const driver = createDriverFactory({dataHook: 'myDataHook'});
 
     browser.get('iframe.html?selectedKind=7.%20Labels&selectedStory=7.1%20Standard');
 
@@ -13,6 +15,6 @@ describe('Label', () => {
 
     driver.click();
 
-    expect(browser.driver.switchTo().activeElement().getAttribute('id')).toEqual(driver.getAssociatedInput().then(input => input.getAttribute('id')));
+    expect(browser.driver.switchTo().activeElement().getAttribute('data-hook')).toEqual(driver.getAssociatedInput().then(input => input.getAttribute('data-hook')));
   });
 });

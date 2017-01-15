@@ -1,20 +1,22 @@
 import React from 'react';
-
 import typography, {convertFromUxLangToCss} from '../Typography';
+import WixComponent from '../WixComponent';
 
-const Label = ({id, appearance, children, for: forAttr}) => {
-  const className = typography[convertFromUxLangToCss(appearance)];
-  return (
-    <label className={className} id={id} htmlFor={forAttr}>
-      {children}
-    </label>
-  );
-};
+class Label extends WixComponent {
+  render() {
+    const {appearance, children, for: forAttr} = this.props;
+    const className = typography[convertFromUxLangToCss(appearance)];
+    return (
+      <label className={className} htmlFor={forAttr}>
+        {children}
+      </label>
+    );
+  }
+}
 
 Label.displayName = 'Label';
 
 Label.propTypes = {
-  id: React.PropTypes.string,
   for: React.PropTypes.string,
   appearance: React.PropTypes.oneOf([
     'T1', 'T1.1', 'T1.2', 'T1.3', 'T1.4',

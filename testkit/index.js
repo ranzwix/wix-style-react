@@ -6,6 +6,9 @@ export const buttonSelectionTestkitFactory = testkitFactoryCreator(buttonSelecti
 import inputDriverFactory from '../src/Input/Input.driver';
 export const inputTestkitFactory = testkitFactoryCreator(inputDriverFactory);
 
+import labelDriverFactory from '../src/Label/Label.driver';
+export const labelTestkitFactory = testkitFactoryCreator(labelDriverFactory);
+
 export {buttonTestkitFactory} from '../src/Button/testkit/Button';
 export {checkboxDriverFactory} from '../src/Checkbox/Checkbox.driver';
 export {radioGroupDriverFactory} from '../src/RadioGroup/RadioGroup.driver';
