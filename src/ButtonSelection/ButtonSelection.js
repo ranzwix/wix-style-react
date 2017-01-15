@@ -25,7 +25,7 @@ class ButtonSelection extends WixComponent {
                   onChange(buttonName);
                 }
               }}
-            >
+              >
               {buttonName}
             </span>
           )
