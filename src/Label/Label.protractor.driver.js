@@ -7,8 +7,6 @@ const labelDriverFactory = component => ({
   element: () => component
 });
 
-const componentFactory = ({id}) => $(`#${id}`);
+const protractorTestkitFactoryCreator = driverFactory => ({dataHook}) => driverFactory($(`[data-hook='${dataHook}']`));
 
-const protractorLabelTestkitFactory = _.compose(labelDriverFactory, componentFactory);
-
-export {protractorLabelTestkitFactory};
+export {protractorTestkitFactoryCreator, labelDriverFactory};
