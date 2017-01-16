@@ -13,9 +13,9 @@ class InputWithTags extends React.Component {
 
   render() {
     const {tags, onRemoveTag, placeholder, ...inputProps} = this.props;
-    const desiredProps = omit(inputProps, ['theme', 'onManuallyInput', 'customInput', 'closeOnSelect', 'predicate']);
+    const desiredProps = omit(inputProps, ['theme', 'onManuallyInput', 'inputElement', 'closeOnSelect', 'predicate', 'menuArrow']);
     return (
-      <div className={styles.tagsContainer}>
+      <div className={styles.tagsContainer} onClick={() => this.input.focus()}>
 
         {tags.map(tag => <Tag key={tag.id} onRemove={onRemoveTag} {...tag}/>)}
 

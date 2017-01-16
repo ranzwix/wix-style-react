@@ -16,7 +16,7 @@ const options = [
   {value: 'California5', id: 'California5'},
   {value: 'California6', id: 'California6'},
   {value: 'California7', id: 'California7'},
-  {value: 'Two words', id: 'Two words'},
+  {value: 'Two words', id: 'Two words'}
 ];
 
 class ExampleStandard extends React.Component {
@@ -53,7 +53,6 @@ class ExampleStandard extends React.Component {
           options={this.state.options}
           value={this.state.inputValue}
           predicate={this.predicate}
-          autoFocus
           />
       </div>
     );

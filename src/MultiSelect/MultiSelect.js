@@ -46,14 +46,24 @@ class MultiSelect extends InputWithOptions {
   }
 
   _onManuallyInput(inputValue) {
-    super._onManuallyInput(inputValue);
-    this.onManuallyInput(inputValue);
+    if (inputValue.trim()) {
+      super._onManuallyInput(inputValue);
+      this.onManuallyInput(inputValue);
+    } else {
+      super.hideOptions();
+    }
+    this.clearInput();
   }
 
   onKeyDown(event) {
     const {tags, value, onRemoveTag} = this.props;
     if (tags.length > 0 && (event.key === 'Delete' || event.key === 'Backspace') && value.length === 0) {
       onRemoveTag(last(tags).id);
+    }
+
+    if (event.key === 'Tab' || event.key === 'Escape') {
+      this.clearInput();
+      super.hideOptions();
     }
 
     if (this.props.onKeyDown) {
@@ -66,9 +76,7 @@ class MultiSelect extends InputWithOptions {
   }
 
   onSelect(option) {
-    if (this.props.onChange) {
-      this.props.onChange({target: {value: ''}});
-    }
+    this.clearInput();
 
     if (this.props.onSelect) {
       this.props.onSelect(this.optionToTag(option));
@@ -91,9 +99,14 @@ class MultiSelect extends InputWithOptions {
       this.props.onManuallyInput(this.optionToTag({id: uniqueId('customOption_'), value: inputValue}));
     }
 
+    this.clearInput();
+  }
+
+  clearInput() {
     if (this.props.onChange) {
       this.props.onChange({target: {value: ''}});
     }
+    this.setState({inputValue: ''});
   }
 }
 
