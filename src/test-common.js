@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import $ from 'jquery';
+import jquery from 'jquery';
 import _ from 'lodash/fp';
 
 const componentFactory = Element => {
@@ -13,13 +13,13 @@ const componentFactory = Element => {
 export const createDriverFactory = driverFactory => _.compose(driverFactory, componentFactory);
 
 export const testkitFactoryCreator = driverFactory => ({wrapper, dataHook}) => {
-  const component = $(wrapper).find(`[data-hook='${dataHook}']`)[0];
+  const component = jquery(wrapper).find(`[data-hook='${dataHook}']`)[0];
   return driverFactory({component, wrapper});
 };
 
 // enzyme
 export const enzymeTestkitFactoryCreator = driverFactory => ({wrapper, dataHook}) => {
-  const component = wrapper.findWhere(n => !n.props().dataHook && n.html() && $(n.html()).attr('data-hook') === dataHook);
+  const component = wrapper.findWhere(n => !n.props().dataHook && n.html() && jquery(n.html()).attr('data-hook') === dataHook);
   return driverFactory({component: component.node, wrapper});
 };
 

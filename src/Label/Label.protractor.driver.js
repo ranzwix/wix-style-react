@@ -7,6 +7,4 @@ const labelDriverFactory = component => ({
   element: () => component
 });
 
-const protractorTestkitFactoryCreator = driverFactory => ({dataHook}) => driverFactory($(`[data-hook='${dataHook}']`));
-
-export {protractorTestkitFactoryCreator, labelDriverFactory};
+export default labelDriverFactory;
