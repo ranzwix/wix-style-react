@@ -9,3 +9,4 @@
 | defaultValue | moment object | now | false | The control's starting time |
 | onChange | func | - | - | Called upon blur |
 | rtl | bool | - | - | Display in RTL |
+| disableAmPm | bool | - | - | 24h mode |

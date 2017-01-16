@@ -6,6 +6,8 @@ import Readme from '../../src/TimeInput/README.md';
 
 import ExampleUncontrolled from './ExampleUncontrolled';
 import ExampleUncontrolledRaw from '!raw!./ExampleUncontrolled';
+import ExampleUncontrolled24h from './ExampleUncontrolled24h';
+import ExampleUncontrolledRaw24h from '!raw!./ExampleUncontrolled24h';
 import moment from 'moment';
 
 storiesOf('1. Inputs', module)
@@ -17,6 +19,10 @@ storiesOf('1. Inputs', module)
 
       <CodeExample title="Uncontrolled input" code={ExampleUncontrolledRaw}>
         <ExampleUncontrolled startTime={moment('2016-04-03 13:42')}/>
+      </CodeExample>
+
+      <CodeExample title="Uncontrolled input 24h" code={ExampleUncontrolledRaw24h}>
+          <ExampleUncontrolled24h startTime={moment('2016-04-03 13:42')}/>
       </CodeExample>
     </div>
   ));

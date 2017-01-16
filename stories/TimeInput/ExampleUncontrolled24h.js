@@ -14,7 +14,7 @@ export default class UncontrolledSlider extends Component {
     const onChange = value => this.setState({value});
 
     return (
-      <TimeInput {...this.props} startTime={this.props.startTime} onChange={onChange}/>
+      <TimeInput {...this.props} startTime={this.props.startTime} onChange={onChange} disableAmPm/>
     );
   }
 }

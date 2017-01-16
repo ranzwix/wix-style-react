@@ -12,14 +12,16 @@ export default React.createClass({
     defaultValue: React.PropTypes.object,
     onChange: React.PropTypes.func,
     rtl: React.PropTypes.bool,
-    style: React.PropTypes.object
+    style: React.PropTypes.object,
+    disableAmPm: React.PropTypes.bool
   },
 
   getDefaultProps() {
     return {
       defaultValue: moment(),
       onChange: _.noop,
-      style: {}
+      style: {},
+      disableAmPm: false
     };
   },
 
@@ -37,7 +39,7 @@ export default React.createClass({
   },
 
   isAmPmMode() {
-    return moment('2016-04-03 13:14:00').format('LT').indexOf('PM') !== -1;
+    return !this.props.disableAmPm && moment('2016-04-03 13:14:00').format('LT').indexOf('PM') !== -1;
   },
 
   getInitTime(value) {
