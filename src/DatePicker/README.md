@@ -19,6 +19,7 @@ __Note__: This component has multiple issues and will most likely change in the 
 | excludePastDates | bool | false | - | Past dates are unselectable |
 | readOnly | bool | false | - | Is the input field readOnly |
 | showYearDropdown | bool | false | - | Display a selectable yearDropdown |
+| rtl | bool | false | - | RTL mode |
 
 
 ## Keyboard support
