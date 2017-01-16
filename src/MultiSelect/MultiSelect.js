@@ -25,8 +25,12 @@ class MultiSelect extends InputWithOptions {
   dropdownAdditionalProps() {
     const unselectedOptions = this.getUnselectedOptions();
     return {
-      options: unselectedOptions.filter(this.props.predicate),
+      options: unselectedOptions.filter(this.props.predicate)
     };
+  }
+
+  closeOnSelect() {
+    return false;
   }
 
   inputAdditionalProps() {

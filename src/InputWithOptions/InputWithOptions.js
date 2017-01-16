@@ -30,6 +30,7 @@ class InputWithOptions extends WixComponent {
     this.showOptions = this.showOptions.bind(this);
     this._onManuallyInput = this._onManuallyInput.bind(this);
     this.renderDropdownLayout = this.renderDropdownLayout.bind(this);
+    this.closeOnSelect = this.closeOnSelect.bind(this);
   }
 
   onClickOutside() {
@@ -83,8 +84,12 @@ class InputWithOptions extends WixComponent {
     this.setState({showOptions: true});
   }
 
+  closeOnSelect() {
+    return this.props.closeOnSelect;
+  }
+
   _onManuallyInput(inputValue) {
-    if (this.props.closeOnSelect) {
+    if (this.closeOnSelect()) {
       this.hideOptions();
     }
 
@@ -95,9 +100,9 @@ class InputWithOptions extends WixComponent {
 
   _onSelect(option) {
     this.showOptions();
-    const {onSelect, closeOnSelect} = this.props;
+    const {onSelect} = this.props;
 
-    if (closeOnSelect) {
+    if (this.closeOnSelect()) {
       this.hideOptions();
     }
 
