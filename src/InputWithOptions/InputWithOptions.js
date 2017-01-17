@@ -60,7 +60,7 @@ class InputWithOptions extends React.Component {
     const dropdownProps = Object.assign(omit(this.props, Object.keys(Input.propTypes)), this.dropdownAdditionalProps());
 
     return (
-      <div onBlur={this._onBlur}>
+      <div id={this.props.id} onBlur={this._onBlur}>
         <div onKeyDown={this._onKeyDown} onFocus={this._onFocus} className={this.inputClasses()}>
           {this.renderInput()}
         </div>
