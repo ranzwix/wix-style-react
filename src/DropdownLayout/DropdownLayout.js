@@ -253,7 +253,7 @@ DropdownLayout.propTypes = {
 DropdownLayout.defaultProps = {
   options: [],
   tabIndex: 1,
-  selectedId: NOT_HOVERED_INDEX,
+  selectedId: NOT_HOVERED_INDEX
 };
 
 DropdownLayout.NONE_SELECTED_ID = NOT_HOVERED_INDEX;
