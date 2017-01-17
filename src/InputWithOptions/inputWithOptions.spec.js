@@ -15,6 +15,12 @@ const runInputWithOptionsTest = driverFactory => {
       {id: 'element1', value: <span style={{color: 'brown'}}>Option 4</span>}
     ];
 
+    it('should show dropdown when autofocus is on', () => {
+      const {inputDriver, dropdownLayoutDriver} = createDriver({options, autoFocus: true});
+      expect(inputDriver.isFocus()).toBeTruthy();
+      expect(dropdownLayoutDriver.isShown()).toBeTruthy();
+    });
+
     it('should have an Input and an hidden DropdownLayout', () => {
       const {inputDriver, dropdownLayoutDriver} = createDriver({options});
       expect(inputDriver.exists()).toBeTruthy();

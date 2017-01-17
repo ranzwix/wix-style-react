@@ -11,6 +11,10 @@ class InputWithTags extends React.Component {
     this.select = this.select.bind(this);
   }
 
+  componentDidMount() {
+    this.props.autoFocus && this.props.onFocus();
+  }
+
   render() {
     const {tags, onRemoveTag, placeholder, ...inputProps} = this.props;
     const desiredProps = omit(inputProps, ['theme', 'onManuallyInput', 'inputElement', 'closeOnSelect', 'predicate', 'menuArrow']);
@@ -46,7 +50,8 @@ InputWithTags.propTypes = {
   onRemoveTag: React.PropTypes.func,
   tags: React.PropTypes.array,
   onKeyDown: React.PropTypes.func,
-  placeholder: React.PropTypes.string
+  placeholder: React.PropTypes.string,
+  onFocus: React.PropTypes.func
 };
 
 InputWithTags.defaultProps = {

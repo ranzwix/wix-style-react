@@ -110,7 +110,15 @@ class MultiSelect extends InputWithOptions {
   }
 }
 
-MultiSelect.propTypes = InputWithOptions.propTypes;
-MultiSelect.defaultProps = InputWithOptions.defaultProps;
+MultiSelect.propTypes = {
+  ...InputWithOptions.propTypes,
+  predicate: React.PropTypes.func,
+  tags: React.PropTypes.array
+};
 
+MultiSelect.defaultProps = {
+  ...InputWithOptions.defaultProps,
+  predicate: () => true,
+  tags: []
+};
 export default MultiSelect;

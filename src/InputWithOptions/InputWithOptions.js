@@ -44,7 +44,8 @@ class InputWithOptions extends WixComponent {
       menuArrow: true,
       ref: input => this.input = input,
       ...inputProps,
-      onChange: this._onChange
+      onChange: this._onChange,
+      onFocus: this.showOptions
     });
   }
 

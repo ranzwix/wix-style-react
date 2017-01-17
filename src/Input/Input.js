@@ -25,6 +25,10 @@ class Input extends Component {
 
   state = {
     focus: false
+  };
+
+  componentDidMount() {
+    this.props.autoFocus && this._onFocus();
   }
 
   render() {
