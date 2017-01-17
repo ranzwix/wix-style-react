@@ -14,6 +14,8 @@
 | visible | bool | true | - | Should show or hide the component |
 | selectedId | string/number | - | - | The id of the selected option in the list |
 | tabIndex| number | 1 | - | Specifies the tab order of the component |
+| fixedHeader | node | - | - | A fixed header to the list |
+| fixedFooter | node | - | - | A fixed footer to the list |
 
 ## Option
 

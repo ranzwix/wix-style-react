@@ -19,7 +19,6 @@ class DropdownLayout extends WixComponent {
 
   constructor(props) {
     super(props);
-
     this.state = {
       hovered: NOT_HOVERED_INDEX,
     };
@@ -137,11 +136,15 @@ class DropdownLayout extends WixComponent {
     }
   }
 
+  renderNode(node) {
+    return node ? <div className={styles.node}>{node}</div> : null;
+  }
+
   render() {
-    const {options, id, visible, dropDirectionUp, selectedId, tabIndex} = this.props;
+    const {options, id, visible, dropDirectionUp, selectedId, tabIndex, fixedHeader, fixedFooter} = this.props;
 
     const optionsClassName = classNames({
-      [styles.options]: true,
+      [styles.contentContainer]: true,
       [styles.shown]: visible,
       [styles.up]: dropDirectionUp,
       [styles.down]: !dropDirectionUp
@@ -149,22 +152,23 @@ class DropdownLayout extends WixComponent {
 
     return (
       <div tabIndex={tabIndex} className={styles.wrapper} onKeyDown={this._onKeyDown} id={id}>
-        <div
-          className={optionsClassName}
-          ref={options => this.options = options}
-          >
-          {options.map((option, idx) => (
-            option.value === '-' ?
-              (this.renderDivider(idx)) :
-              (this.renderItem({
-                option,
-                idx,
-                selected: option.id === selectedId,
-                hovered: idx === this.state.hovered,
-                disabled: option.disabled,
-                overrideStyle: option.overrideStyle
-              }))
-          ))}
+        <div className={optionsClassName}>
+          {this.renderNode(fixedHeader)}
+          <div className={styles.options} ref={options => this.options = options}>
+            {options.map((option, idx) => (
+              option.value === '-' ?
+                (this.renderDivider(idx)) :
+                (this.renderItem({
+                  option,
+                  idx,
+                  selected: option.id === selectedId,
+                  hovered: idx === this.state.hovered,
+                  disabled: option.disabled,
+                  overrideStyle: option.overrideStyle
+                }))
+            ))}
+          </div>
+          {this.renderNode(fixedFooter)}
         </div>
       </div>
     );
@@ -241,13 +245,15 @@ DropdownLayout.propTypes = {
     React.PropTypes.number,
   ]),
   tabIndex: React.PropTypes.number,
-  onClickOutside: React.PropTypes.func
+  onClickOutside: React.PropTypes.func,
+  fixedHeader: React.PropTypes.node,
+  fixedFooter: React.PropTypes.node
 };
 
 DropdownLayout.defaultProps = {
   options: [],
   tabIndex: 1,
-  selectedId: NOT_HOVERED_INDEX
+  selectedId: NOT_HOVERED_INDEX,
 };
 
 DropdownLayout.NONE_SELECTED_ID = NOT_HOVERED_INDEX;

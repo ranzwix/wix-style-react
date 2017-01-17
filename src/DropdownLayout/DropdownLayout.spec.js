@@ -22,7 +22,7 @@ describe('DropdownLayout', () => {
     expect(driver.isDown()).toBeTruthy();
   });
 
-  it('should have a default of visible and drop down', () => {
+  it('should not display dropDown', () => {
     const driver = createDriver({options});
     driver.setProps({options, visible: false});
     expect(driver.isShown()).toBeFalsy();
@@ -104,14 +104,6 @@ describe('DropdownLayout', () => {
     driver.pressEscKey();
     expect(onClose).toBeCalled();
   });
-
-  // it('should call onClose when component blur key is pressed', () => {
-  //   const onClose = jest.fn();
-  //   const driver = createDriver({options, onClose});
-  //   driver.mouseEnterAtOption(0);
-  //   driver.mouseClickOutside();
-  //   expect(onClose).toBeCalled();
-  // });
 
   it('should call select when clicking on an option', () => {
     const onSelect = jest.fn();

@@ -12,6 +12,8 @@
 | selectedId | string/number | - | - | The id of the selected option in the list |
 | closeOnSelect | bool | true | - | Should the options container close on selection |
 | inputElement | element | </Input> | - | Set the component input element |
+| fixedHeader | node | - | - | A fixed header to the list |
+| fixedFooter | node | - | - | A fixed footer to the list |
 | ***All of the Input's and DropdownLayout Props are also available for this component*** | | | | |
 
 

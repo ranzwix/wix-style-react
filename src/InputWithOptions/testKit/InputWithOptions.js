@@ -11,7 +11,6 @@ const inputWithOptionsDriverFactory = ({component, wrapper}) => {
   const inputDriver = inputDriverFactory({component});
   const dropdownLayoutDriver = dropdownLayoutDriverFactory({component: component.childNodes[1].childNodes[0]});
   const inputWrapper = component.childNodes[0];
-
   const driver = {
     focus: () => ReactTestUtils.Simulate.focus(inputWrapper),
     blur: () => dropdownLayoutDriver.mouseClickOutside(),

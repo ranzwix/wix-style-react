@@ -16,6 +16,8 @@
 | placeholder | string | - | - | the placeholder for the input|
 | id | string or number | '' | - | An identifier of the component |
 | predicate | func | () => true | - | Callback predicate for the filtering options function |
+| fixedHeader | node | - | - | A fixed header to the list |
+| fixedFooter | node | - | - | A fixed footer to the list |
 | ***All of the InputWithOptions Props are also available for this component*** | | | | |
 
 ## Option

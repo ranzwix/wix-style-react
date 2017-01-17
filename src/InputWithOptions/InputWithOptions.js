@@ -51,6 +51,7 @@ class InputWithOptions extends WixComponent {
 
   renderDropdownLayout() {
     const dropdownProps = Object.assign(omit(this.props, Object.keys(Input.propTypes)), this.dropdownAdditionalProps());
+
     return (
       <DropdownLayout
         ref={dropdownLayout => this.dropdownLayout = dropdownLayout}
@@ -69,7 +70,7 @@ class InputWithOptions extends WixComponent {
           {this.renderInput()}
         </div>
 
-        <div className={this.dropdownClasses()} onFocus={this.state.showOptions? this._onFocus : null}>
+        <div className={this.dropdownClasses()} onFocus={this.state.showOptions ? this._onFocus : null}>
           {this.renderDropdownLayout()}
         </div>
       </div>
@@ -168,7 +169,8 @@ InputWithOptions.propTypes = {
   ...DropdownLayout.propTypes,
   inputElement: React.PropTypes.element,
   closeOnSelect: React.PropTypes.bool,
-  onManuallyInput: React.PropTypes.func
+  onManuallyInput: React.PropTypes.func,
+  visible: React.PropTypes.bool
 };
 
 InputWithOptions.displayName = 'InputWithOptions';

@@ -22,12 +22,11 @@ const options = [
 class ExampleStandard extends React.Component {
   constructor(props) {
     super(props);
-    console.log(options[2].value);
 
     this.state = {
       tags: [],
       options,
-      inputValue: ''
+      inputValue: '',
     };
   }
 

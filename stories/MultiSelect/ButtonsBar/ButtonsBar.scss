@@ -1,0 +1,24 @@
+
+.buttonsContainer {
+  display: flex;
+  justify-content: flex-end;
+  position: relative;
+
+  .doneButton {
+    background: none;
+    border: none;
+    color: #5cb4ff;
+    font-size: 16px;
+    outline: none;
+    cursor: pointer;
+  }
+
+  .cancelButton {
+    background: none;
+    border: none;
+    color: blue;
+    font-size: 16px;
+    outline: none;
+    cursor: pointer;
+  }
+}

@@ -1,6 +1,5 @@
 import _ from 'lodash/fp';
-import React from 'react';
-import {componentFactory, multiSelectDriverFactory} from './testKit/MultiSelect';
+import {componentFactory, multiSelectDriverFactory} from './MultiSelect.driver';
 // import {runInputWithOptionsTest} from '../InputWithOptions/inputWithOptions.spec';
 
 // runInputWithOptionsTest(multiSelectDriverFactory);

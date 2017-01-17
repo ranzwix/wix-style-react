@@ -121,4 +121,5 @@ MultiSelect.defaultProps = {
   predicate: () => true,
   tags: []
 };
+
 export default MultiSelect;

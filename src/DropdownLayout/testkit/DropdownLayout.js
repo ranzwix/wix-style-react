@@ -7,7 +7,7 @@ import $ from 'jquery';
 const dropdownLayoutDriverFactory = ({component, wrapper}) => {
 
   const isClassExists = (component, className) => (component.className.indexOf(className) !== -1);
-  const options = component.childNodes[0];
+  const options = component.childNodes[0].childNodes[0];
   const optionAt = position => (options.childNodes[position]);
 
   return {

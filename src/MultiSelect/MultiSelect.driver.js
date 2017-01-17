@@ -1,16 +1,15 @@
 import React from 'react';
-import MultiSelect from '../MultiSelect';
-import {inputWithOptionsDriverFactory} from '../../InputWithOptions/testKit/InputWithOptions';
+import MultiSelect from './MultiSelect';
+import {inputWithOptionsDriverFactory} from '../InputWithOptions/testKit/InputWithOptions';
 import ReactDOM from 'react-dom';
 import $ from 'jquery';
 
 const multiSelectDriverFactory = ({component, wrapper}) => {
 
-  // const multiSelectWrapper = component.childNodes[0];
   const {driver, inputDriver, dropdownLayoutDriver} = inputWithOptionsDriverFactory({component, wrapper});
 
   const multiSelectDriver = Object.assign(driver, {
-    // TODO add specific multiselect driver stuff in here
+    exists: () => !!component
   });
 
   return {driver: multiSelectDriver, inputDriver, dropdownLayoutDriver};
