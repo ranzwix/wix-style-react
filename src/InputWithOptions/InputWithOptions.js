@@ -68,7 +68,7 @@ class InputWithOptions extends WixComponent {
           {this.renderInput()}
         </div>
 
-        <div className={this.dropdownClasses()} onFocus={this._onFocus}>
+        <div className={this.dropdownClasses()} onFocus={this.state.showOptions? this._onFocus : null}>
           {this.renderDropdownLayout()}
         </div>
       </div>
