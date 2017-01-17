@@ -15,6 +15,12 @@ const runInputWithOptionsTest = driverFactory => {
       {id: 'element1', value: <span style={{color: 'brown'}}>Option 4</span>}
     ];
 
+    it('should show dropdown when autofocus is on', () => {
+      const {inputDriver, dropdownLayoutDriver} = createDriver({options, autoFocus: true});
+      expect(inputDriver.isFocus()).toBeTruthy();
+      expect(dropdownLayoutDriver.isShown()).toBeTruthy();
+    });
+
     it('should have an Input and an hidden DropdownLayout', () => {
       const {inputDriver, dropdownLayoutDriver} = createDriver({options});
       expect(inputDriver.exists()).toBeTruthy();
@@ -22,12 +28,10 @@ const runInputWithOptionsTest = driverFactory => {
       expect(dropdownLayoutDriver.isShown()).toBeFalsy();
     });
 
-    it('should show DropdownLayout when input get focused and hide it when get blur', () => {
+    it('should show DropdownLayout when input get focused', () => {
       const {driver, dropdownLayoutDriver} = createDriver({options});
       driver.focus();
       expect(dropdownLayoutDriver.isShown()).toBeTruthy();
-      driver.blur();
-      expect(dropdownLayoutDriver.isShown()).toBeFalsy();
     });
 
     it('should show DropdownLayout on any key press', () => {
@@ -36,13 +40,15 @@ const runInputWithOptionsTest = driverFactory => {
       expect(dropdownLayoutDriver.isShown()).toBeTruthy();
     });
 
-    it('should show DropdownLayout on down and up key press', () => {
+    it('should show DropdownLayout on down key', () => {
+      const {driver, dropdownLayoutDriver} = createDriver({options});
+      driver.pressUpKey();
+      expect(dropdownLayoutDriver.isShown()).toBeTruthy();
+    });
+
+    it('should show DropdownLayout on up key', () => {
       const {driver, dropdownLayoutDriver} = createDriver({options});
       driver.pressDownKey();
-      expect(dropdownLayoutDriver.isShown()).toBeTruthy();
-      driver.blur();
-      expect(dropdownLayoutDriver.isShown()).toBeFalsy();
-      driver.pressUpKey();
       expect(dropdownLayoutDriver.isShown()).toBeTruthy();
     });
 
@@ -61,9 +67,24 @@ const runInputWithOptionsTest = driverFactory => {
     it('should call onManuallyInput on enter key press', () => {
       const onManuallyInput = jest.fn();
       const {driver, inputDriver} = createDriver({options, onManuallyInput});
+      driver.setProps({options, onManuallyInput});
       inputDriver.enterText('my text');
       driver.pressEnterKey();
       expect(onManuallyInput).toBeCalledWith('my text');
+    });
+
+    it('should hide options on selection by default', () => {
+      const {driver, dropdownLayoutDriver} = createDriver({options});
+      driver.focus();
+      dropdownLayoutDriver.clickAtOption(0);
+      expect(dropdownLayoutDriver.isShown()).toBeFalsy();
+    });
+
+    it('should not hide options on selection', () => {
+      const {driver, dropdownLayoutDriver} = createDriver({options, closeOnSelect: false});
+      driver.focus();
+      dropdownLayoutDriver.clickAtOption(0);
+      expect(dropdownLayoutDriver.isShown()).toBeTruthy();
     });
 
     it('should call onSelect when an option is pressed', () => {
@@ -72,6 +93,13 @@ const runInputWithOptionsTest = driverFactory => {
       driver.focus();
       dropdownLayoutDriver.clickAtOption(0);
       expect(onSelect).toBeCalledWith({id: 0, value: 'Option 1'});
+    });
+
+    it('should call onFocus', () => {
+      const onFocus = jest.fn();
+      const {driver} = createDriver({options, onFocus});
+      driver.focus();
+      expect(onFocus).toBeCalled();
     });
   });
 };

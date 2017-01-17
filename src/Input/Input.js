@@ -1,20 +1,17 @@
-import React, {PropTypes} from 'react';
+import React, {PropTypes, Component} from 'react';
 import classNames from 'classnames';
-import WixComponent from '../WixComponent';
 
 import Ticker from './Ticker';
 import Unit from './Unit';
-import Group from './Group';
 import InputPrefix from './InputPrefix';
 import InputSuffix from './InputSuffix';
 
 import styles from './Input.scss';
 
-class Input extends WixComponent {
+class Input extends Component {
 
   static Ticker = Ticker;
   static Unit = Unit;
-  static Group = Group;
 
   constructor(params) {
     super(params);
@@ -28,6 +25,10 @@ class Input extends WixComponent {
 
   state = {
     focus: false
+  };
+
+  componentDidMount() {
+    this.props.autoFocus && this._onFocus();
   }
 
   render() {
@@ -51,6 +52,7 @@ class Input extends WixComponent {
       onKeyUp,
       readOnly,
       size,
+      dataHook,
       iconLeft,
       prefix,
       suffix
@@ -77,8 +79,10 @@ class Input extends WixComponent {
       [styles.hasFocus]: forceFocus || this.state.focus
     });
 
+    const myAttr = {'data-hook': dataHook};
+
     return (
-      <div className={classes}>
+      <div className={classes} {...myAttr}>
         <InputPrefix>{iconLeft}{prefix}</InputPrefix>
         <input
           ref={input => this.input = input}
@@ -105,7 +109,7 @@ class Input extends WixComponent {
           menuArrow={menuArrow}
           rtl={rtl}
           onClear={onClear}
-          onFocus={this.focus}
+          onFocus={this._onFocus}
           >
           {suffix}
         </InputSuffix>
@@ -188,6 +192,7 @@ Input.propTypes = {
   onKeyUp: PropTypes.func,
   iconLeft: PropTypes.object,
   readOnly: PropTypes.bool,
+  dataHook: PropTypes.string,
   size: PropTypes.oneOf(['small', 'normal', 'large']),
   prefix: PropTypes.node,
   suffix: PropTypes.node

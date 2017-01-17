@@ -10,8 +10,10 @@
 | onSelect | func | noop | - | Callback when the user selects one of the selections. Called with the selection. |
 | onManuallyInput | func | noop | - | Callback when the user pressed the Enter key or Tab key after he wrote in the Input field - meaning the user selected something not in the list |
 | selectedId | string/number | - | - | The id of the selected option in the list |
-| shouldCloseOnSelect | bool | true | - | Should the options container close on selection |
-| customInput | element | - | - | Optional custom input element |
+| closeOnSelect | bool | true | - | Should the options container close on selection |
+| inputElement | element | - | - | Set the component input element |
+| fixedHeader | node | - | - | A fixed header to the list |
+| fixedFooter | node | - | - | A fixed footer to the list |
 | ***All of the Input's and DropdownLayout Props are also available for this component*** | | | | |
 
 

@@ -1,4 +1,4 @@
-import React, {Component, PropTypes} from 'react';
+import React from 'react';
 import InputWithOptions from 'wix-style-react/InputWithOptions';
 
 const style = {
@@ -18,7 +18,7 @@ const options = [
   {id: '5', value: 'Very long option text jldlkasj ldk jsalkdjsal kdjaklsjdlkasj dklasj'}
 ];
 
-class ControlledInputWithOptions extends Component {
+class ControlledInputWithOptions extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -46,7 +46,7 @@ class ControlledInputWithOptions extends Component {
       this.setState({
         selectedId: -1
       });
-      alert(`Manually selected ${value}`);
+      console.log(`Manually selected ${value}`);
     };
 
     const predicate = element =>
@@ -55,7 +55,14 @@ class ControlledInputWithOptions extends Component {
       true;
 
     return (
-      <InputWithOptions options={options.filter(predicate)} selectedId={this.state.selectedId} value={this.state.value} onChange={onChange} onSelect={onSelect} onManuallyInput={onManuallyInput}/>
+      <InputWithOptions
+        options={options.filter(predicate)}
+        selectedId={this.state.selectedId}
+        value={this.state.value}
+        onChange={onChange}
+        onSelect={onSelect}
+        onManuallyInput={onManuallyInput}
+        />
     );
   }
 }

@@ -1,6 +1,7 @@
 import styles from './DropdownLayout.scss';
 import React from 'react';
 import classNames from 'classnames';
+import WixComponent from '../WixComponent';
 import isEqual from 'lodash.isequal';
 import isobject from 'lodash.isobject';
 import trim from 'lodash.trim';
@@ -14,7 +15,7 @@ const modulu = (n, m) => {
 
 const NOT_HOVERED_INDEX = -1;
 
-class DropdownLayout extends React.Component {
+class DropdownLayout extends WixComponent {
 
   constructor(props) {
     super(props);
@@ -28,11 +29,19 @@ class DropdownLayout extends React.Component {
     this._onMouseEnter = this._onMouseEnter.bind(this);
     this._onKeyDown = this._onKeyDown.bind(this);
     this._onClose = this._onClose.bind(this);
+    this.onClickOutside = this.onClickOutside.bind(this);
   }
 
   isLegalOption(option) {
     return isobject(option) && has(option, 'id') && trim(option.id).length > 0 &&
         has(option, 'value') && (React.isValidElement(option.value) || (isstring(option.value) && trim(option.value).length > 0));
+  }
+
+  onClickOutside() {
+    const {visible, onClickOutside} = this.props;
+    if (visible && onClickOutside) {
+      onClickOutside();
+    }
   }
 
   _onSelect(index) {
@@ -177,7 +186,7 @@ class DropdownLayout extends React.Component {
     return (
       <div
         className={optionClassName}
-        onMouseDown={!disabled ? () => this._onSelect(idx) : null}
+        onClick={!disabled ? () => this._onSelect(idx) : null}
         key={idx}
         onMouseEnter={() => this._onMouseEnter(idx)}
         onMouseLeave={this._onMouseLeave}
@@ -238,7 +247,8 @@ DropdownLayout.propTypes = {
 DropdownLayout.defaultProps = {
   options: [],
   tabIndex: 1,
-  selectedId: NOT_HOVERED_INDEX
+  selectedId: NOT_HOVERED_INDEX,
+  onClickOutside: React.PropTypes.func
 };
 
 DropdownLayout.NONE_SELECTED_ID = NOT_HOVERED_INDEX;

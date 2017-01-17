@@ -31,4 +31,3 @@ describe('Autocomplete', () => {
     expect(dropdownLayoutDriver.optionsLength()).toBe(2);
   });
 });
-

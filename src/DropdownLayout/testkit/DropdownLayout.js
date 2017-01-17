@@ -31,7 +31,7 @@ const dropdownLayoutDriverFactory = ({component, wrapper}) => {
     pressTabKey: () => ReactTestUtils.Simulate.keyDown(component, {key: 'Tab'}),
     pressEscKey: () => ReactTestUtils.Simulate.keyDown(component, {key: 'Escape'}),
     optionContentAt: position => optionAt(position).textContent,
-    clickAtOption: position => ReactTestUtils.Simulate.mouseDown(optionAt(position)),
+    clickAtOption: position => ReactTestUtils.Simulate.click(optionAt(position)),
     isOptionADivider: position => isClassExists(optionAt(position), 'divider'),
     setProps: props => {
       ReactDOM.render(<div ref={r => component = r}><DropdownLayout {...props}/></div>, wrapper);

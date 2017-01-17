@@ -37,4 +37,3 @@ describe('Dropdown', () => {
     expect(inputDriver.getReadOnly()).toBeTruthy();
   });
 });
-

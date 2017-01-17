@@ -6,7 +6,7 @@ import {dropdownLayoutDriverFactory} from '../../DropdownLayout/testkit/Dropdown
 import ReactDOM from 'react-dom';
 import $ from 'jquery';
 
-const inputWithOptionsDriverFactory = ({component}) => {
+const inputWithOptionsDriverFactory = ({component, wrapper}) => {
 
   const inputDriver = inputDriverFactory({component});
   const dropdownLayoutDriver = dropdownLayoutDriverFactory({component: component.childNodes[1].childNodes[0]});
@@ -15,12 +15,15 @@ const inputWithOptionsDriverFactory = ({component}) => {
 
   const driver = {
     focus: () => ReactTestUtils.Simulate.focus(inputWrapper),
-    blur: () => ReactTestUtils.Simulate.blur(component),
+    blur: () => dropdownLayoutDriver.mouseClickOutside(),
     pressDownKey: () => ReactTestUtils.Simulate.keyDown(inputWrapper, {key: 'ArrowDown'}),
     pressUpKey: () => ReactTestUtils.Simulate.keyDown(inputWrapper, {key: 'ArrowUp'}),
     pressAnyKey: () => ReactTestUtils.Simulate.keyDown(inputWrapper, {key: 'Any'}),
     pressEnterKey: () => ReactTestUtils.Simulate.keyDown(inputWrapper, {key: 'Enter'}),
     pressEscKey: () => ReactTestUtils.Simulate.keyDown(inputWrapper, {key: 'Escape'}),
+    setProps: props => {
+      ReactDOM.render(<div ref={r => component = r}><InputWithOptions {...props}/></div>, wrapper);
+    }
   };
   return {driver, inputDriver, dropdownLayoutDriver};
 };
