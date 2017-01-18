@@ -15,6 +15,10 @@ export const breadcrumbsTestkitFactory = testkitFactoryCreator(breadcrumbsDriver
 import dropdownLayoutDriverFactory from '../src/DropdownLayout/DropdownLayout.driver';
 export const dropdownLayoutTestkitFactory = testkitFactoryCreator(dropdownLayoutDriverFactory);
 
+import inputWithOptionsDriverFactory from '../src/InputWithOptions/InputWithOptions.driver';
+export const inputWithOptionsTestkitFactory = testkitFactoryCreator(inputWithOptionsDriverFactory);
+
+
 export {buttonTestkitFactory} from '../src/Button/testkit/Button';
 export {checkboxDriverFactory} from '../src/Checkbox/Checkbox.driver';
 export {radioGroupDriverFactory} from '../src/RadioGroup/RadioGroup.driver';
