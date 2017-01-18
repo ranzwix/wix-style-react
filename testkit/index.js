@@ -21,7 +21,6 @@ export const inputWithOptionsTestkitFactory = testkitFactoryCreator(inputWithOpt
 import autoCompleteDriverFactory from '../src/AutoComplete/AutoComplete.driver';
 export const autoCompleteTestkitFactory = testkitFactoryCreator(autoCompleteDriverFactory);
 
-
 export {buttonTestkitFactory} from '../src/Button/testkit/Button';
 export {checkboxDriverFactory} from '../src/Checkbox/Checkbox.driver';
 export {radioGroupDriverFactory} from '../src/RadioGroup/RadioGroup.driver';

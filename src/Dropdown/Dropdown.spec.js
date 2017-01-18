@@ -1,7 +1,7 @@
 import _ from 'lodash/fp';
 import React from 'react';
 import {componentFactory, dropdownDriverFactory} from './testKit/Dropdown';
-import {runInputWithOptionsTest} from '../InputWithOptions/inputWithOptions.spec';
+import {runInputWithOptionsTest} from '../InputWithOptions/InputWithOptions.spec';
 
 runInputWithOptionsTest(dropdownDriverFactory);
 
