@@ -24,6 +24,9 @@ export const autoCompleteTestkitFactory = testkitFactoryCreator(autoCompleteDriv
 import dropdownDriverFactory from '../src/Dropdown/Dropdown.driver';
 export const dropdownTestkitFactory = testkitFactoryCreator(dropdownDriverFactory);
 
+import multiSelectDriverFactory from '../src/MultiSelect/MultiSelect.driver';
+export const multiSelectTestkitFactory = testkitFactoryCreator(multiSelectDriverFactory);
+
 
 export {buttonTestkitFactory} from '../src/Button/testkit/Button';
 export {checkboxDriverFactory} from '../src/Checkbox/Checkbox.driver';

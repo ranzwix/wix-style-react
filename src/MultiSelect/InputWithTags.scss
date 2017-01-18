@@ -1,0 +1,32 @@
+@import '../common';
+
+$wix-font-family-helvetica-45: "HelveticaNeueW01-45Ligh", "HelveticaNeueW02-45Ligh", "HelveticaNeueW10-45Ligh", sans-serif;
+
+.inputField {
+  @include FontThin();
+  border: none;
+  outline: none;
+  font-size: 16px;
+  color: #8090a2;
+  display: inline-block;
+  margin: 4px 16px 11px 6px;
+}
+
+.inputField::-webkit-input-placeholder {
+  color: $D50;
+}
+
+.tagsContainer {
+  width: 100%;
+  @include FontThin();
+  border: 1px solid $B30;
+  border-radius: 6px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow: none;
+  color: $D30;
+  font-size: 16px;
+}

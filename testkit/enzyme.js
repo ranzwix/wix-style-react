@@ -24,6 +24,8 @@ export const autoCompleteTestkitFactory = enzymeTestkitFactoryCreator(autoComple
 import dropdownDriverFactory from '../src/Dropdown/Dropdown.driver';
 export const dropdownTestkitFactory = enzymeTestkitFactoryCreator(dropdownDriverFactory);
 
+import multiSelectDriverFactory from '../src/MultiSelect/MultiSelect.driver';
+export const multiSelectTestkitFactory = enzymeTestkitFactoryCreator(multiSelectDriverFactory);
 
 export {buttonTestkitFactory} from '../src/Button/testkit/Button.enzyme';
 export {toastTestkitFactory} from '../src/Toast/testkit/Toast.enzyme';
