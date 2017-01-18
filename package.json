@@ -76,6 +76,7 @@
     "registry": "https://registry.npmjs.org/"
   },
   "dependencies": {
+    "bootstrap-sass": "^3.3.7",
     "classnames": "^2.2.5",
     "github-markdown-css": "^2.4.1",
     "highlight.js": "^9.8.0",
