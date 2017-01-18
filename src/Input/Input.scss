@@ -60,7 +60,12 @@
         .prefix, .suffix {
             padding: 0 4px;
         }
-        &.size-normal { @include Size($height: 34px, $fontSize: 16px); }
+        &.size-normal {
+            @include Size($height: 34px, $fontSize: 18px);
+        }
+        .input {
+            @include FontLight();
+        }
         @include ThemeDefault($color: $D10, $borderColor: transparent, $backgroundColor: $D80);
         @at-root {
             .bar {

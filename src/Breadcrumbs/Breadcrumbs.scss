@@ -1,7 +1,7 @@
 @import '../common.scss';
 
 @mixin breadcrumbsHover($hoverTextColor, $hoverBackgroundColor) {
-  .item:hover:not(.active) .label {
+  .item:not(.active) .label:hover {
     border-radius: 100px;
     color: $hoverTextColor;
     background-color: $hoverBackgroundColor;

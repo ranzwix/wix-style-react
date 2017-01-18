@@ -17,10 +17,11 @@ class Breadcrumbs extends WixComponent {
     let labelAppearance;
     const getLabelAppearance = (size, theme, isActive) => {
       const isDarkBackground = theme === 'onDarkBackground';
+      const isMediumSize = size === 'medium';
       if (isActive && !isDarkBackground) {
-        return size === 'medium' ? 'T3' : 'T1';
+        return isMediumSize ? 'T3' : 'T1';
       }
-      if (size === 'medium') {
+      if (isMediumSize) {
         return isDarkBackground ? 'T3.2' : 'T3.1';
       } else {
         return isDarkBackground ? 'T1.2' : 'T1.1';
