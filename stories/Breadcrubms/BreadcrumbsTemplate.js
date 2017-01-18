@@ -27,7 +27,8 @@ export default class Form extends Component {
     return (
       <Breadcrumbs items={[{id: '1', value: 'First item'}, {
         id: '2',
-        value: <a href="http://www.wix.com">Second item</a>
+        value: 'Linked item',
+        link: 'http://www.wix.com'
       }, {id: '3', value: 'Third item'}]}
                    activeId={this.props.activeId}
                    size={this.props.size}
