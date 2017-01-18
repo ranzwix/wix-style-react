@@ -14,6 +14,7 @@ const inputWithOptionsDriverFactory = ({component, wrapper}) => {
 
   const driver = {
     exists: () => !!component,
+    inputWrapper: () => component.childNodes[0],
     focus: () => ReactTestUtils.Simulate.focus(inputWrapper),
     blur: () => dropdownLayoutDriver.mouseClickOutside(),
     pressDownKey: () => ReactTestUtils.Simulate.keyDown(inputWrapper, {key: 'ArrowDown'}),

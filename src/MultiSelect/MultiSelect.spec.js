@@ -74,6 +74,22 @@ describe('multiSelect', () => {
     expect(inputDriver.getPlaceholder()).toBe('');
   });
 
+  it('should focus the input when clicking on the input wrapper', () => {
+    const {driver, inputDriver} = createDriver(<MultiSelect options={options}/>);
+    expect(inputDriver.isFocus()).toBeFalsy();
+    driver.clickOnInputWrapper();
+    expect(inputDriver.isFocus()).toBeTruthy();
+  });
+
+  it('should contain specific tags', () => {
+    const tags = [{id: 'Alabama', label: 'Alabama'}, {id: 'Alaska', label: 'Alaska'}];
+
+    const {driver} = createDriver(<MultiSelect options={options} tags={tags}/>);
+    expect(driver.numberOfTags()).toBe(tags.length);
+    expect(driver.getTagLabelAt(0)).toBe('Alabama');
+    expect(driver.getTagLabelAt(1)).toBe('Alaska');
+  });
+
   describe('testkit', () => {
     it('should exist', () => {
       const div = document.createElement('div');
