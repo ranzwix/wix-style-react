@@ -61,6 +61,19 @@ describe('multiSelect', () => {
     expect(inputDriver.isFocus());
   });
 
+  it('should display a placeholder if there are no tags', () => {
+    const placeholder = 'myPlaceholder';
+    const {inputDriver} = createDriver(<MultiSelect options={options} placeholder={placeholder}/>);
+    expect(inputDriver.getPlaceholder()).toBe(placeholder);
+  });
+
+  it('should not display a placeholder if there are any tags', () => {
+    const tags = [{id: 'Alabama', value: 'Alabama'}];
+    const placeholder = 'myPlaceholder';
+    const {inputDriver} = createDriver(<MultiSelect options={options} tags={tags} placeholder={placeholder}/>);
+    expect(inputDriver.getPlaceholder()).toBe('');
+  });
+
   describe('testkit', () => {
     it('should exist', () => {
       const div = document.createElement('div');
