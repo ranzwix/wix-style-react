@@ -1,13 +1,18 @@
-import _ from 'lodash/fp';
 import React from 'react';
-import {componentFactory, autocompleteDriverFactory} from './testKit/Autocomplete';
+import ReactTestUtils from 'react-addons-test-utils';
+import autoCompleteDriverFactory from './AutoComplete.driver';
+import AutoComplete from './AutoComplete';
+import {createDriverFactory} from '../test-common';
+import {autoCompleteTestkitFactory} from '../../testkit';
+import {autoCompleteTestkitFactory as enzymeAutoCompleteTestkitFactory} from '../../testkit/enzyme';
+import {mount} from 'enzyme';
 import {runInputWithOptionsTest} from '../InputWithOptions/inputWithOptions.spec';
 
-runInputWithOptionsTest(autocompleteDriverFactory);
+runInputWithOptionsTest(autoCompleteDriverFactory);
 
 describe('Autocomplete', () => {
 
-  const createDriver = _.compose(autocompleteDriverFactory, componentFactory);
+  const createDriver = createDriverFactory(autoCompleteDriverFactory);
 
   const options = [
     {id: 0, value: 'aaa'},
@@ -19,15 +24,38 @@ describe('Autocomplete', () => {
   ];
 
   it('should not filter anything without predicate function', () => {
-    const {driver, dropdownLayoutDriver} = createDriver({options});
+    const {driver, dropdownLayoutDriver} = createDriver(<AutoComplete options={options}/>);
     driver.focus();
     expect(dropdownLayoutDriver.optionsLength()).toBe(6);
   });
 
   it('should filter items according to predicate function', () => {
     const predicate = option => option.value.toString().toLowerCase().indexOf('a') !== -1;
-    const {driver, dropdownLayoutDriver} = createDriver({options, predicate});
+    const {driver, dropdownLayoutDriver} = createDriver(<AutoComplete options={options} predicate={predicate}/>);
     driver.focus();
     expect(dropdownLayoutDriver.optionsLength()).toBe(2);
+  });
+
+  describe('testkit', () => {
+    it('should exist', () => {
+      const div = document.createElement('div');
+      const dataHook = 'myDataHook';
+      const wrapper = div.appendChild(ReactTestUtils.renderIntoDocument(<div><AutoComplete dataHook={dataHook}/></div>));
+      const autoCompleteTestkit = autoCompleteTestkitFactory({wrapper, dataHook});
+      expect(autoCompleteTestkit.driver.exists()).toBeTruthy();
+      expect(autoCompleteTestkit.inputDriver.exists()).toBeTruthy();
+      expect(autoCompleteTestkit.dropdownLayoutDriver.exists()).toBeTruthy();
+    });
+  });
+
+  describe('enzyme testkit', () => {
+    it('should exist', () => {
+      const dataHook = 'myDataHook';
+      const wrapper = mount(<AutoComplete dataHook={dataHook}/>);
+      const autoCompleteTestkit = enzymeAutoCompleteTestkitFactory({wrapper, dataHook});
+      expect(autoCompleteTestkit.driver.exists()).toBeTruthy();
+      expect(autoCompleteTestkit.inputDriver.exists()).toBeTruthy();
+      expect(autoCompleteTestkit.dropdownLayoutDriver.exists()).toBeTruthy();
+    });
   });
 });

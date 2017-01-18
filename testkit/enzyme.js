@@ -18,6 +18,10 @@ export const dropdownLayoutTestkitFactory = enzymeTestkitFactoryCreator(dropdown
 import inputWithOptionsDriverFactory from '../src/InputWithOptions/InputWithOptions.driver';
 export const inputWithOptionsTestkitFactory = enzymeTestkitFactoryCreator(inputWithOptionsDriverFactory);
 
+import autoCompleteDriverFactory from '../src/AutoComplete/AutoComplete.driver';
+export const autoCompleteTestkitFactory = enzymeTestkitFactoryCreator(autoCompleteDriverFactory);
+
+
 
 export {buttonTestkitFactory} from '../src/Button/testkit/Button.enzyme';
 export {toastTestkitFactory} from '../src/Toast/testkit/Toast.enzyme';
