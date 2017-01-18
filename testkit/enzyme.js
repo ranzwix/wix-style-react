@@ -12,6 +12,10 @@ export const labelTestkitFactory = enzymeTestkitFactoryCreator(labelDriverFactor
 import breadcrumbsDriverFactory from '../src/Breadcrumbs/Breadcrumbs.driver';
 export const breadcrumbsTestkitFactory = enzymeTestkitFactoryCreator(breadcrumbsDriverFactory);
 
+import dropdownLayoutDriverFactory from '../src/DropdownLayout/DropdownLayout.driver';
+export const dropdownLayoutTestkitFactory = enzymeTestkitFactoryCreator(dropdownLayoutDriverFactory);
+
+
 export {buttonTestkitFactory} from '../src/Button/testkit/Button.enzyme';
 export {toastTestkitFactory} from '../src/Toast/testkit/Toast.enzyme';
 export {dropdownTestkitFactory} from '../src/Dropdown/testKit/Dropdown.enzyme';

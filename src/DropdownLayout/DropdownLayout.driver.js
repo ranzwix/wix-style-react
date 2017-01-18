@@ -2,24 +2,24 @@ import React from 'react';
 import DropdownLayout from '../DropdownLayout';
 import ReactTestUtils from 'react-addons-test-utils';
 import ReactDOM from 'react-dom';
-import $ from 'jquery';
 
 const dropdownLayoutDriverFactory = ({component, wrapper}) => {
 
   const isClassExists = (component, className) => !!(component.className.match(new RegExp('\\b' + className + '\\b')));
-  const options = component.childNodes[0];
+  const contentContainer = component.childNodes[0];
+  const options = component.childNodes[0].childNodes[1];
   const optionAt = position => (options.childNodes[position]);
 
   return {
     exists: () => !!component,
-    isShown: () => isClassExists(options, 'shown'),
-    isDown: () => isClassExists(options, 'down'),
-    isUp: () => isClassExists(options, 'up'),
+    isShown: () => isClassExists(contentContainer, 'shown'),
+    isDown: () => isClassExists(contentContainer, 'down'),
+    isUp: () => isClassExists(contentContainer, 'up'),
     tabIndex: () => component.tabIndex,
     optionsLength: () => options.childNodes.length,
     mouseEnterAtOption: position => ReactTestUtils.Simulate.mouseEnter(optionAt(position)),
     mouseLeaveAtOption: position => ReactTestUtils.Simulate.mouseLeave(optionAt(position)),
-    mouseClickOutside: () => ReactTestUtils.Simulate.blur(options),
+    mouseClickOutside: () => ReactTestUtils.Simulate.blur(contentContainer),
     isOptionHovered: position => isClassExists(optionAt(position), 'hovered'),
     isOptionSelected: position => isClassExists(optionAt(position), 'selected'),
     isOptionHoveredWithGlobalClassName: position => isClassExists(optionAt(position), 'wixstylereactHovered'),
@@ -39,16 +39,4 @@ const dropdownLayoutDriverFactory = ({component, wrapper}) => {
   };
 };
 
-const componentFactory = (props = {}) => {
-  let component;
-  const wrapperDiv = document.createElement('div');
-  ReactDOM.render(<div ref={r => component = r}><DropdownLayout visible {...props}/></div>, wrapperDiv);
-  return {component: component.childNodes[0], wrapper: wrapperDiv};
-};
-
-const dropdownLayoutTestkitFactory = ({wrapper, id}) => {
-  const component = $(wrapper).find(`#${id}`)[0];
-  return dropdownLayoutDriverFactory({component, wrapper});
-};
-
-export {dropdownLayoutTestkitFactory, componentFactory, dropdownLayoutDriverFactory};
+export default dropdownLayoutDriverFactory;

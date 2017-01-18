@@ -2,14 +2,14 @@ import React from 'react';
 import InputWithOptions from '../InputWithOptions';
 import ReactTestUtils from 'react-addons-test-utils';
 import inputDriverFactory from '../../Input/Input.driver';
-import {dropdownLayoutDriverFactory} from '../../DropdownLayout/testkit/DropdownLayout';
+import dropdownLayoutDriverFactory from '../../DropdownLayout/DropdownLayout.driver';
 import ReactDOM from 'react-dom';
 import $ from 'jquery';
 
 const inputWithOptionsDriverFactory = ({component, wrapper}) => {
 
-  const inputDriver = inputDriverFactory({component});
-  const dropdownLayoutDriver = dropdownLayoutDriverFactory({component: component.childNodes[1].childNodes[0]});
+  const inputDriver = inputDriverFactory({component, wrapper});
+  const dropdownLayoutDriver = dropdownLayoutDriverFactory({component: component.childNodes[1].childNodes[0], wrapper});
 
   const inputWrapper = component.childNodes[0];
 

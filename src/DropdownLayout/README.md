@@ -11,7 +11,7 @@
 | onClose | func | - | - | Callback function called whenever the user press escape or click outside the component |
 | onClickOutside | func | - | - | Callback function called whenever the user click outside the component |
 | dropDirectionUp | bool | false | - | Whether the component opens up or down |
-| visible | bool | true | - | Should show or hide the component |
+| visible | bool | false | - | Should show or hide the component |
 | selectedId | string/number | - | - | The id of the selected option in the list |
 | tabIndex| number | 1 | - | Specifies the tab order of the component |
 | fixedHeader | node | - | - | A fixed header to the list |

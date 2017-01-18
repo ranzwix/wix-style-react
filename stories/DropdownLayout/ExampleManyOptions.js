@@ -8,6 +8,11 @@ const style = {
   lineHeight: '22px'
 };
 
+const nodeStyle = {
+  background: 'azure',
+  paddingLeft: '25px',
+};
+
 const options = [
   {id: 0, value: 'Option 1'},
   {id: 1, value: 'Option 2'},
@@ -43,5 +48,12 @@ const options = [
 
 export default () =>
   <div>
-    <div className="ltr" style={style}>30 options<br/><DropdownLayout visible options={options}/></div>
+    <div className="ltr" style={style}>
+      30 options<br/>
+      <DropdownLayout
+        visible
+        options={options}
+        fixedFooter={<div style={nodeStyle}>I am a footer</div>}
+        />
+    </div>
   </div>;
