@@ -1,24 +1,29 @@
 import React, {PropTypes} from 'react';
 import styles from './Tag.scss';
 import classNames from 'classnames';
+import WixComponent from '../WixComponent';
 
-const Tag = ({id, label, thumb, removable, onRemove, size}) => {
-  const className = classNames({
-    [styles.tag]: true,
-    [styles.large]: size === 'large'
-  });
+class Tag extends WixComponent {
+  render() {
+    const {id, children, thumb, removable, onRemove, size} = this.props;
 
-  return (
-    <span className={className} id={id}>
-      {thumb && <span className={styles.thumb}>{thumb}</span>}
-      <span>{label}</span>
-      {removable && <a className={styles.tagRemoveButton} onClick={() => onRemove(id)}/>}
-    </span>
-  );
-};
+    const className = classNames({
+      [styles.tag]: true,
+      [styles.large]: size === 'large'
+    });
+
+    return (
+      <span className={className} id={id}>
+        {thumb && <span className={styles.thumb}>{thumb}</span>}
+        <span>{children}</span>
+        {removable && <a className={styles.tagRemoveButton} onClick={() => onRemove(id)}/>}
+      </span>
+    );
+  }
+}
 
 Tag.propTypes = {
-  label: PropTypes.string.isRequired,
+  children: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
   thumb: PropTypes.element,
   onRemove: PropTypes.func,

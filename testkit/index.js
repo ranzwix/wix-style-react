@@ -27,6 +27,9 @@ export const dropdownTestkitFactory = testkitFactoryCreator(dropdownDriverFactor
 import multiSelectDriverFactory from '../src/MultiSelect/MultiSelect.driver';
 export const multiSelectTestkitFactory = testkitFactoryCreator(multiSelectDriverFactory);
 
+import tagDriverFactory from '../src/Tag/Tag.driver';
+export const tagTestkitFactory = testkitFactoryCreator(tagDriverFactory);
+
 
 export {buttonTestkitFactory} from '../src/Button/testkit/Button';
 export {checkboxDriverFactory} from '../src/Checkbox/Checkbox.driver';

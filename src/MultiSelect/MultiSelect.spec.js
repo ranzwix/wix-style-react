@@ -68,7 +68,7 @@ describe('multiSelect', () => {
   });
 
   it('should not display a placeholder if there are any tags', () => {
-    const tags = [{id: 'Alabama', value: 'Alabama'}];
+    const tags = [{id: 'Alabama', label: 'Alabama'}];
     const placeholder = 'myPlaceholder';
     const {inputDriver} = createDriver(<MultiSelect options={options} tags={tags} placeholder={placeholder}/>);
     expect(inputDriver.getPlaceholder()).toBe('');

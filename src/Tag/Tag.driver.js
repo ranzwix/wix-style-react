@@ -16,22 +16,11 @@ const tagDriverFactory = ({component, wrapper}) => {
     isRemovable: () => isClassExists(removeButton, 'tagRemoveButton'),
     removeTag: () => ReactTestUtils.Simulate.click(removeButton),
     isThumbExists: () => isClassExists(thumb, 'thumb'),
+    getLabel: () => component.textContent,
     setProps: props => {
       ReactDOM.render(<div ref={r => component = r}><Tag {...props}/></div>, wrapper);
     }
   };
 };
 
-const componentFactory = (props = {}) => {
-  let component;
-  const wrapperDiv = document.createElement('div');
-  ReactDOM.render(<div ref={r => component = r}><Tag {...props}/></div>, wrapperDiv);
-  return {component: component.childNodes[0], wrapper: wrapperDiv};
-};
-
-const tagTestkitFactory = ({wrapper, id}) => {
-  const component = $(wrapper).find(`#${id}`)[0];
-  return tagDriverFactory({component, wrapper});
-};
-
-export {tagTestkitFactory, componentFactory, tagDriverFactory};
+export default tagDriverFactory;
