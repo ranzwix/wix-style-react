@@ -10,8 +10,8 @@ export default () =>
     <div className={`${styles.onGrayBackground} ${styles.exampleWrapper}`}>
       <Breadcrumbs
         items={items}
-        onClick={(id) => {
-          alert(`clicked element id is: ${id}`)
+        onClick={(item) => {
+          alert(`clicked element is: ${JSON.stringify(item)}`)
         }}/>
     </div>
   </div>;

@@ -56,24 +56,30 @@ class InputWithOptions extends React.Component {
     }
   }
 
-  render() {
+  _renderDropdownLayout() {
     const dropdownProps = Object.assign(omit(this.props, Object.keys(Input.propTypes)), this.dropdownAdditionalProps());
-
     return (
-      <div id={this.props.id} onBlur={this._onBlur}>
+      <div className={this.dropdownClasses()}>
+        <DropdownLayout
+          ref={dropdownLayout => this.dropdownLayout = dropdownLayout}
+          {...dropdownProps}
+          visible={this.state.showOptions}
+          onClose={this.hideOptions}
+          onSelect={this._onSelect}
+          />
+      </div>
+    );
+  }
+
+  render() {
+    const {id, dropDirectionUp} = this.props;
+    return (
+      <div id={id} onBlur={this._onBlur}>
+        {dropDirectionUp ? this._renderDropdownLayout() : null}
         <div onKeyDown={this._onKeyDown} onFocus={this._onFocus} className={this.inputClasses()}>
           {this.renderInput()}
         </div>
-
-        <div className={this.dropdownClasses()}>
-          <DropdownLayout
-            ref={dropdownLayout => this.dropdownLayout = dropdownLayout}
-            {...dropdownProps}
-            visible={this.state.showOptions}
-            onClose={this.hideOptions}
-            onSelect={this._onSelect}
-            />
-        </div>
+        {!dropDirectionUp ? this._renderDropdownLayout() : null}
       </div>
     );
   }

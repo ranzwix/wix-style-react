@@ -36,14 +36,10 @@ $option_height: 35px;
     -ms-user-select: none;
     user-select: none;
 }
-.options.up {
-    margin-bottom: -1px;
-    bottom:0;
-}
 
-.options.down {
-    margin-top: -1px;
-    top: 0;
+.options {
+    &.up   { bottom: 0; }
+    &.down { top: 0; }
 }
 
 .options.shown {

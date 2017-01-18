@@ -10,7 +10,7 @@
     "testkit"
   ],
   "scripts": {
-    "test": "npm run test:unit && npm run test:e2e",
+    "test": "npm run test:unit",
     "test:unit": "wix-node-build test --jest",
     "test:e2e": "wix-node-build test --protractor",
     "build": "wix-node-build lint && wix-node-build build && build-storybook",
@@ -76,6 +76,7 @@
     "registry": "https://registry.npmjs.org/"
   },
   "dependencies": {
+    "bootstrap-sass": "^3.3.7",
     "classnames": "^2.2.5",
     "github-markdown-css": "^2.4.1",
     "highlight.js": "^9.8.0",
