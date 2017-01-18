@@ -118,6 +118,14 @@ describe('<Tooltip/>', () => {
     expect(driver.get.isShown()).toEqual(false);
   });
 
+  it('should support error theme', () => {
+    driver.given.props({theme: 'error', showDelay: 10, active: true, content: 'Error tooltip content'})
+      .when.created(<div>this is an error tooltip</div>);
+
+    return resolveIn(15).then(() => {
+      expect(driver.get.isThemeError()).toEqual(true);
+    });
+  });
 });
 
 function resolveIn(timeout) {
