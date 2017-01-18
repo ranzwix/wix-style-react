@@ -39,9 +39,26 @@ describe('multiSelect', () => {
 
     const {driver, dropdownLayoutDriver} = createDriver(<MultiSelect options={options} autoFocus={true}/>);
     expect(dropdownLayoutDriver.optionsLength()).toBe(options.length);
+    expect(dropdownLayoutDriver.isOptionExists('Alabama')).toBeTruthy();
 
     driver.setProps({options, tags});
     expect(dropdownLayoutDriver.optionsLength()).toBe(options.length - tags.length);
+    expect(dropdownLayoutDriver.isOptionExists('Alabama')).toBeFalsy();
+  });
+
+  it('should not filter anything without predicate function', () => {
+    const onSelect = jest.fn();
+    const {driver, dropdownLayoutDriver} = createDriver(<MultiSelect options={options} onSelect={onSelect}/>);
+    driver.focus();
+    expect(dropdownLayoutDriver.optionsLength()).toBe(options.length);
+  });
+
+  it('should not loose Focus or close the list on selection', () => {
+    const {driver, inputDriver, dropdownLayoutDriver} = createDriver(<MultiSelect options={options}/>);
+    driver.focus();
+    dropdownLayoutDriver.clickAtOption(0);
+    expect(dropdownLayoutDriver.isShown()).toBeTruthy();
+    expect(inputDriver.isFocus());
   });
 
   describe('testkit', () => {

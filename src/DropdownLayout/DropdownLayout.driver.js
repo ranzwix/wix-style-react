@@ -2,6 +2,7 @@ import React from 'react';
 import DropdownLayout from '../DropdownLayout';
 import ReactTestUtils from 'react-addons-test-utils';
 import ReactDOM from 'react-dom';
+import find from 'lodash.find';
 
 const dropdownLayoutDriverFactory = ({component, wrapper}) => {
 
@@ -20,6 +21,7 @@ const dropdownLayoutDriverFactory = ({component, wrapper}) => {
     mouseEnterAtOption: position => ReactTestUtils.Simulate.mouseEnter(optionAt(position)),
     mouseLeaveAtOption: position => ReactTestUtils.Simulate.mouseLeave(optionAt(position)),
     mouseClickOutside: () => ReactTestUtils.Simulate.blur(contentContainer),
+    isOptionExists: optionText => !!find(options.childNodes, opt => opt.textContent === optionText),
     isOptionHovered: position => isClassExists(optionAt(position), 'hovered'),
     isOptionSelected: position => isClassExists(optionAt(position), 'selected'),
     isOptionHoveredWithGlobalClassName: position => isClassExists(optionAt(position), 'wixstylereactHovered'),
