@@ -44,19 +44,20 @@ $content_container_height: 260px;
   -ms-user-select: none;
   user-select: none;
 }
-.content-container.up {
-  margin-bottom: -1px;
-  bottom:0;
-}
 
-.content-container.down {
-  margin-top: -1px;
-  top: 0;
+.content-container {
+  &.up { bottom: 0; }
+  &.down { top: 0; }
 }
 
 .content-container.shown {
   visibility: visible;
   opacity: 1;
+}
+
+.options {
+    &.up   { bottom: 0; }
+    &.down { top: 0; }
 }
 
 .options::-webkit-scrollbar {

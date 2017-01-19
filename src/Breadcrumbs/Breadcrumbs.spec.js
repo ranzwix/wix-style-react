@@ -35,7 +35,7 @@ describe('Breadcrumbs', () => {
     const itemIndex = 1;
 
     driver.clickBreadcrumbAt(itemIndex);
-    expect(onClick).toBeCalledWith(items[itemIndex].id);
+    expect(onClick).toBeCalledWith({id: items[itemIndex].id, value: 'Option 2'});
   });
 
   it('should get correct size from props', () => {

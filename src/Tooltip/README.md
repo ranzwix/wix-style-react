@@ -10,7 +10,7 @@
 | content         | node                                                        |              | true       |             |
 | placement       | string (top, right, bottom, left)                           | top          |            |             |
 | alignment       | string (top, right, bottom, left, center)                   | center       |            |             |
-| theme           | string (light, dark)                                        | light        |            |             |
+| theme           | string (light, dark, error (For Restaurants. Unapproved yet)) | light        |            |             |
 | showDelay       | number                                                      | 200          |            |             |
 | hideDelay       | number                                                      | 500          |            |             |
 | showTrigger     | string (custom, mouseenter, mouseleave, click, focus, blur) | mouseenter   |            |             |

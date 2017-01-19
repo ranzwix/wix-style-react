@@ -11,7 +11,7 @@ class Tooltip extends Component {
     content: PropTypes.node.isRequired,
     placement: PropTypes.oneOf(['top', 'right', 'bottom', 'left']).isRequired,
     alignment: PropTypes.oneOf(['top', 'right', 'bottom', 'left', 'center']).isRequired,
-    theme: PropTypes.oneOf(['light', 'dark']).isRequired,
+    theme: PropTypes.oneOf(['light', 'dark', 'error']).isRequired,
     showDelay: PropTypes.number.isRequired,
     hideDelay: PropTypes.number.isRequired,
     showTrigger: PropTypes.oneOf(['custom', 'mouseenter', 'mouseleave', 'click', 'focus', 'blur']).isRequired,

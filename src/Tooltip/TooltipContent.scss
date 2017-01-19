@@ -34,6 +34,10 @@ $shadow: 0 0 11px 0 $shadow-color;
     color: $D80;
     background: $D10;
   }
+  &.error {
+    color: white;
+    background: $R00;
+  }
 }
 
 .arrow {

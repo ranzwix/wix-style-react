@@ -15,7 +15,7 @@ class TooltipContent extends Component {
     /**
      * Specifies tooltip theme
      */
-    theme: PropTypes.oneOf(['light', 'dark']).isRequired,
+    theme: PropTypes.oneOf(['light', 'dark', 'error']).isRequired,
 
     /**
      * Specifies on which side the arrow should be shown

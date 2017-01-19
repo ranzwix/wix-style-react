@@ -2,9 +2,12 @@ import React from 'react';
 import {mount} from 'enzyme';
 
 import Tooltip from './Tooltip';
+import TooltipContentStyles from './TooltipContent.scss';
 
 export default class TooltipDriver {
-
+  constructor() {
+    document.body.innerHTML = '';
+  }
   _props = {content: <div/>};
   _component = null;
 
@@ -45,6 +48,7 @@ export default class TooltipDriver {
   get = {
     isShown: () => this._component.instance().isShown(),
     willBeShown: () => this._component.instance().willBeShown(),
-    willBeHidden: () => this._component.instance().willBeHidden()
+    willBeHidden: () => this._component.instance().willBeHidden(),
+    isThemeError: () => document.body.getElementsByClassName(TooltipContentStyles.tooltip)[0].classList.contains(TooltipContentStyles.error)
   }
 }
