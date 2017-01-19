@@ -3,7 +3,8 @@ import uniqueId from 'lodash.uniqueid';
 import React from 'react';
 import classNames from 'classnames';
 import SvgV from '../svg/V';
-import WixComponent from '../WixComponent';
+import WixComponent from '../WixComponent'
+import Label from '../Label/Label';
 
 class Checkbox extends WixComponent {
   render() {
@@ -23,14 +24,14 @@ class Checkbox extends WixComponent {
     return (
       <div className={classname} >
         <input type="checkbox" id={id} checked={checked} disabled={disabled} onChange={disabled ? null : onChange}/>
-        <label htmlFor={id}>
+        <Label for={id}>
           <div className={styles.checkbox}>
             <div className={styles.inner}>
               {checkedSymbol}
             </div>
           </div>
           <div className={styles.children}>{this.props.children}</div>
-        </label>
+        </Label>
       </div>
     );
   }
