@@ -26,6 +26,11 @@ describe('Checkbox', () => {
     expect(driver.isDisabled()).toBeTruthy();
   });
 
+  it('should have a label', () => {
+    const driver = createDriver(<Checkbox disabled={true}>Hey</Checkbox>);
+    expect(driver.getLabel()).toBe('Hey');
+  });
+
   it('should call onChange when clicking the Checkbox', () => {
     const onChange = jest.fn();
 

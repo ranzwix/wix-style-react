@@ -15,6 +15,7 @@ const checkboxDriverFactory = ({component, wrapper}) => {
     isChecked: () => isClassExists(component, 'checked'),
     isDisabled: () => isClassExists(component, 'disabled'),
     isIndeterminate: () => $(component).find('.indeterminate').length === 1,
+    getLabel: () => component.textContent,
     setProps: props => {
       ReactDOM.render(<div ref={r => component = r}><Checkbox {...props}/></div>, wrapper);
     }
