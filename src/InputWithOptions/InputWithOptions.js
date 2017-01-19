@@ -29,7 +29,7 @@ class InputWithOptions extends WixComponent {
     this.hideOptions = this.hideOptions.bind(this);
     this.showOptions = this.showOptions.bind(this);
     this._onManuallyInput = this._onManuallyInput.bind(this);
-    this.renderDropdownLayout = this.renderDropdownLayout.bind(this);
+    this._renderDropdownLayout = this._renderDropdownLayout.bind(this);
     this.closeOnSelect = this.closeOnSelect.bind(this);
   }
 
@@ -65,7 +65,7 @@ class InputWithOptions extends WixComponent {
   }
 
   render() {
-    const {id, dropDirectionUp} = this.props;
+    const {dropDirectionUp} = this.props;
     return (
       <div>
         {dropDirectionUp ? this._renderDropdownLayout() : null}

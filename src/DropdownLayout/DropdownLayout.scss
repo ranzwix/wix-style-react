@@ -55,11 +55,6 @@ $content_container_height: 260px;
   opacity: 1;
 }
 
-.options {
-    &.up   { bottom: 0; }
-    &.down { top: 0; }
-}
-
 .options::-webkit-scrollbar {
   width: 16px;
   background-color: none;
