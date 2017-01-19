@@ -58,7 +58,7 @@
     fill:#fff;
 }
 
-:global(.ltr) .children {
+:global(.ltr) .children, .children {
     padding-left:12px;
 }
 
@@ -100,13 +100,13 @@
 
 /* Dsiabled State */
 
-.wrapper.disabled .checkbox, .wrapper.disabled:hover .checkbox, .wrapper.disabled.hover .checkbox, 
+.wrapper.disabled .checkbox, .wrapper.disabled:hover .checkbox, .wrapper.disabled.hover .checkbox,
 .wrapper.disabled.active .checkbox, .wrapper.disabled:active .checkbox {
     border-color: $GR20;
     background-color: $GR30;
 }
 
-.wrapper.disabled.checked .checkbox, .wrapper.disabled.checked:hover .checkbox, .wrapper.disabled.checked.hover .checkbox, 
+.wrapper.disabled.checked .checkbox, .wrapper.disabled.checked:hover .checkbox, .wrapper.disabled.checked.hover .checkbox,
 .wrapper.disabled.checked.active .checkbox, .wrapper.disabled.checked:active .checkbox {
     background-color: $GR20;
 }

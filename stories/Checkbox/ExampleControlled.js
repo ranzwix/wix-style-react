@@ -15,7 +15,7 @@ class ControlledCheckbox extends Component {
     supportThreeStates: PropTypes.bool
   };
 
-  constructor({checked}) {
+  constructor() {
     super();
     this.state = {checked: false, indeterminate: false};
   }
