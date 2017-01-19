@@ -1,54 +1,77 @@
-import 'react';
-import {componentFactory, checkboxDriverFactory} from './Checkbox.driver';
+import React from 'react';
+import ReactTestUtils from 'react-addons-test-utils';
+import checkboxDriverFactory from './Checkbox.driver';
+import {createDriverFactory} from '../test-common';
+import {checkboxTestkitFactory} from '../../testkit';
+import Checkbox from './Checkbox';
+import {checkboxTestkitFactory as enzymeCheckboxTestkitFactory} from '../../testkit/enzyme';
+import {mount} from 'enzyme';
 
 describe('Checkbox', () => {
-  const {createShallow} = componentFactory();
+  const createDriver = createDriverFactory(checkboxDriverFactory);
 
-  const createDriver = args => checkboxDriverFactory(createShallow(args));
+  it('should be unchecked and not disabled by default', () => {
+    const driver = createDriver(<Checkbox/>);
+    expect(driver.isChecked()).toBeFalsy();
+    expect(driver.isDisabled()).toBeFalsy();
+  });
 
-  it('should click a Checkbox', () => {
-    const checked = false;
+  it('should be checked', () => {
+    const driver = createDriver(<Checkbox checked={true}/>);
+    expect(driver.isChecked()).toBeTruthy();
+  });
+
+  it('should be disabled', () => {
+    const driver = createDriver(<Checkbox disabled={true}/>);
+    expect(driver.isDisabled()).toBeTruthy();
+  });
+
+  it('should call onChange when clicking the Checkbox', () => {
     const onChange = jest.fn();
 
-    const driver = createDriver({onChange, checked});
+    const driver = createDriver(<Checkbox onChange={onChange}/>);
 
-    driver.change();
-
+    driver.click();
     expect(onChange).toBeCalled();
   });
 
-  it('should have correct class after checked/unchecked', () => {
-    let checked = false;
+  it('should not call onChange when clicking disabled Checkbox', () => {
+    const onChange = jest.fn();
 
-    const component = createShallow({onChange: jest.fn(() => {
-      checked = !checked;
-      component.setProps({checked});
-    })});
+    const driver = createDriver(<Checkbox onChange={onChange} disabled={true}/>);
 
-    const driver = checkboxDriverFactory(component);
-
-    expect(driver.isChecked()).toBe(false);
-
-    driver.change();
-
-    expect(driver.isChecked()).toBe(true);
-
-    driver.change();
-
-    expect(driver.isChecked()).toBe(false);
-  });
-
-  it('should run in indeterminate mode when not specified', () => {
-    const component = createShallow({indeterminate: true});
-    const driver = checkboxDriverFactory(component);
-
-    expect(driver.isIndeterminate()).toBe(true);
+    driver.click();
+    expect(onChange).not.toBeCalled();
   });
 
   it('should not run in indeterminate mode when not specified', () => {
-    const component = createShallow();
-    const driver = checkboxDriverFactory(component);
+    const driver = createDriver(<Checkbox/>);
 
-    expect(driver.isIndeterminate()).toBe(false);
+    expect(driver.isIndeterminate()).toBeFalsy();
+  });
+
+  it('should run in indeterminate mode when specified', () => {
+    const driver = createDriver(<Checkbox indeterminate={true}/>);
+
+    expect(driver.isIndeterminate()).toBeTruthy();
+  });
+
+  describe('testkit', () => {
+    it('should exist', () => {
+      const div = document.createElement('div');
+      const dataHook = 'myDataHook';
+      const wrapper = div.appendChild(ReactTestUtils.renderIntoDocument(<div><Checkbox dataHook={dataHook}/></div>));
+      const checkboxTestkit = checkboxTestkitFactory({wrapper, dataHook});
+      expect(checkboxTestkit.exists()).toBeTruthy();
+    });
+  });
+
+  describe('enzyme testkit', () => {
+    it('should exist', () => {
+      const dataHook = 'myDataHook';
+      const wrapper = mount(<Checkbox dataHook={dataHook}/>);
+      const checkboxTestkit = enzymeCheckboxTestkitFactory({wrapper, dataHook});
+      expect(checkboxTestkit.exists()).toBeTruthy();
+    });
   });
 });

@@ -3,8 +3,9 @@ import uniqueId from 'lodash.uniqueid';
 import React from 'react';
 import classNames from 'classnames';
 import SvgV from '../svg/V';
+import WixComponent from '../WixComponent';
 
-class Checkbox extends React.Component {
+class Checkbox extends WixComponent {
   render() {
     const {id = uniqueId(), checked, indeterminate, disabled, hover, active, onChange} = this.props;
 
@@ -21,7 +22,7 @@ class Checkbox extends React.Component {
 
     return (
       <div className={classname} >
-        <input type="checkbox" id={id} checked={checked} disabled={disabled} onChange={onChange}/>
+        <input type="checkbox" id={id} checked={checked} disabled={disabled} onChange={disabled ? null : onChange}/>
         <label htmlFor={id}>
           <div className={styles.checkbox}>
             <div className={styles.inner}>
@@ -36,9 +37,9 @@ class Checkbox extends React.Component {
 }
 
 Checkbox.propTypes = {
-  checked: React.PropTypes.bool.isRequired,
+  checked: React.PropTypes.bool,
   disabled: React.PropTypes.bool,
-  onChange: React.PropTypes.func.isRequired,
+  onChange: React.PropTypes.func,
   hover: React.PropTypes.bool,        // FOR AUTOMATIC TESTING
   active: React.PropTypes.bool,       // FOR AUTOMATIC TESTING
   children: React.PropTypes.any,
@@ -47,8 +48,6 @@ Checkbox.propTypes = {
 };
 
 Checkbox.defaultProps = {
-  checked: false,
-  indeterminate: false,
   onChange: () => { }
 };
 

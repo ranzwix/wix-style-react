@@ -30,8 +30,10 @@ export const multiSelectTestkitFactory = testkitFactoryCreator(multiSelectDriver
 import tagDriverFactory from '../src/Tag/Tag.driver';
 export const tagTestkitFactory = testkitFactoryCreator(tagDriverFactory);
 
+import checkboxDriverFactory from '../src/Checkbox/Checkbox.driver';
+export const checkboxTestkitFactory = testkitFactoryCreator(checkboxDriverFactory);
+
 
 export {buttonTestkitFactory} from '../src/Button/testkit/Button';
-export {checkboxDriverFactory} from '../src/Checkbox/Checkbox.driver';
 export {radioGroupDriverFactory} from '../src/RadioGroup/RadioGroup.driver';
 export {toastTestkitFactory} from '../src/Toast/testkit/Toast';

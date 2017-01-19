@@ -1,24 +1,24 @@
 import React from 'react';
-import {shallow} from 'enzyme';
+import ReactDOM from 'react-dom';
 import Checkbox from './Checkbox';
-import styles from './Checkbox.scss';
+import ReactTestUtils from 'react-addons-test-utils';
+import $ from 'jquery';
 
-const checkboxDriverFactory = component => ({
-  change: () => {
-    component.find('input').simulate('change');
-  },
-  isChecked: () => component.find(`.${styles.wrapper}`).hasClass(styles.checked),
-  isIndeterminate: () => component.find(`.${styles.indeterminate}`).length === 1
-});
+const checkboxDriverFactory = ({component, wrapper}) => {
 
-const componentFactory = () => {
-  const createShallow = (props = {}) => {
-    return shallow(
-      <Checkbox {...props}/>
-    );
+  const checkbox = $(component).find('input')[0];
+  const isClassExists = (component, className) => !!(component.className.match(new RegExp('\\b' + className + '\\b')));
+
+  return {
+    exists: () => !!component,
+    click: () => ReactTestUtils.Simulate.change(checkbox),
+    isChecked: () => isClassExists(component, 'checked'),
+    isDisabled: () => isClassExists(component, 'disabled'),
+    isIndeterminate: () => $(component).find('.indeterminate').length === 1,
+    setProps: props => {
+      ReactDOM.render(<div ref={r => component = r}><Checkbox {...props}/></div>, wrapper);
+    }
   };
-
-  return {createShallow};
 };
 
-export {componentFactory, checkboxDriverFactory};
+export default checkboxDriverFactory;

@@ -30,6 +30,9 @@ export const multiSelectTestkitFactory = enzymeTestkitFactoryCreator(multiSelect
 import tagDriverFactory from '../src/Tag/Tag.driver';
 export const tagTestkitFactory = enzymeTestkitFactoryCreator(tagDriverFactory);
 
+import checkboxDriverFactory from '../src/Checkbox/Checkbox.driver';
+export const checkboxTestkitFactory = enzymeTestkitFactoryCreator(checkboxDriverFactory);
+
 
 export {buttonTestkitFactory} from '../src/Button/testkit/Button.enzyme';
 export {toastTestkitFactory} from '../src/Toast/testkit/Toast.enzyme';
