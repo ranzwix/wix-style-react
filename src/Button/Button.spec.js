@@ -1,90 +1,90 @@
-import _ from 'lodash/fp';
 import React from 'react';
 import ReactTestUtils from 'react-addons-test-utils';
 import styles from './Button.scss';
-import {buttonTestkitFactory, componentFactory, buttonDriverFactory} from './testkit/Button';
+import buttonDriverFactory from './Button.driver';
 import Button from './Button';
+import {createDriverFactory} from '../test-common';
+import {buttonTestkitFactory} from '../../testkit';
+import {buttonTestkitFactory as enzymeButtonTestkitFactory} from '../../testkit/enzyme';
+import {mount} from 'enzyme';
+
 
 describe('Button', () => {
 
-  const createDriver = _.compose(buttonDriverFactory, componentFactory);
+  const createDriver = createDriverFactory(buttonDriverFactory);
 
   it('should click a button', () => {
     const onClick = jest.fn();
-
-    const driver = createDriver({onClick});
+    const driver = createDriver(<Button onClick={onClick}/>);
 
     driver.click();
-
     expect(onClick).toBeCalled();
   });
 
   it('should render children', () => {
     const children = '<div>123</div>';
+    const driver = createDriver(<Button>{children}</Button>);
 
-    const driver = createDriver({children});
-
-    expect(driver.getButtonTextContent()).toBe('<div>123</div>');
+    expect(driver.getButtonTextContent()).toBe(children);
   });
 
   it('should get disabled class', () => {
-    const disabled = true;
-
-    const driver = createDriver({disabled});
+    const driver = createDriver(<Button disabled={true}/>);
 
     expect(driver.isButtonDisabled()).toBe(true);
   });
 
   it('should have default "fullblue" style', () => {
+    const driver = createDriver(<Button/>);
 
-    const driver = createDriver();
-
-    expect(driver.doesComponentHasClass(styles.fullblue)).toBe(true);
+    expect(driver.doesComponentHasClass(styles.fullblue)).toBeTruthy();
   });
 
   it('should get "small" height class', () => {
     const height = `${styles.small}`;
+    const driver = createDriver(<Button height={height}/>);
 
-    const driver = createDriver({height});
-
-    expect(driver.doesComponentHasClass(`height${styles.small}`)).toBe(true);
+    expect(driver.doesComponentHasClass(`height${styles.small}`)).toBeTruthy();
   });
 
   it('should get "large" height class', () => {
     const height = `${styles.large}`;
-
-    const driver = createDriver({height});
+    const driver = createDriver(<Button height={height}/>);
 
     expect(driver.doesComponentHasClass(`height${styles.large}`)).toBe(true);
   });
 
   it('should get custom style', () => {
     const theme = 'emptyblue';
+    const driver = createDriver(<Button theme={theme}/>);
 
-    const driver = createDriver({theme});
-
-    expect(driver.doesComponentHasClass(styles[theme])).toBe(true);
+    expect(driver.doesComponentHasClass(styles[theme])).toBeTruthy();
   });
 
   it('should get "hover" class', () => {
-    const hover = true;
+    const driver = createDriver(<Button hover={true}/>);
 
-    const driver = createDriver({hover});
-
-    expect(driver.isComponentHovered()).toBe(true);
+    expect(driver.isComponentHovered()).toBeTruthy();
   });
 });
 
 describe('testkit', () => {
-  it('should create new driver', () => {
-    const onClick = jest.fn();
+  it('should exist', () => {
     const div = document.createElement('div');
-    const id = 'myId';
+    const dataHook = 'myDataHook';
+    const onClick = jest.fn();
+    const wrapper = div.appendChild(ReactTestUtils.renderIntoDocument(<div><Button onClick={onClick} dataHook={dataHook}/></div>));
+    const buttonTestkit = buttonTestkitFactory({wrapper, dataHook});
+    expect(buttonTestkit.exists()).toBeTruthy();
+  });
+});
 
-    const wrapper = div.appendChild(ReactTestUtils.renderIntoDocument(<div><Button id={id} onClick={onClick}>{'123'}</Button></div>));
-
-    const driver = buttonTestkitFactory({wrapper, id});
-    driver.click();
-    expect(onClick).toBeCalled();
+describe('enzyme testkit', () => {
+  it('should exist', () => {
+    const dataHook = 'myDataHook';
+    const onClick = jest.fn();
+    const wrapper = mount(<Button onClick={onClick} dataHook={dataHook}/>);
+    const buttonTestkit = enzymeButtonTestkitFactory({wrapper, dataHook});
+    expect(buttonTestkit.exists()).toBeTruthy();
   });
 });

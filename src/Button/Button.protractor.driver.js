@@ -6,8 +6,4 @@ const buttonDriverFactory = component => ({
   element: () => component
 });
 
-const componentFactory = ({id}) => $(`#${id}`);
-
-const protractorButtonTestkitFactory = _.compose(buttonDriverFactory, componentFactory);
-
-export {protractorButtonTestkitFactory};
+export default buttonDriverFactory;
