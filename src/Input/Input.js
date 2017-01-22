@@ -169,7 +169,7 @@ Input.defaultProps = {
 
 Input.propTypes = {
   id: PropTypes.string,
-  value: PropTypes.string,
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   style: PropTypes.oneOf(['normal', 'paneltitle', 'material']),
   theme: PropTypes.oneOf(['normal', 'paneltitle', 'material']),
   forceHover: PropTypes.bool,
