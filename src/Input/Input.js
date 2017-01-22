@@ -57,7 +57,8 @@ class Input extends Component {
       dataHook,
       iconLeft,
       prefix,
-      suffix
+      suffix,
+      type
     } = this.props;
 
     let {theme} = this.props; // When deprecation ends. theme should move to const.
@@ -102,6 +103,7 @@ class Input extends Component {
           autoFocus={autoFocus}
           onKeyUp={onKeyUp}
           readOnly={readOnly}
+          type={type}
           />
         <InputSuffix
           value={value}

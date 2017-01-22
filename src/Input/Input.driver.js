@@ -20,6 +20,7 @@ const inputDriverFactory = ({component, wrapper}) => {
     getDefaultValue: () => input.defaultValue,
     getTabIndex: () => input.tabIndex,
     getReadOnly: () => input.readOnly,
+    getType: () => input.type,
     hasPrefix: () => $component.find(`.${styles.prefix}`).length === 1,
     hasSuffix: () => $component.find(`.${styles.suffix}`).length === 1,
     prefixComponentExists: style => $component.find(`.${styles.prefix} ${style}`).length === 1,
