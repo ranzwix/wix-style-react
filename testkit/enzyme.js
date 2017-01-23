@@ -33,6 +33,8 @@ export const tagTestkitFactory = enzymeTestkitFactoryCreator(tagDriverFactory);
 import checkboxDriverFactory from '../src/Checkbox/Checkbox.driver';
 export const checkboxTestkitFactory = enzymeTestkitFactoryCreator(checkboxDriverFactory);
 
+import buttonDriverFactory from '../src/Button/Button.driver';
+export const buttonTestkitFactory = enzymeTestkitFactoryCreator(buttonDriverFactory);
 
-export {buttonTestkitFactory} from '../src/Button/testkit/Button.enzyme';
+
 export {toastTestkitFactory} from '../src/Toast/testkit/Toast.enzyme';
