@@ -199,7 +199,8 @@ Input.propTypes = {
   dataHook: PropTypes.string,
   size: PropTypes.oneOf(['small', 'normal', 'large']),
   prefix: PropTypes.node,
-  suffix: PropTypes.node
+  suffix: PropTypes.node,
+  type: PropTypes.node
 };
 
 function deprecated(when, oldProp, newProp) {

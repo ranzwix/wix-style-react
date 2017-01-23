@@ -1,17 +1,10 @@
 import React, {PropTypes} from 'react';
 
 import SvgExclamation from '../svg/Exclamation.js';
-import MagnifyingGlass from '../svg/MagnifyingGlass.js';
-import SvgX from '../svg/X.js';
-import MenuArrow from '../svg/MenuArrow';
 import styles from './InputArea.scss';
 
 const InputSuffix = ({
-  value,
   error,
-  onClear,
-  onFocus,
-  rtl,
   children
 }) => {
 
@@ -30,11 +23,7 @@ const InputSuffix = ({
 };
 
 InputSuffix.propTypes = {
-  value: PropTypes.string,
   error: PropTypes.bool,
-  rtl: PropTypes.bool,
-  onClear: PropTypes.func,
-  onFocus: PropTypes.func,
   children: PropTypes.node
 };
 

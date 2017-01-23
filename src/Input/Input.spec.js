@@ -57,7 +57,7 @@ describe('Input', () => {
   describe('type attribute', () => {
     it('should set the type attribute', () => {
       const driver = createDriver(<Input type="number"/>);
-      expect(driver.getType()).toBe("number");
+      expect(driver.getType()).toBe('number');
     });
   });
 

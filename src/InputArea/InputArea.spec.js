@@ -1,12 +1,12 @@
 import React from 'react';
-import ReactTestUtils from 'react-addons-test-utils';
+// import ReactTestUtils from 'react-addons-test-utils';
 import inputDriverFactory from './InputArea.driver';
 import InputArea from './InputArea';
-import sinon from 'sinon';
+// import sinon from 'sinon';
 import {createDriverFactory} from '../test-common';
-import {inputTestkitFactory} from '../../testkit';
-import {inputTestkitFactory as enzymeInputTestkitFactory} from '../../testkit/enzyme';
-import {mount} from 'enzyme';
+// import {inputTestkitFactory} from '../../testkit';
+// import {inputTestkitFactory as enzymeInputTestkitFactory} from '../../testkit/enzyme';
+// import {mount} from 'enzyme';
 
 
 describe('InputArea', () => {

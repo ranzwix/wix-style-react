@@ -48,7 +48,7 @@ class InputArea extends Component {
     let {theme} = this.props; // When deprecation ends. theme should move to const.
 
     if (style) {
-      console.warn(depercated('Jan 1st 2017', 'style', 'theme'));
+      console.warn(deprecated('Jan 1st 2017', 'style', 'theme'));
       theme = style;
     }
 
@@ -89,7 +89,7 @@ class InputArea extends Component {
           rtl={rtl}
           onClear={onClear}
           onFocus={this._onFocus}
-        />
+          />
         {theme === 'material' && <div className={styles.bar}/>}
       </div>
     );
@@ -172,7 +172,8 @@ InputArea.propTypes = {
   dataHook: PropTypes.string,
   size: PropTypes.oneOf(['small', 'normal', 'large']),
   prefix: PropTypes.node,
-  suffix: PropTypes.node
+  suffix: PropTypes.node,
+  rows: PropTypes.number
 };
 
 function deprecated(when, oldProp, newProp) {
