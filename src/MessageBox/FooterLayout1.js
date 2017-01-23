@@ -17,11 +17,11 @@ const FooterLayout1 = ({children, style, theme, cancelText, onCancel, onOk, conf
       {children}
       <div className={styles.footerbuttons}>
         {cancelText ?
-          <Button theme={'empty' + _theme} onClick={onCancel} >
+          <Button height="small" theme={'empty' + _theme} onClick={onCancel} >
             {cancelText}
           </Button> : null
         }
-        <Button theme={'full' + _theme} onClick={onOk} >
+        <Button height="small" theme={'full' + _theme} onClick={onOk} >
           {confirmText}
         </Button>
       </div>
