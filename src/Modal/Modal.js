@@ -23,7 +23,7 @@ const Modal = props => {
       right: 0,
       bottom: 0,
       zIndex: 11 + (props.zIndex || 0),
-      backgroundColor: 'rgba(30, 30, 30, 0.55)',
+      backgroundColor: 'rgba(22, 45, 61, 0.66)',
       // Overriding defaults - END
       display: 'flex',
       justifyContent,
