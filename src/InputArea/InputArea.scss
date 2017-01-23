@@ -1,0 +1,195 @@
+@import '../common.scss';
+@import './InputAreaMixins.scss';
+
+$input-area-padding-icon: 28px;
+$suffix-gutter-horizontal: 8px;
+$suffix-gutter-top: 4px;
+
+.root {
+    position: relative;
+    display: flex;
+    align-items: stretch;
+    border: solid 1px;
+    border-radius: 6px;
+    padding: 2px;
+    @include BoxSizing();
+    @include FontRoman();
+}
+
+.inputArea {
+    flex-grow: 1;
+    flex-shrink: 1;
+    min-width: 20px;
+    padding: 0;
+    margin: 0;
+    border: 0;
+    outline: 0;
+    background: transparent;
+    @include FontRoman();
+    @include Placeholder($paletteE6);
+    @include Selection($paletteB4);
+
+    &[type=number] {
+        -moz-appearance:textfield;
+
+        &::-webkit-outer-spin-button,
+        &::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+    }
+}
+
+.hasError > .inputArea {
+    padding-right: $input-area-padding-icon;
+}
+
+.rtl.hasError > .inputArea {
+    padding-left: $input-area-padding-icon;
+    padding-right: 0;
+}
+
+.suffix {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+    flex-grow: 0;
+    min-width: 0;
+    user-select: none;
+
+    top: $suffix-gutter-top;
+    right: $suffix-gutter-horizontal;
+
+    :global(.rtl) & {
+        left: $suffix-gutter-horizontal;
+        right: initial;
+    }
+}
+
+
+.theme {
+    &-normal {
+        @include ThemeDefault($color: $D10, $borderColor: $B30, $backgroundColor: $D80);
+        @include ThemeHover($backgroundColor: $B50);
+        @include ThemeFocus($borderColor: $B20, $boxShadow: inset 0px 0px 5px 0px fade($B10, 60%));
+        @include ThemeError($borderColor: $paletteR1, $boxShadow: inset 0px 0px 5px 0px fade($R10, 60%));
+    }
+    &-paneltitle {
+        @include ThemeDefault($color: white, $borderColor: #c1e4fe, $backgroundColor: rgba(22,45,61,0.6));
+        @include ThemeHover($backgroundColor: rgba(22,45,61,0.4));
+        @include ThemeFocus($borderColor: #4eb7f5, $boxShadow: inset 0 0 5px 0 rgba(56,153,236,0.6));
+        @include ThemeError($borderColor: $paletteR1, $boxShadow: inset 0px 0px 5px 0px fade($R10, 60%));
+    }
+    &-material {
+        border-radius: 0;
+        .prefix, .suffix {
+            padding: 0 4px;
+        }
+        &.size-normal {
+            @include Size($height: 34px, $fontSize: 18px);
+        }
+        .inputArea {
+            @include FontLight();
+        }
+        @include ThemeDefault($color: $D10, $borderColor: transparent, $backgroundColor: $D80);
+        @at-root {
+            .bar {
+                position: absolute;
+                bottom: 0;
+                left: -1px;
+                right: -1px;
+                height: 1px;
+                background: $D60;
+                &:before, &:after {
+                    content: '';
+                    height: 1px;
+                    width: 0;
+                    bottom: 0;
+                    position: absolute;
+                    background: $D50;
+                    transition: 0.2s ease all;
+                }
+                &:before { left: 50%; }
+                &:after { right: 50%; }
+            }
+            .hasFocus .bar:before,
+            .hasFocus .bar:after {
+                width:50%;
+            }
+        }
+    }
+}
+
+// RTL layout based on global style set on document body or parent element.
+:global(.rtl) {
+    .root, .prefix, .suffix { flex-direction: row-reverse; }
+    .inputArea {
+        direction: rtl;
+    }
+}
+
+// RTL layout based on a property passed directly to the component.
+.rtl.root {
+    flex-direction: row-reverse;
+    .prefix, .suffix { flex-direction: row-reverse; }
+    .inputArea {
+        direction: rtl;
+    }
+}
+
+.magnifying-glass {
+    margin: 0 6px;
+    line-height: 18px;
+    height: 18px;
+    &:last-child { margin: 0; }
+    path { fill: $B10; }
+    line { stroke: $B10; }
+}
+
+.exclamation {
+    margin: 0 6px;
+    background-color: $paletteR1;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    &:last-child { margin: 0; }
+    path { stroke: #fff; }
+}
+
+.clear-button {
+    cursor: pointer;
+    padding: 0 6px;
+    height: 6px;
+    line-height: 6px;
+    font-size: 6px;
+    path { stroke: $B10; }
+}
+
+.unit {
+    padding: 0 6px;
+    font-size: 13px;
+    line-height: 18px;
+    color: $paletteD3;
+    @include FontLight();
+}
+
+.unit-separator {
+    width: 1px;
+    background-color: $paletteB4;
+    height: 18px;
+    margin: 0 6px;
+    @at-root {
+        .hasError .unit-separator {
+            background-color: $paletteR1;
+        }
+    }
+}
+
+.menu-arrow {
+    padding: 0 6px;
+    path { fill: $B10; }
+}

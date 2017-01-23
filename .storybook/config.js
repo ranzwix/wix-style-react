@@ -8,7 +8,7 @@ function loadStories() {
   require('../stories/Input');
   require('../stories/InputWithOptions');
   require('../stories/AutoComplete');
-  require('../stories/Slider');
+  require('../stories/InputArea');
   require('../stories/GoogleAddressInput');
   require('../stories/ToggleSwitch');
   require('../stories/Checkbox');
@@ -28,6 +28,7 @@ function loadStories() {
   require('../stories/DataTable');
   require('../stories/DropdownLayout');
   require('../stories/Dropdown');
+  require('../stories/Slider');
   require('../stories/Common');
   require('../stories/Composite');
   require('../stories/Label');

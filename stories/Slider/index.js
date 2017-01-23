@@ -13,7 +13,7 @@ import ExampleRtl from './ExampleRtl';
 import ExampleRtlRaw from '!raw!./ExampleRtl';
 
 storiesOf('1. Inputs', module)
-  .add('1.3 Slider', () => (
+  .add('1.9 Slider', () => (
     <div>
       <Markdown source={Readme}/>
 
