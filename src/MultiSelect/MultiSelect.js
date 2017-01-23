@@ -41,7 +41,6 @@ class MultiSelect extends InputWithOptions {
   }
 
   _onSelect(option) {
-    super._onSelect(option);
     this.onSelect(option);
   }
 
