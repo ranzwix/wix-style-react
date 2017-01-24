@@ -42,15 +42,6 @@ describe('InputArea', () => {
     });
   });
 
-  describe('minHeight attribute', () => {
-    it('should pass down to the wrapped input', () => {
-      const minHeight = '50px';
-
-      const driver = createDriver(<InputArea minHeight={minHeight}/>);
-      expect(driver.getStyle().minHeight).toEqual(minHeight);
-    });
-  });
-
   describe('maxHeight attribute', () => {
     it('should pass down to the wrapped input', () => {
       const maxHeight = '50px';

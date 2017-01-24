@@ -3,17 +3,6 @@
     * { box-sizing: $boxSizing; }
 }
 
-@mixin Size($height, $fontSize) {
-    height: $height;
-    font-size: $fontSize;
-    .inputArea {
-        display: block;
-        line-height: 24px;
-        height: $height - 2px;
-        font-size: $fontSize;
-    }
-}
-
 @mixin ThemeDefault($borderColor, $backgroundColor, $color) {
     border-color: $borderColor;
     background-color: $backgroundColor;

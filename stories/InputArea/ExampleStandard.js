@@ -11,7 +11,7 @@ const style = {
 export default () =>
   <div>
     <div className="ltr" style={style}>InputArea<br/><InputArea/></div>
-    <div className="ltr" style={style}>Focus<InputArea forceFocus/></div>
-    <div className="ltr" style={style}>Hover<InputArea forceHover/></div>
-    <div className="ltr" style={style}>With placeholder<InputArea placeholder="Search..."/></div>
+    <div className="ltr" style={style}>Focus<br/><InputArea forceFocus/></div>
+    <div className="ltr" style={style}>Hover<br/><InputArea forceHover/></div>
+    <div className="ltr" style={style}>With placeholder<br/><InputArea placeholder="duyg"/></div>
   </div>;

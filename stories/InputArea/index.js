@@ -10,12 +10,6 @@ import ExampleStandardRaw from '!raw!./ExampleStandard';
 import ExampleError from './ExampleError';
 import ExampleErrorRaw from '!raw!./ExampleError';
 
-import ExampleUnit from './ExampleUnit';
-import ExampleUnitRaw from '!raw!./ExampleUnit';
-
-import ExampleMagnifyingGlass from './ExampleMagnifyingGlass';
-import ExampleMagnifyingGlassRaw from '!raw!./ExampleMagnifyingGlass';
-
 import ExamplePaneltitleStyle from './ExamplePaneltitleStyle';
 import ExamplePaneltitleStyleRaw from '!raw!./ExamplePaneltitleStyle';
 
@@ -41,14 +35,6 @@ storiesOf('1. Inputs', module)
 
       <CodeExample title="Error" code={ExampleErrorRaw}>
         <ExampleError/>
-      </CodeExample>
-
-      <CodeExample title="Unit" code={ExampleUnitRaw}>
-        <ExampleUnit/>
-      </CodeExample>
-
-      <CodeExample title="MagnifyingGlass" code={ExampleMagnifyingGlassRaw}>
-        <ExampleMagnifyingGlass/>
       </CodeExample>
 
       <CodeExample title="PaneltitleStyle" code={ExamplePaneltitleStyleRaw}>

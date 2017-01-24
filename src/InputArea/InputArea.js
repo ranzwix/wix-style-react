@@ -39,7 +39,6 @@ class InputArea extends WixComponent {
       placeholder,
       readOnly,
       rtl,
-      style,
       tabIndex,
       rows,
       value,
@@ -49,7 +48,7 @@ class InputArea extends WixComponent {
       theme
     } = this.props;
 
-    let inlineStyle = {};
+    const inlineStyle = {};
 
     if (minHeight) {
       inlineStyle.minHeight = minHeight;
@@ -132,14 +131,10 @@ class InputArea extends WixComponent {
   _onKeyDown(e) {
     this.props.onKeyDown && this.props.onKeyDown(e);
 
-    switch (e.key) {
-      case 'Enter':
-        this.props.onEnterPressed && this.props.onEnterPressed();
-        break;
-
-      case 'Escape':
-        this.props.onEscapePressed && this.props.onEscapePressed();
-        break;
+    if (e.key === 'Enter') {
+      this.props.onEnterPressed && this.props.onEnterPressed();
+    } else if (e.key === 'Escape') {
+      this.props.onEscapePressed && this.props.onEscapePressed();
     }
   }
 }
