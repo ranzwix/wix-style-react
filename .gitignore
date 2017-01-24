@@ -12,4 +12,3 @@ storybook-static
 *.iml
 .vscode
 test/e2e/screenshots
-/.nvmrc
