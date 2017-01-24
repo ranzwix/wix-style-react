@@ -8,18 +8,18 @@ import $ from 'jquery';
 const inputDriverFactory = ({component, wrapper}) => {
   const $component = $(component);
   const textArea = $component.find('textarea')[0];
-  const clearButton = $(component).find(`.${styles.clearButton}`);
 
   return {
     trigger: (trigger, event) => ReactTestUtils.Simulate[trigger](textArea, event),
     focus: () => textArea.focus(),
-    clickClear: () => ReactTestUtils.Simulate.click(clearButton[0]),
     enterText: text => ReactTestUtils.Simulate.change(textArea, {target: {value: text}}),
     getValue: () => textArea.value,
     getPlaceholder: () => textArea.placeholder,
     getDefaultValue: () => textArea.defaultValue,
+    getRowsCount: () => textArea.rows,
     getTabIndex: () => textArea.tabIndex,
     getReadOnly: () => textArea.readOnly,
+    getFixedSize: () => component.classList.contains(styles.fixedSize),
     hasExclamation: () => $component.find(`.${styles.exclamation}`).length === 1,
     hasError: () => component.classList.contains(styles.hasError),
     isRTL: () => component.className.indexOf(styles.rtl) >= 0,
@@ -29,6 +29,7 @@ const inputDriverFactory = ({component, wrapper}) => {
     isFocus: () => document.activeElement === textArea,
     exists: () => !!textArea,
     hasIconLeft: () => !$component.find(`.${styles.prefix}`).is(':empty'),
+    getStyle: () => textArea.style,
     setProps: props => {
       ReactDOM.render(<div ref={r => component = r}><InputArea {...props}/></div>, wrapper);
     }

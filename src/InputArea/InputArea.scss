@@ -49,6 +49,10 @@ $suffix-gutter-top: 4px;
     padding-right: 0;
 }
 
+.fixedSize {
+    rezise: none;
+}
+
 .suffix {
     position: absolute;
     display: flex;
@@ -138,15 +142,6 @@ $suffix-gutter-top: 4px;
     }
 }
 
-.magnifying-glass {
-    margin: 0 6px;
-    line-height: 18px;
-    height: 18px;
-    &:last-child { margin: 0; }
-    path { fill: $B10; }
-    line { stroke: $B10; }
-}
-
 .exclamation {
     margin: 0 6px;
     background-color: $paletteR1;
@@ -158,38 +153,4 @@ $suffix-gutter-top: 4px;
     justify-content: center;
     &:last-child { margin: 0; }
     path { stroke: #fff; }
-}
-
-.clear-button {
-    cursor: pointer;
-    padding: 0 6px;
-    height: 6px;
-    line-height: 6px;
-    font-size: 6px;
-    path { stroke: $B10; }
-}
-
-.unit {
-    padding: 0 6px;
-    font-size: 13px;
-    line-height: 18px;
-    color: $paletteD3;
-    @include FontLight();
-}
-
-.unit-separator {
-    width: 1px;
-    background-color: $paletteB4;
-    height: 18px;
-    margin: 0 6px;
-    @at-root {
-        .hasError .unit-separator {
-            background-color: $paletteR1;
-        }
-    }
-}
-
-.menu-arrow {
-    padding: 0 6px;
-    path { fill: $B10; }
 }

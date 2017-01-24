@@ -32,15 +32,55 @@ describe('InputArea', () => {
       expect(driver.getDefaultValue()).toEqual(defaultValue);
     });
   });
-  //
-  // describe('rows attribute', () => {
-  //   it('should pass down to the wrapped input', () => {
-  //     const rows = 5;
-  //
-  //     const driver = createDriver(<InputArea rows={rows}/>);
-  //     expect(driver.getDefaultValue()).toEqual(rows);
-  //   });
-  // });
+
+
+  describe('rows attribute', () => {
+    it('should pass down to the wrapped input', () => {
+      const rows = 5;
+
+      const driver = createDriver(<InputArea rows={rows}/>);
+      expect(driver.getRowsCount()).toEqual(rows);
+    });
+  });
+
+  describe('minHeight attribute', () => {
+    it('should pass down to the wrapped input', () => {
+      const minHeight = '50px';
+
+      const driver = createDriver(<InputArea minHeight={minHeight}/>);
+      expect(driver.getStyle().minHeight).toEqual(minHeight);
+    });
+  });
+
+  describe('maxHeight attribute', () => {
+    it('should pass down to the wrapped input', () => {
+      const maxHeight = '50px';
+
+      const driver = createDriver(<InputArea maxHeight={maxHeight}/>);
+      expect(driver.getStyle().maxHeight).toEqual(maxHeight);
+    });
+  });
+
+  describe('fixedSize attribute', () => {
+    it('should pass down to the wrapped input', () => {
+      const driver = createDriver(<InputArea fixedSize/>);
+      expect(driver.getFixedSize()).toBeTruthy();
+    });
+
+    it('should pass down to the wrapped input with default false value', () => {
+      const driver = createDriver(<InputArea/>);
+      expect(driver.getFixedSize()).toBeFalsy();
+    });
+  });
+
+  describe('rows attribute', () => {
+    it('should pass down to the wrapped input', () => {
+      const rows = 5;
+
+      const driver = createDriver(<InputArea rows={rows}/>);
+      expect(driver.getRowsCount()).toEqual(rows);
+    });
+  });
 
   describe('tabIndex attribute', () => {
     it('should pass down to the wrapped input', () => {
