@@ -49,8 +49,8 @@ $suffix-gutter-top: 4px;
     padding-right: 0;
 }
 
-.fixedSize {
-    rezise: none;
+.fixedSize > textarea{
+    resize: none;
 }
 
 .suffix {

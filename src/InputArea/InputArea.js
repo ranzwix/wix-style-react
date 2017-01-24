@@ -29,7 +29,6 @@ class InputArea extends WixComponent {
   render() {
     const {
       autoFocus,
-      dataHook,
       defaultValue,
       error,
       forceFocus,

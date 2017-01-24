@@ -19,18 +19,23 @@ const defaultProps = {
 export default () =>
   <div className="ltr">
     <div style={style}>
-      Small
-      <InputArea {...defaultProps} size="small"/><br/>
-      <InputArea {...defaultProps} size="small" error/>
+      Min Height<br/>
+      <InputArea {...defaultProps} minHeight="200px"/><br/>
     </div>
     <div style={style}>
-      Normal<br/>
-      <InputArea {...defaultProps} size="normal"/><br/>
-      <InputArea {...defaultProps} size="normal" error/>
+      Max Height<br/>
+      <InputArea {...defaultProps} maxHeight="200px"/><br/>
     </div>
     <div style={style}>
-      Large<br/>
-      <InputArea {...defaultProps} size="large"/><br/>
-      <InputArea {...defaultProps} size="large" error/>
+      Rows(5)<br/>
+      <InputArea {...defaultProps} rows={5}/><br/>
+    </div>
+    <div style={style}>
+      Fixed Size<br/>
+      <InputArea {...defaultProps} fixedSize/><br/>
+    </div>
+    <div style={style}>
+      integrated<br/>
+      <InputArea {...defaultProps} maxHeight="200px" minHeight="100px" rows={4}/><br/>
     </div>
   </div>;
