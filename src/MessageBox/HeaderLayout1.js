@@ -15,7 +15,9 @@ const HeaderLayout1 = ({title, onCancel, style, theme}) => {
 
   return (
     <div className={classNames(styles.header, styles[_theme])} >
-      {title}
+      <span className={styles.titleLabel}>
+        {title}
+      </span>
       <button className={styles.close} onClick={onCancel}>
         <SvgX width={9} height={9} thickness={1} color={'white'}/>
       </button>
