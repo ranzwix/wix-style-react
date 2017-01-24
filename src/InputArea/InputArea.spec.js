@@ -33,7 +33,6 @@ describe('InputArea', () => {
     });
   });
 
-
   describe('rows attribute', () => {
     it('should pass down to the wrapped input', () => {
       const rows = 5;

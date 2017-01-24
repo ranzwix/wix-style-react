@@ -1,5 +1,6 @@
 import React, {PropTypes} from 'react';
 import Tag from '../Tag/Tag';
+import Input from '../Input/Input';
 import styles from './InputWithTags.scss';
 import omit from 'lodash.omit';
 
@@ -17,14 +18,13 @@ class InputWithTags extends React.Component {
 
   render() {
     const {tags, onRemoveTag, placeholder, ...inputProps} = this.props;
-    const desiredProps = omit(inputProps, ['theme', 'onManuallyInput', 'inputElement', 'closeOnSelect', 'predicate', 'menuArrow', 'onClickOutside', 'fixedHeader', 'fixedFooter', 'dataHook']);
+    const desiredProps = omit(inputProps, ['onManuallyInput', 'inputElement', 'closeOnSelect', 'predicate', 'menuArrow', 'onClickOutside', 'fixedHeader', 'fixedFooter', 'dataHook']);
     return (
       <div className={styles.tagsContainer} onClick={() => this.input.focus()}>
 
         {tags.map(({label, ...rest}) => <Tag key={rest.id} onRemove={onRemoveTag} {...rest}>{label}</Tag>)}
 
-        <input
-          className={styles.inputField}
+        <Input
           ref={input => this.input = input}
           placeholder={tags.length === 0 ? placeholder : ''}
           {...desiredProps}

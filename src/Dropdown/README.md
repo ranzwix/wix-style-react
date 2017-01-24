@@ -8,7 +8,6 @@
 |----------|----------|--------------|------------|-------------|
 | options | array of option | [] | - | Array of objects. Objects must have an Id and can can include *value* and *node*. If value is '-', a divider will be rendered instead. |
 | onSelect | func | - | - | Callback function called whenever the user selects a different option in the list |
-| value | string or number | '' | - | The value of the input |
 | selectedId | string/number | - | - | The id of the selected option in the list |
 | placeholder | string | '' | - | Shown when no option is selected |
 | fixedHeader | node | - | - | A fixed header to the list |
