@@ -1,6 +1,6 @@
 # InputArea component
 
-> General input container.
+> General inputArea container.
 
 ## Properties
 
