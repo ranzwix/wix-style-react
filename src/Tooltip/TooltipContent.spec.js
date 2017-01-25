@@ -21,10 +21,10 @@ class TooltipContentDriver {
       this._component = shallow(<TooltipContent {...this._props}/>);
     },
     mouseEntered: () => {
-      this._component.find(`.${styles.tooltip}`).simulate('mouseenter');
+      this._component.find(`.${styles.root}`).simulate('mouseenter');
     },
     mouseLeft: () => {
-      this._component.find(`.${styles.tooltip}`).simulate('mouseleave');
+      this._component.find(`.${styles.root}`).simulate('mouseleave');
     }
   }
 
@@ -34,14 +34,14 @@ class TooltipContentDriver {
     text: () => this._component.text(),
     hasLightTheme: () => this.get.component().hasClass(styles.light),
     hasDarkTheme: () => this.get.component().hasClass(styles.dark),
-    style: () => this.get.component().props().style,
+    style: () => this._component.find(`.${styles.root}`).props().style,
     arrowStyle: () => this.get.arrow().props().style,
     isArrowAtTop: () => this.get.arrow().hasClass(styles.top),
     isArrowAtLeft: () => this.get.arrow().hasClass(styles.left),
     isArrowAtRight: () => this.get.arrow().hasClass(styles.right),
     isArrowAtBottom: () => this.get.arrow().hasClass(styles.bottom),
     isBouncing: () => {
-      const component = this.get.component();
+      const component = this._component.find(`.${styles.fadeIn}`).childAt(0);
       return [
         component.hasClass('bounce-on-left'),
         component.hasClass('bounce-on-right'),

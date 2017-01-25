@@ -68,26 +68,16 @@ class TooltipContent extends Component {
       bounce
     } = this.props;
 
-    const classNames = [
-      styles.tooltip,
-      styles[theme],
-      styles[`flyin-on-${arrowPlacement}`], {
-        [styles[`bounce-on-${arrowPlacement}`]]: bounce
-      }
-    ];
-
     return (
-      <div
-        className={classnames(classNames)}
-        style={style}
-        onMouseEnter={onMouseEnter}
-        onMouseLeave={onMouseLeave}
-        >
-        <div>{children}</div>
-        <div
-          className={classnames(styles.arrow, styles[arrowPlacement])}
-          style={arrowStyle}
-          />
+      <div className={styles.root} style={style} onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
+        <div className={styles.fadeIn}>
+          <div className={classnames({[styles[`bounce-on-${arrowPlacement}`]]: bounce})}>
+            <div className={classnames(styles.tooltip, styles[theme])}>
+              <div>{children}</div>
+              <div className={classnames(styles.arrow, styles[arrowPlacement])} style={arrowStyle}/>
+            </div>
+          </div>
+        </div>
       </div>
     );
   }
