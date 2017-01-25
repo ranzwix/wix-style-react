@@ -1,5 +1,9 @@
 @import '../common';
 
+.input {
+  width: 100px;
+}
+
 .tagsContainer {
   width: 100%;
   @include FontThin();
