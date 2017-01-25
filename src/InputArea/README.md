@@ -1,4 +1,4 @@
-# Input component
+# InputArea component
 
 > General input container.
 
