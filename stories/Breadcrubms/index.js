@@ -30,7 +30,7 @@ import ExampleUsingURLRaw from '!raw!../Breadcrubms/ExampleUsingURL';
 import ExampleUsingURL from '../Breadcrubms/ExampleUsingURL';
 
 storiesOf('6. Common', module)
-  .add('6.4 Breadcrumbs', () => (
+  .add('6.6 Breadcrumbs', () => (
     <div>
       <Markdown source={Readme}/>
       <a href="?selectedKind=2.%20Switches&selectedStory=2.5%20Breadcrumbs&full=0&down=0&left=1&panelRight=0">Please see Breadcrumbs examples for items and path manipulation</a>
