@@ -6,7 +6,6 @@ $max-width: 264px;
 $font-size: 14px;
 $line-height: 1.29;
 $padding: 18px;
-$opacity: 0.96;
 $border-radius: 8px;
 $shadow-color: rgba(0, 0, 0, 0.2);
 $shadow-color-arrow: rgba(0, 0, 0, .1);
@@ -23,9 +22,8 @@ $shadow: 0 0 11px 0 $shadow-color;
   padding: $padding;
   font-size: $font-size;
   line-height: $line-height;
-  opacity: $opacity;
   box-shadow: $shadow;
-  word-break: break-all;
+  word-wrap: break-word;
   -webkit-font-smoothing: antialiased;
   &.light {
     color: $D10;
@@ -73,66 +71,31 @@ $shadow: 0 0 11px 0 $shadow-color;
   }
 }
 
-.flyin-on-left   { animation: flyInOnRight  .5s ease both; }
-.flyin-on-right  { animation: flyInOnLeft   .5s ease both; }
-.flyin-on-top    { animation: flyInOnBottom .5s ease both; }
-.flyin-on-bottom { animation: flyInOnTop    .5s ease both; }
+.flyin-on-left   { animation: fadeIn .5s ease both; }
+.flyin-on-right  { animation: fadeIn .5s ease both; }
+.flyin-on-top    { animation: fadeIn .5s ease both; }
+.flyin-on-bottom { animation: fadeIn .5s ease both; }
 
-.bounce-on-top, .bounce-on-bottom { animation: bounceVertically   .5s ease infinite; }
-.bounce-on-left, .bounce-on-right { animation: bounceHorizontally .5s ease infinite; }
+.bounce-on-top, .bounce-on-bottom { animation: bounceVertically   1s ease infinite; }
+.bounce-on-left, .bounce-on-right { animation: bounceHorizontally 1s ease infinite; }
 
-@keyframes flyInOnTop {
+@keyframes fadeIn {
   from {
     opacity: 0;
-    margin-top: -50px;
   }
   to {
     opacity: 1;
-    margin-top: 0;
-  }
-}
-
-@keyframes flyInOnBottom {
-  from {
-    opacity: 0;
-    margin-top: 50px;
-  }
-  to {
-    opacity: 1;
-    margin-top: 0;
-  }
-}
-
-@keyframes flyInOnLeft {
-  from {
-    opacity: 0;
-    margin-left: -50px;
-  }
-  to {
-    opacity: 1;
-    margin-left: 0;
-  }
-}
-
-@keyframes flyInOnRight {
-  from {
-    opacity: 0;
-    margin-left: 50px;
-  }
-  to {
-    opacity: 1;
-    margin-left: 0;
   }
 }
 
 @keyframes bounceVertically {
     0% { margin-top: 0; }
-   50% { margin-top: -20px; }
+   50% { margin-top: -10px; }
   100% { margin-top: 0; }
 }
 
 @keyframes bounceHorizontally {
     0% { margin-left: 0; }
-   50% { margin-left: -20px; }
+   50% { margin-left: -10px; }
   100% { margin-left: 0; }
 }

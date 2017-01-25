@@ -61,7 +61,8 @@ class Tooltip extends Component {
   state = {
     visible: false,
     style: {},
-    arrowStyle: {}
+    arrowStyle: {},
+    bounceEnabled: true
   }
 
   componentDidUpdate() {
@@ -69,11 +70,11 @@ class Tooltip extends Component {
       const arrowPlacement = {top: 'bottom', left: 'right', right: 'left', bottom: 'top'};
       const tooltip = (
         <TooltipContent
-          onMouseEnter={() => this.show()}
-          onMouseLeave={() => this._onMouseLeave()}
+          onMouseEnter={() => this._onTooltipContentEnter()}
+          onMouseLeave={() => this._onTooltipContentLeave()}
           ref={ref => this._tooltipNode = ReactDOM.findDOMNode(ref)}
           theme={this.props.theme}
-          bounce={this.props.bounce}
+          bounce={this.state.bounceEnabled && this.props.bounce}
           arrowPlacement={arrowPlacement[this.props.placement]}
           style={this.state.style}
           arrowStyle={this.state.arrowStyle}
@@ -214,7 +215,7 @@ class Tooltip extends Component {
         this._tooltipNode.getBoundingClientRect(), {
           placement: this.props.placement,
           alignment: this.props.alignment,
-          margin: 20
+          margin: 10
         }
       ));
       this.setState({
@@ -245,6 +246,16 @@ class Tooltip extends Component {
       left: originalPosition.left + x,
       top: originalPosition.top + y
     };
+  }
+
+  _onTooltipContentEnter() {
+    this.show();
+    this.setState({bounceEnabled: false});
+  }
+
+  _onTooltipContentLeave() {
+    this._onMouseLeave();
+    this.setState({bounceEnabled: true});
   }
 
   isShown() {
