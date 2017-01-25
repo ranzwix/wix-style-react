@@ -89,7 +89,7 @@ class InputArea extends WixComponent {
           onKeyUp={onKeyUp}
           readOnly={readOnly}
           />
-        {error && <InputAreaSuffix error={error} />}
+        {error && <InputAreaSuffix error={error}/>}
         {theme === 'material' && <div className={styles.bar}/>}
       </div>
     );
