@@ -12,7 +12,7 @@ export default class Form extends Component {
     withLabel: PropTypes.bool,
     label: PropTypes.object,
     input: PropTypes.object
-  }
+  };
 
   componentDidUpdate(props) {
     props.onChange(reactElementToJSXString(this.getComponent()));

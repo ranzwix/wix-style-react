@@ -5,7 +5,6 @@ import styles from './InputArea.scss';
 
 const InputSuffix = ({
   error,
-  children
 }) => {
 
   const exclamation = error ? (
@@ -17,14 +16,12 @@ const InputSuffix = ({
   return (
     <div className={styles.suffix}>
       {exclamation}
-      {children}
     </div>
   );
 };
 
 InputSuffix.propTypes = {
   error: PropTypes.bool,
-  children: PropTypes.node
 };
 
 export default InputSuffix;
