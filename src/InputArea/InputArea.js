@@ -1,7 +1,7 @@
 
 import React, {PropTypes} from 'react';
 import classNames from 'classnames';
-import InputAreaSuffix from './InputAreaSuffix';
+import Exclamation from './Exclamation';
 import WixComponent from '../WixComponent';
 
 import styles from './InputArea.scss';
@@ -89,7 +89,7 @@ class InputArea extends WixComponent {
           onKeyUp={onKeyUp}
           readOnly={readOnly}
           />
-        {error && <InputAreaSuffix error={error}/>}
+        {error && <Exclamation/>}
         {theme === 'material' && <div className={styles.bar}/>}
       </div>
     );
