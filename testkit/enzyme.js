@@ -6,6 +6,9 @@ export const buttonSelectionTestkitFactory = enzymeTestkitFactoryCreator(buttonS
 import inputDriverFactory from '../src/Input/Input.driver';
 export const inputTestkitFactory = enzymeTestkitFactoryCreator(inputDriverFactory);
 
+import tooltipDriverFactory from '../src/Tooltip/Tooltip.driver';
+export const tooltipTestkitFactory = enzymeTestkitFactoryCreator(tooltipDriverFactory);
+
 import labelDriverFactory from '../src/Label/Label.driver';
 export const labelTestkitFactory = enzymeTestkitFactoryCreator(labelDriverFactory);
 

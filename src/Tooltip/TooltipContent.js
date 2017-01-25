@@ -15,12 +15,12 @@ class TooltipContent extends Component {
     /**
      * Specifies tooltip theme
      */
-    theme: PropTypes.oneOf(['light', 'dark', 'error']).isRequired,
+    theme: PropTypes.oneOf(['light', 'dark', 'error']),
 
     /**
      * Specifies on which side the arrow should be shown
      */
-    arrowPlacement: PropTypes.oneOf(['top', 'right', 'bottom', 'left']).isRequired,
+    arrowPlacement: PropTypes.oneOf(['top', 'right', 'bottom', 'left']),
 
     /**
      * Custom CSS style object (used to allow setting arrow position)

@@ -1,23 +1,23 @@
-import React, {PropTypes, Component, cloneElement} from 'react';
+import React, {PropTypes, cloneElement} from 'react';
 import ReactDOM from 'react-dom';
-
+import WixComponent from '../WixComponent';
 import TooltipContent from './TooltipContent';
 import position from './TooltipPosition';
 
-class Tooltip extends Component {
+class Tooltip extends WixComponent {
 
   static propTypes = {
     children: PropTypes.element.isRequired,
     content: PropTypes.node.isRequired,
-    placement: PropTypes.oneOf(['top', 'right', 'bottom', 'left']).isRequired,
-    alignment: PropTypes.oneOf(['top', 'right', 'bottom', 'left', 'center']).isRequired,
-    theme: PropTypes.oneOf(['light', 'dark', 'error']).isRequired,
-    showDelay: PropTypes.number.isRequired,
-    hideDelay: PropTypes.number.isRequired,
-    showTrigger: PropTypes.oneOf(['custom', 'mouseenter', 'mouseleave', 'click', 'focus', 'blur']).isRequired,
-    hideTrigger: PropTypes.oneOf(['custom', 'mouseenter', 'mouseleave', 'click', 'focus', 'blur']).isRequired,
+    placement: PropTypes.oneOf(['top', 'right', 'bottom', 'left']),
+    alignment: PropTypes.oneOf(['top', 'right', 'bottom', 'left', 'center']),
+    theme: PropTypes.oneOf(['light', 'dark', 'error']),
+    showDelay: PropTypes.number,
+    hideDelay: PropTypes.number,
+    showTrigger: PropTypes.oneOf(['custom', 'mouseenter', 'mouseleave', 'click', 'focus', 'blur']),
+    hideTrigger: PropTypes.oneOf(['custom', 'mouseenter', 'mouseleave', 'click', 'focus', 'blur']),
     active: PropTypes.bool,
-    onActiveChange: PropTypes.func.isRequired,
+    onActiveChange: PropTypes.func,
     bounce: PropTypes.bool,
     disabled: PropTypes.bool,
 
@@ -36,7 +36,7 @@ class Tooltip extends Component {
      * Negative one calculates position from right/bottom.
      */
     moveArrowTo: PropTypes.number
-  }
+  };
 
   static defaultProps = {
     placement: 'top',
@@ -49,7 +49,7 @@ class Tooltip extends Component {
     onActiveChange: () => {},
     theme: 'light',
     disabled: false
-  }
+  };
 
   _childNode = null;
   _tooltipNode = null;
@@ -115,11 +115,11 @@ class Tooltip extends Component {
     const child = this.props.children;
     return cloneElement(child, {
       ref: ref => this._childNode = ReactDOM.findDOMNode(ref),
-      onClick: this._chainCallbacks(child.props.onClick, this._onClick),
-      onMouseEnter: this._chainCallbacks(child.props.onMouseEnter, this._onMouseEnter),
-      onMouseLeave: this._chainCallbacks(child.props.onMouseLeave, this._onMouseLeave),
-      onFocus: this._chainCallbacks(child.props.onFocus, this._onFocus),
-      onBlur: this._chainCallbacks(child.props.onBlur, this._onBlur)
+      onClick: this._chainCallbacks(child.props ? child.props.onClick : null, this._onClick),
+      onMouseEnter: this._chainCallbacks(child.props ? child.props.onMouseEnter : null, this._onMouseEnter),
+      onMouseLeave: this._chainCallbacks(child.props ? child.props.onMouseLeave : null, this._onMouseLeave),
+      onFocus: this._chainCallbacks(child.props ? child.props.onFocus : null, this._onFocus),
+      onBlur: this._chainCallbacks(child.props ? child.props.onBlur : null, this._onBlur)
     });
   }
 
