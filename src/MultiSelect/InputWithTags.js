@@ -23,12 +23,13 @@ class InputWithTags extends React.Component {
       <div className={styles.tagsContainer} onClick={() => this.input.focus()}>
 
         {tags.map(({label, ...rest}) => <Tag key={rest.id} onRemove={onRemoveTag} {...rest}>{label}</Tag>)}
-
-        <Input
-          ref={input => this.input = input}
-          placeholder={tags.length === 0 ? placeholder : ''}
-          {...desiredProps}
-          />
+        <span className={styles.input}>
+          <Input
+            ref={input => this.input = input}
+            placeholder={tags.length === 0 ? placeholder : ''}
+            {...desiredProps}
+            />
+        </span>
       </div>
     );
   }
