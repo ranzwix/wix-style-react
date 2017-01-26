@@ -34,11 +34,6 @@ $suffix-gutter-top: 4px;
     padding-right: $input-area-padding-icon;
 }
 
-.rtl.hasError > .inputArea {
-    padding-left: $input-area-padding-icon;
-    padding-right: 0;
-}
-
 .fixedSize > textarea{
     resize: none;
 }
@@ -77,9 +72,6 @@ $suffix-gutter-top: 4px;
     }
     &-material {
         border-radius: 0;
-        .prefix, .suffix {
-            padding: 0 4px;
-        }
         .inputArea {
             @include FontLight();
         }
@@ -114,18 +106,13 @@ $suffix-gutter-top: 4px;
 
 // RTL layout based on global style set on document body or parent element.
 :global(.rtl) {
-    .root, .prefix, .suffix { flex-direction: row-reverse; }
     .inputArea {
         direction: rtl;
     }
-}
 
-// RTL layout based on a property passed directly to the component.
-.rtl.root {
-    flex-direction: row-reverse;
-    .prefix, .suffix { flex-direction: row-reverse; }
-    .inputArea {
-        direction: rtl;
+    .hasError > .inputArea {
+        padding-left: $input-area-padding-icon;
+        padding-right: 0;
     }
 }
 

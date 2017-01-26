@@ -38,7 +38,6 @@ class InputArea extends WixComponent {
       onKeyUp,
       placeholder,
       readOnly,
-      rtl,
       tabIndex,
       rows,
       value,
@@ -61,7 +60,6 @@ class InputArea extends WixComponent {
     const classes = classNames({
       [styles.root]: true,
       [styles[`theme-${theme}`]]: true,
-      [styles.rtl]: !!rtl,
       [styles.hasError]: !!error,
       [styles.hasHover]: forceHover,
       [styles.hasFocus]: forceFocus || this.state.focus,
@@ -153,7 +151,6 @@ InputArea.propTypes = {
   defaultValue: PropTypes.string,
   tabIndex: PropTypes.number,
   menuArrow: PropTypes.bool,
-  rtl: PropTypes.bool,
   autoFocus: PropTypes.bool,
   autoSelect: PropTypes.bool,
   onChange: PropTypes.func,

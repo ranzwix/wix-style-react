@@ -101,18 +101,6 @@ describe('InputArea', () => {
     });
   });
 
-  describe('rtl attribute', () => {
-    it('should have rtl if rtl prop is true', () => {
-      const driver = createDriver(<InputArea rtl/>);
-      expect(driver.isRTL()).toBeTruthy();
-    });
-
-    it('should not have rtl if rtl prop is false', () => {
-      const driver = createDriver(<InputArea/>);
-      expect(driver.isRTL()).toBeFalsy();
-    });
-  });
-
   describe('onChange attribute', () => {
     it('should be called when text is entered to the input', () => {
 

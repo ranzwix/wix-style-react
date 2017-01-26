@@ -22,7 +22,6 @@ const inputAreaDriverFactory = ({component, wrapper}) => {
     getFixedSize: () => component.classList.contains(styles.fixedSize),
     hasExclamation: () => $component.find(`.${styles.exclamation}`).length === 1,
     hasError: () => component.classList.contains(styles.hasError),
-    isRTL: () => component.className.indexOf(styles.rtl) >= 0,
     isFocusedStyle: () => component.classList.contains(styles.hasFocus),
     isHoveredStyle: () => component.classList.contains(styles.hasHover),
     isOfStyle: style => component.classList.contains(styles[`theme-${style}`]),
