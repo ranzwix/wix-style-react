@@ -1,129 +1,141 @@
 import React from 'react';
-import {spy} from 'sinon';
+import ReactTestUtils from 'react-addons-test-utils';
+import tooltipDriverFactory from './Tooltip.driver';
+import Tooltip from './Tooltip';
+import TooltipContent from './TooltipContent';
+import {createDriverFactory} from '../test-common';
+import {tooltipTestkitFactory} from '../../testkit';
+import {tooltipTestkitFactory as enzymeTooltipTestkitFactory} from '../../testkit/enzyme';
+import {mount} from 'enzyme';
 
-import TooltipDriver from './Tooltip.driver';
+describe('Tooltip', () => {
 
-describe('<Tooltip/>', () => {
+  const createDriver = createDriverFactory(tooltipDriverFactory);
+  const _props = {showDelay: 10, hideDelay: 10, content: <TooltipContent children={'I\'m the content'}/>};
+  const children = <div>Here there is a children</div>;
 
-  let driver;
-
-  beforeEach(() => driver = new TooltipDriver());
+  beforeEach(() => {
+    document.body.innerHTML = '';
+  });
 
   it('should be hidden by default', () => {
-    driver
-      .when.created(<div>Hover me</div>);
-
-    expect(driver.get.isShown()).toEqual(false);
-    expect(driver.get.willBeShown()).toEqual(false);
-    expect(driver.get.willBeHidden()).toEqual(false);
+    const driver = createDriver(<Tooltip {..._props}>{children}</Tooltip>);
+    expect(driver.isShown()).toBeFalsy();
   });
 
   it('should show a tooltip once hovering', () => {
-    driver
-      .given.props({
-        showDelay: 10
-      })
-      .when.created(<div>Hover me</div>)
-      .when.mouseEntered();
-
-    expect(driver.get.isShown()).toEqual(false);
-    expect(driver.get.willBeShown()).toEqual(true);
-    expect(driver.get.willBeHidden()).toEqual(false);
-
-    return resolveIn(15).then(() => {
-      expect(driver.get.isShown()).toEqual(true);
-      expect(driver.get.willBeShown()).toEqual(false);
-      expect(driver.get.willBeHidden()).toEqual(false);
+    const driver = createDriver(<Tooltip {..._props}>{children}</Tooltip>);
+    driver.mouseEnter();
+    expect(driver.isShown()).toBeFalsy();
+    return resolveIn(25).then(() => {
+      expect(driver.isShown()).toBeTruthy();
     });
   });
 
   it('should not override focus event', () => {
-    const onFocus = spy();
-
-    driver
-      .given.props({
-        showTrigger: 'custom',
-        hideTrigger: 'custom'
-      })
-      .when.created(<div onFocus={onFocus}>Focus me</div>)
-      .when.focused();
-
-    expect(onFocus.calledOnce).toEqual(true);
+    const onFocus = jest.fn();
+    const onFocusedChild = <div onFocus={onFocus}>Here there is a children</div>;
+    const driver = createDriver(<Tooltip {..._props}>{onFocusedChild}</Tooltip>);
+    driver.focus();
+    expect(onFocus).toBeCalled();
   });
 
   it('should not override blur event', () => {
-    const onBlur = spy();
-
-    driver
-      .given.props({
-        showTrigger: 'custom',
-        hideTrigger: 'custom'
-      })
-      .when.created(<div onBlur={onBlur}>Blur me</div>)
-      .when.blured();
-
-    expect(onBlur.calledOnce).toEqual(true);
+    const onBlur = jest.fn();
+    const onBluredChild = <div onBlur={onBlur}>Here there is a children</div>;
+    const driver = createDriver(<Tooltip {..._props}>{onBluredChild}</Tooltip>);
+    driver.blur();
+    expect(onBlur).toBeCalled();
   });
 
   it('should not override click event', () => {
-    const onClick = spy();
-
-    driver
-      .given.props({
-        showTrigger: 'custom',
-        hideTrigger: 'custom'
-      })
-      .when.created(<div onClick={onClick}>Click me</div>)
-      .when.clicked();
-
-    expect(onClick.calledOnce).toEqual(true);
+    const onClick = jest.fn();
+    const onClickedChild = <div onClick={onClick}>Here there is a children</div>;
+    const driver = createDriver(<Tooltip {..._props}>{onClickedChild}</Tooltip>);
+    driver.click();
+    expect(onClick).toBeCalled();
   });
 
   it('should not override mouse enter event', () => {
-    const onMouseEnter = spy();
-
-    driver
-      .given.props({
-        showTrigger: 'custom',
-        hideTrigger: 'custom'
-      })
-      .when.created(<div onMouseEnter={onMouseEnter}>Move mouse over</div>)
-      .when.mouseEntered();
-
-    expect(onMouseEnter.calledOnce).toEqual(true);
+    const onMouseEnter = jest.fn();
+    const onMouseEnteredChild = <div onMouseEnter={onMouseEnter}>Here there is a children</div>;
+    const driver = createDriver(<Tooltip {..._props}>{onMouseEnteredChild}</Tooltip>);
+    driver.mouseEnter();
+    expect(onMouseEnter).toBeCalled();
   });
 
   it('should not override mouse leave event', () => {
-    const onMouseLeave = spy();
-
-    driver
-      .given.props({
-        showTrigger: 'custom',
-        hideTrigger: 'custom'
-      })
-      .when.created(<div onMouseLeave={onMouseLeave}>Move mouse out</div>)
-      .when.mouseLeft();
-
-    expect(onMouseLeave.calledOnce).toEqual(true);
-  });
-
-  it('should be disabled', () => {
-    driver
-      .given.props({
-        disabled: true
-      })
-      .when.created(<div>this is tooltip</div>)
-      .when.mouseEntered();
-
-    expect(driver.get.isShown()).toEqual(false);
+    const onMouseLeave = jest.fn();
+    const onMouseLeavedChild = <div onMouseLeave={onMouseLeave}>Here there is a children</div>;
+    const driver = createDriver(<Tooltip {..._props}>{onMouseLeavedChild}</Tooltip>);
+    driver.mouseLeave();
+    expect(onMouseLeave).toBeCalled();
   });
 
   it('should support error theme', () => {
-    driver.given.props({theme: 'error', showDelay: 10, active: true, content: 'Error tooltip content'})
-      .when.created(<div>this is an error tooltip</div>);
+    const driver = createDriver(<Tooltip theme={'error'} {..._props}>{children}</Tooltip>);
+    driver.mouseEnter();
+    expect(driver.hasErrorTheme()).toBeFalsy();
+    return resolveIn(25).then(() => {
+      expect(driver.hasErrorTheme()).toBeTruthy();
+    });
+  });
 
-    return resolveIn(15).then(() => {
-      expect(driver.get.isThemeError()).toEqual(true);
+  it('should support dark theme', () => {
+    const driver = createDriver(<Tooltip theme={'dark'} {..._props}>{children}</Tooltip>);
+    driver.mouseEnter();
+    expect(driver.hasDarkTheme()).toBeFalsy();
+    return resolveIn(25).then(() => {
+      expect(driver.hasDarkTheme()).toBeTruthy();
+    });
+  });
+
+  it('should support light theme', () => {
+    const driver = createDriver(<Tooltip theme={'light'} {..._props}>{children}</Tooltip>);
+    driver.mouseEnter();
+    expect(driver.hasLightTheme()).toBeFalsy();
+    return resolveIn(25).then(() => {
+      expect(driver.hasLightTheme()).toBeTruthy();
+    });
+  });
+
+  it('should have a children', () => {
+    const driver = createDriver(<Tooltip {..._props}>{children}</Tooltip>);
+    expect(driver.getChildren()).toBe('Here there is a children');
+  });
+
+  it('should have a content', () => {
+    const driver = createDriver(<Tooltip {..._props}>{children}</Tooltip>);
+    driver.mouseEnter();
+    return resolveIn(25).then(() => {
+      expect(driver.getContent()).toBe('I\'m the content');
+    });
+  });
+
+  describe('testkit', () => {
+    it('should exist', () => {
+      const div = document.createElement('div');
+      const dataHook = 'myDataHook';
+      const wrapper = div.appendChild(ReactTestUtils.renderIntoDocument(<div><Tooltip dataHook={dataHook} {..._props}>{children}</Tooltip></div>));
+      const driver = tooltipTestkitFactory({wrapper, dataHook});
+      driver.mouseEnter();
+      expect(driver.isShown()).toBeFalsy();
+      return resolveIn(25).then(() => {
+        expect(driver.isShown()).toBeTruthy();
+      });
+    });
+  });
+
+  describe('enzyme testkit', () => {
+    it('should exist', () => {
+      const dataHook = 'myDataHook';
+      const wrapper = mount(<Tooltip dataHook={dataHook} {..._props}>{children}</Tooltip>);
+      const driver = enzymeTooltipTestkitFactory({wrapper, dataHook});
+      driver.mouseEnter();
+      expect(driver.isShown()).toBeFalsy();
+      return resolveIn(25).then(() => {
+        expect(driver.isShown()).toBeTruthy();
+      });
     });
   });
 });
