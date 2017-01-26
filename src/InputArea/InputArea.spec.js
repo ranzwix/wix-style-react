@@ -1,16 +1,15 @@
 import React from 'react';
-// import ReactTestUtils from 'react-addons-test-utils';
-import inputDriverFactory from './InputArea.driver';
+import ReactTestUtils from 'react-addons-test-utils';
+import inputAreaDriverFactory from './InputArea.driver';
 import InputArea from './InputArea';
-// import sinon from 'sinon';
 import {createDriverFactory} from '../test-common';
-// import {inputTestkitFactory} from '../../testkit';
-// import {inputTestkitFactory as enzymeInputTestkitFactory} from '../../testkit/enzyme';
-// import {mount} from 'enzyme';
+import {inputAreaTestkitFactory} from '../../testkit';
+import {inputAreaTestkitFactory as enzymeInputAreaTestkitFactory} from '../../testkit/enzyme';
+import {mount} from 'enzyme';
 
 
 describe('InputArea', () => {
-  const createDriver = createDriverFactory(inputDriverFactory);
+  const createDriver = createDriverFactory(inputAreaDriverFactory);
 
   describe('value attribute', () => {
     it('should pass down to the wrapped input', () => {
@@ -236,26 +235,27 @@ describe('InputArea', () => {
       expect(driver.isOfStyle('material')).toBeTruthy();
     });
   });
+});
 
-// describe('testkit', () => {
-//   it('should exist', () => {
-//     const div = document.createElement('div');
-//     const value = 'hello';
-//     const onChange = () => {};
-//     const dataHook = 'myDataHook';
-//     const wrapper = div.appendChild(ReactTestUtils.renderIntoDocument(<div><InputArea value={value} onChange={onChange} dataHook={dataHook}/></div>));
-//     const inputTestkit = inputTestkitFactory({wrapper, dataHook});
-//     expect(inputTestkit.exists()).toBeTruthy();
-//   });
-// });
-//
-// describe('enzyme testkit', () => {
-//   it('should exist', () => {
-//     const value = 'hello';
-//     const onChange = () => {};
-//     const dataHook = 'myDataHook';
-//     const wrapper = mount(<InputArea value={value} onChange={onChange} dataHook={dataHook}/>);
-//     const inputTestkit = enzymeInputTestkitFactory({wrapper, dataHook});
-//     expect(inputTestkit.exists()).toBeTruthy();
-//   });
+describe('testkit', () => {
+  it('should exist', () => {
+    const div = document.createElement('div');
+    const value = 'hello';
+    const onChange = () => {};
+    const dataHook = 'myDataHook';
+    const wrapper = div.appendChild(ReactTestUtils.renderIntoDocument(<div><InputArea value={value} onChange={onChange} dataHook={dataHook}/></div>));
+    const inputAreaTestkit = inputAreaTestkitFactory({wrapper, dataHook});
+    expect(inputAreaTestkit.exists()).toBeTruthy();
+  });
+});
+
+describe('enzyme testkit', () => {
+  it('should exist', () => {
+    const value = 'hello';
+    const onChange = () => {};
+    const dataHook = 'myDataHook';
+    const wrapper = mount(<InputArea value={value} onChange={onChange} dataHook={dataHook}/>);
+    const inputAreaTestkit = enzymeInputAreaTestkitFactory({wrapper, dataHook});
+    expect(inputAreaTestkit.exists()).toBeTruthy();
+  });
 });

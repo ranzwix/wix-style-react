@@ -2,6 +2,7 @@ import {MessageBoxLayout1, MessageBoxLayout2, HeaderLayout1, FooterLayout1} from
 
 export {default as Button} from './Button';
 export {default as Input} from './Input';
+export {default as InputArea} from './InputArea';
 export {default as InputWithOptions} from './InputWithOptions';
 export {default as Checkbox} from './Checkbox';
 export {default as ToggleSwitch} from './ToggleSwitch';

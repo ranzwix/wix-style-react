@@ -5,7 +5,7 @@ import InputArea from './InputArea';
 import styles from './InputArea.scss';
 import $ from 'jquery';
 
-const inputDriverFactory = ({component, wrapper}) => {
+const inputAreaDriverFactory = ({component, wrapper}) => {
   const $component = $(component);
   const textArea = $component.find('textarea')[0];
 
@@ -36,4 +36,4 @@ const inputDriverFactory = ({component, wrapper}) => {
   };
 };
 
-export default inputDriverFactory;
+export default inputAreaDriverFactory;

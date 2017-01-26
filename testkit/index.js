@@ -6,6 +6,9 @@ export const buttonSelectionTestkitFactory = testkitFactoryCreator(buttonSelecti
 import inputDriverFactory from '../src/Input/Input.driver';
 export const inputTestkitFactory = testkitFactoryCreator(inputDriverFactory);
 
+import inputAreaDriverFactory from '../src/InputArea/InputArea.driver';
+export const inputAreaTestkitFactory = testkitFactoryCreator(inputAreaDriverFactory);
+
 import labelDriverFactory from '../src/Label/Label.driver';
 export const labelTestkitFactory = testkitFactoryCreator(labelDriverFactory);
 
