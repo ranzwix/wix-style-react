@@ -1,9 +1,10 @@
 @import '../common.scss';
 @import './InputAreaMixins.scss';
+@import '../Typography/Typography.scss';
 
 $input-area-padding-icon: 28px;
-$suffix-gutter-horizontal: 8px;
-$suffix-gutter-top: 4px;
+$exclamation-horizontal: 8px;
+$exclamation-top: 4px;
 
 .root {
     position: relative;
@@ -20,12 +21,13 @@ $suffix-gutter-top: 4px;
     flex-grow: 1;
     flex-shrink: 1;
     min-width: 20px;
+    min-height: 36px;
     padding: 0;
     margin: 0;
     border: 0;
     outline: 0;
     background: transparent;
-    @include FontRoman();
+    @extend .t2_1;
     @include Placeholder($paletteE6);
     @include Selection($paletteB4);
 }
@@ -38,7 +40,7 @@ $suffix-gutter-top: 4px;
     resize: none;
 }
 
-.suffix {
+.exclamation {
     position: absolute;
     display: flex;
     align-items: center;
@@ -46,12 +48,20 @@ $suffix-gutter-top: 4px;
     flex-grow: 0;
     min-width: 0;
     user-select: none;
+    margin: 0 6px;
+    background-color: $paletteR1;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    justify-content: center;
+    &:last-child { margin: 0; }
+    path { stroke: #fff; }
 
-    top: $suffix-gutter-top;
-    right: $suffix-gutter-horizontal;
+    top: $exclamation-top;
+    right: $exclamation-horizontal;
 
     :global(.rtl) & {
-        left: $suffix-gutter-horizontal;
+        left: $exclamation-horizontal;
         right: initial;
     }
 }
@@ -114,17 +124,4 @@ $suffix-gutter-top: 4px;
         padding-left: $input-area-padding-icon;
         padding-right: 0;
     }
-}
-
-.exclamation {
-    margin: 0 6px;
-    background-color: $paletteR1;
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    &:last-child { margin: 0; }
-    path { stroke: #fff; }
 }
