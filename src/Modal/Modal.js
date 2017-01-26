@@ -32,12 +32,6 @@ const Modal = props => {
     },
     content: {
       // Overriding defaults
-      position: 'fixed',
-      top: '50%',
-      left: '50%',
-      right: 'initial',
-      bottom: 'initial',
-      transform: null,
       border: 'none',
       overflow: 'initial',
       WebkitOverflowScrolling: 'touch',

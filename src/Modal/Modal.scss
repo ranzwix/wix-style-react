@@ -30,19 +30,19 @@
 
     .ReactModal__Content {
         opacity: 0.66;
-        transform: translateX(-50%) translateY(-50%) scale(0.93);
+        transform: scale(0.93);
     }
 
     .ReactModal__Content--after-open {
         opacity: 1;
-        transform: translateX(-50%) translateY(-50%) scale(1);
+        transform: scale(1);
         transition: opacity 0.35s $wix-modal-easeOutQuint, transform 0.35s $wix-modal-easeOutQuint;
     }    
 
     .ReactModal__Content--before-close {
         pointer-events: none;
         opacity: 0;
-        transform: translateX(-50%) translateY(-50%) scale(0.9);
+        transform: scale(0.9);
         transition: opacity 0.3s $wix-modal-easeOutQuint, transform 0.04s $wix-modal-easeOutQuint;
     }    
 }
