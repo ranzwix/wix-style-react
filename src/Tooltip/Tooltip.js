@@ -61,8 +61,7 @@ class Tooltip extends WixComponent {
   state = {
     visible: false,
     style: {},
-    arrowStyle: {},
-    bounceEnabled: true
+    arrowStyle: {}
   }
 
   componentDidUpdate() {
@@ -74,7 +73,7 @@ class Tooltip extends WixComponent {
           onMouseLeave={() => this._onTooltipContentLeave()}
           ref={ref => this._tooltipNode = ReactDOM.findDOMNode(ref)}
           theme={this.props.theme}
-          bounce={this.state.bounceEnabled && this.props.bounce}
+          bounce={this.props.bounce}
           arrowPlacement={arrowPlacement[this.props.placement]}
           style={this.state.style}
           arrowStyle={this.state.arrowStyle}
@@ -163,6 +162,7 @@ class Tooltip extends WixComponent {
   hide() {
     if (this._showTimeout) {
       clearTimeout(this._showTimeout);
+      this._showTimeout = null;
     }
     if (this._hideTimeout) {
       return;
@@ -177,14 +177,13 @@ class Tooltip extends WixComponent {
       if (!this._unmounted) {
         this.setState({visible: false});
       }
-    }, this.props.hideDelay);
+    }, this._unmounted ? 0 : this.props.hideDelay);
   }
 
   _hideOrShow(event) {
-    if (this.state.visible && this.props.hideTrigger === event) {
+    if (this.props.hideTrigger === event) {
       this.hide();
-    }
-    if (!this.state.visible && this.props.showTrigger === event) {
+    } else if (this.props.showTrigger === event) {
       this.show();
     }
   }
@@ -250,12 +249,10 @@ class Tooltip extends WixComponent {
 
   _onTooltipContentEnter() {
     this.show();
-    this.setState({bounceEnabled: false});
   }
 
   _onTooltipContentLeave() {
     this._onMouseLeave();
-    this.setState({bounceEnabled: true});
   }
 
   isShown() {

@@ -23,7 +23,7 @@ const Modal = props => {
       right: 0,
       bottom: 0,
       zIndex: 11 + (props.zIndex || 0),
-      backgroundColor: 'rgba(22, 45, 61, 0.66)',
+      backgroundColor: null, // null disables the property, use css instead
       // Overriding defaults - END
       display: 'flex',
       justifyContent,
@@ -37,7 +37,7 @@ const Modal = props => {
       left: '50%',
       right: 'initial',
       bottom: 'initial',
-      transform: 'translateX(-50%) translateY(-50%)',
+      transform: null,
       border: 'none',
       overflow: 'initial',
       WebkitOverflowScrolling: 'touch',
@@ -62,6 +62,7 @@ const Modal = props => {
       style={modalStyles}
       className={modalClasses}
       contentLabel={props.contentLabel}
+      closeTimeoutMS={500}
       >
       {props.children}
     </ReactModal>
