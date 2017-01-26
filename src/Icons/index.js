@@ -27,6 +27,7 @@ export {default as Pause} from './components/Pause';
 export {default as Pen} from './components/Pen';
 export {default as PenOutline} from './components/PenOutline';
 export {default as Plaster} from './components/Plaster';
+export {default as Play} from './components/Play';
 export {default as Plus} from './components/Plus';
 export {default as Plus2} from './components/Plus2';
 export {default as PlusCircle} from './components/PlusCircle';
