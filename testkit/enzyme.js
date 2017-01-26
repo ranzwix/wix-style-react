@@ -9,6 +9,9 @@ export const inputTestkitFactory = enzymeTestkitFactoryCreator(inputDriverFactor
 import inputAreaDriverFactory from '../src/InputArea/InputArea.driver';
 export const inputAreaTestkitFactory = enzymeTestkitFactoryCreator(inputAreaDriverFactory);
 
+import tooltipDriverFactory from '../src/Tooltip/Tooltip.driver';
+export const tooltipTestkitFactory = enzymeTestkitFactoryCreator(tooltipDriverFactory);
+
 import labelDriverFactory from '../src/Label/Label.driver';
 export const labelTestkitFactory = enzymeTestkitFactoryCreator(labelDriverFactory);
 

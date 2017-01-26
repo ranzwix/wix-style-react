@@ -1,7 +1,6 @@
 import React, {Component, PropTypes} from 'react';
 
 import TextAreaExample from './TextAreaTemplate';
-import InputArea from '../../src/InputArea';
 import Input from '../../src/Input';
 import Label from '../../src/Label';
 import ToggleSwitch from '../../src/ToggleSwitch';
@@ -12,7 +11,7 @@ class ExampleStandard extends Component {
 
   static propTypes = {
     onChange: PropTypes.func
-  }
+  };
 
   state = {
     withLabel: true,
@@ -28,7 +27,7 @@ class ExampleStandard extends Component {
     inputArea: {
       placeholder: 'Please type in your first name...'
     }
-  }
+  };
 
   setComponentState(componentName, obj) {
     this.setState(prevState => {

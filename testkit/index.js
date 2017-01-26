@@ -12,6 +12,9 @@ export const inputAreaTestkitFactory = testkitFactoryCreator(inputAreaDriverFact
 import labelDriverFactory from '../src/Label/Label.driver';
 export const labelTestkitFactory = testkitFactoryCreator(labelDriverFactory);
 
+import tooltipDriverFactory from '../src/Tooltip/Tooltip.driver';
+export const tooltipTestkitFactory = testkitFactoryCreator(tooltipDriverFactory);
+
 import breadcrumbsDriverFactory from '../src/Breadcrumbs/Breadcrumbs.driver';
 export const breadcrumbsTestkitFactory = testkitFactoryCreator(breadcrumbsDriverFactory);
 
