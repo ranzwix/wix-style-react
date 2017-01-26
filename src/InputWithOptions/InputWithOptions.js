@@ -38,7 +38,7 @@ class InputWithOptions extends WixComponent {
   }
 
   renderInput() {
-    const inputProps = Object.assign(omit(this.props, Object.keys(DropdownLayout.propTypes).concat(['onChange'])), this.inputAdditionalProps());
+    const inputProps = Object.assign(omit(this.props, Object.keys(DropdownLayout.propTypes).concat(['onChange', 'dataHook'])), this.inputAdditionalProps());
     const {inputElement} = inputProps;
     return React.cloneElement(inputElement, {
       menuArrow: true,
@@ -51,7 +51,7 @@ class InputWithOptions extends WixComponent {
   }
 
   _renderDropdownLayout() {
-    const dropdownProps = Object.assign(omit(this.props, Object.keys(Input.propTypes)), this.dropdownAdditionalProps());
+    const dropdownProps = Object.assign(omit(this.props, Object.keys(Input.propTypes).concat(['dataHook'])), this.dropdownAdditionalProps());
     return (
       <div className={this.dropdownClasses()}>
         <DropdownLayout
