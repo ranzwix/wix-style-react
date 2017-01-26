@@ -14,6 +14,6 @@ export default () =>
     <div style={style}>Secondary<br/><Button theme="emptyblue">Click Me!</Button></div>
     <div style={style}>Secondary 2 (emptybluesecondary)<br/><Button theme="emptybluesecondary">Click Me!</Button></div>
     <div style={style}>Main - Disabled<br/><Button theme="fullblue" disabled={true}>Click Me!</Button></div>
-    <div style={style}>Secondary - Disabled<br/><Button theme="emptyblue" disabled={true}>Click Me!</Button></div>
+      <div style={style}>Secondary - Disabled<br/><Button theme="emptyblue" disabled={true}>Click Me!</Button></div>
     <div style={style}>Secondary 2 - Disabled <br/><Button theme="emptybluesecondary" disabled={true}>Click Me!</Button></div>
   </div>;
