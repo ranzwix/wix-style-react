@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactTestUtils from 'react-addons-test-utils';
-import {textAreaTestkitFactory, componentFactory, textAreaDriverFactory} from './testkit/TextArea';
+import {textAreaTestkitFactory, componentFactory, textAreaDriverFactory} from './TextArea.driver';
 import InputArea from '../InputArea';
 import _ from 'lodash/fp';
 import Label from '../Label';

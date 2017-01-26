@@ -1,5 +1,5 @@
 import React, {Children} from 'react';
-import TextArea from '../TextArea';
+import TextArea from './TextArea';
 import ReactTestUtils from 'react-addons-test-utils';
 import $ from 'jquery';
 
@@ -9,7 +9,6 @@ const textAreaDriverFactory = component => ({
   getAttr: attrName => component.getAttribute(attrName),
   getNumberOfChildren: () => component.childElementCount
 });
-
 
 const componentFactory = (props = {}) => {
   let {children, ...otherProps} = props;
