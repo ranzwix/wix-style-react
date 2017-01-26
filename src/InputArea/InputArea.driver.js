@@ -19,7 +19,7 @@ const inputAreaDriverFactory = ({component, wrapper}) => {
     getRowsCount: () => textArea.rows,
     getTabIndex: () => textArea.tabIndex,
     getReadOnly: () => textArea.readOnly,
-    getFixedSize: () => component.classList.contains(styles.fixedSize),
+    getResizable: () => component.classList.contains(styles.resizable),
     hasExclamation: () => $component.find(`.${styles.exclamation}`).length === 1,
     hasError: () => component.classList.contains(styles.hasError),
     isFocusedStyle: () => component.classList.contains(styles.hasFocus),

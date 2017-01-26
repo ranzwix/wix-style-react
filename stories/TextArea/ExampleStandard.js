@@ -25,7 +25,8 @@ class ExampleStandard extends Component {
       children: 'First name'
     },
     inputArea: {
-      placeholder: 'Please type in your first name...'
+      placeholder: 'Please type in your first name...',
+      resizable: false
     }
   };
 
@@ -60,8 +61,7 @@ class ExampleStandard extends Component {
           <div className={styles.option}>
             <Label>Placeholder</Label>
             <div className={styles.flex}>
-              <Input
-                size="small"
+              <Input size="small"
                 value={this.state.inputArea.placeholder}
                 onChange={e => this.setComponentState('inputArea', {placeholder: e.target.value})}
                 />
@@ -69,30 +69,29 @@ class ExampleStandard extends Component {
           </div>
           <div className={styles.option}>
             <Label>Input Area box size</Label>
-            <div className={styles.flex}>
-              <Input placeholder="Set #rows" size="small" type="number"
+            <div className={styles.column}>
+              <Input size="small" type="number"
+                     placeholder="Set #rows"
                      value={this.state.inputArea.rows}
                      onChange={e => this.setComponentState('inputArea', {rows: e.target.value})}
-              />&nbsp;
+              />
               <Input placeholder="Set min Height" size="small" type="number" unit="px"
                      value={this.state.inputArea.minHeight}
                      onChange={e => this.setComponentState('inputArea', {minHeight: e.target.value})}
-              />&nbsp;
+              />
               <Input placeholder="Set max Height" size="small" type="number" unit="px"
                      value={this.state.inputArea.maxHeight}
                      onChange={e => this.setComponentState('inputArea', {maxHeight: e.target.value})}
               />
-              &nbsp;(some browsers make #rows the minimum height, and some need the minHeight)
+              <div className={styles.option}>
+                <Label>Resizable: </Label>
+                <ToggleSwitch
+                  size="small"
+                  checked={this.state.inputArea.resizable}
+                  onChange={() => this.setComponentState('inputArea', {resizable: !this.state.inputArea.resizable})}
+                />
+              </div>
             </div>
-          </div>
-          <div className={styles.option}>
-              <Label>fixed size: </Label>
-              &nbsp;
-              <ToggleSwitch
-                size="small"
-                checked={this.state.inputArea.fixedSize}
-                onChange={e => this.setComponentState('inputArea', {fixedSize: !this.state.inputArea.fixedSize})}
-              />
           </div>
         </div>
         <div className={styles.output}>

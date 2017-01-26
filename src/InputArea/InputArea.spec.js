@@ -50,15 +50,15 @@ describe('InputArea', () => {
     });
   });
 
-  describe('fixedSize attribute', () => {
+  describe('resizable attribute', () => {
     it('should pass down to the wrapped input', () => {
-      const driver = createDriver(<InputArea fixedSize/>);
-      expect(driver.getFixedSize()).toBeTruthy();
+      const driver = createDriver(<InputArea resizable/>);
+      expect(driver.getResizable()).toBeTruthy();
     });
 
     it('should pass down to the wrapped input with default false value', () => {
       const driver = createDriver(<InputArea/>);
-      expect(driver.getFixedSize()).toBeFalsy();
+      expect(driver.getResizable()).toBeFalsy();
     });
   });
 
