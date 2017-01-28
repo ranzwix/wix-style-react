@@ -42,5 +42,9 @@ export const checkboxTestkitFactory = testkitFactoryCreator(checkboxDriverFactor
 import buttonDriverFactory from '../src/Button/Button.driver';
 export const buttonTestkitFactory = testkitFactoryCreator(buttonDriverFactory);
 
+import toastDriverFactory from '../src/Toast/Toast.driver';
+export const toastTestkitFactory = testkitFactoryCreator(toastDriverFactory);
+
+
+
 export {radioGroupDriverFactory} from '../src/RadioGroup/RadioGroup.driver';
-export {toastTestkitFactory} from '../src/Toast/testkit/Toast';
