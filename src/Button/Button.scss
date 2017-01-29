@@ -55,6 +55,13 @@
     color: $GR40;
 }
 
+.button.transparent.disabled {
+    pointer-events: none;
+    background-color: #cbd3dc;
+    border: none;
+    color: $D80;
+}
+
 .fullblue
 {
     background-color: $B10;
@@ -238,6 +245,27 @@
     background-color: $R00;
     border-color: $R00;
     color: #fff;
+}
+
+.transparent
+{
+    background-color: rgba(22, 45, 60, 0.12);
+    border: none;
+    color: $D80;
+}
+
+.transparent:hover, .transparent.hover
+{
+    background-color: rgba(22, 45, 59, 0.18);
+    border: none;
+    color: $D80;
+}
+
+.transparent:active, .transparent.active
+{
+    background-color: rgba(21, 45, 59, 0.12);
+    border: none;
+    color: $D80;
 }
 
 .heightsmall

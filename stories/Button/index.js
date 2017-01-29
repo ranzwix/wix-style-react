@@ -16,6 +16,9 @@ import ExamplePremiumRaw from '!raw!./ExamplePremium';
 import ExampleGreen from './ExampleGreen';
 import ExampleGreenRaw from '!raw!./ExampleGreen';
 
+import ExampleTransparent from './ExampleTransparent';
+import ExampleTransparentRaw from '!raw!./ExampleTransparent';
+
 import ExampleSizes from './ExampleSizes';
 import ExampleSizesRaw from '!raw!./ExampleSizes';
 
@@ -46,6 +49,10 @@ storiesOf('3. Buttons', module)
 
       <CodeExample title="Green" code={ExampleGreenRaw}>
         <ExampleGreen/>
+      </CodeExample>
+
+      <CodeExample title="Transparent" code={ExampleTransparentRaw}>
+        <ExampleTransparent/>
       </CodeExample>
 
       <CodeExample title="Sizes" code={ExampleSizesRaw}>
