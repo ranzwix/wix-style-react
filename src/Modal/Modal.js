@@ -49,6 +49,7 @@ const Modal = props => {
 
   return (
     <ReactModal
+      portalClassName={styles.portal}
       isOpen={props.isOpen}
       shouldCloseOnOverlayClick={props.shouldCloseOnOverlayClick}
       onRequestClose={props.onRequestClose}
