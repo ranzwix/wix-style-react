@@ -12,7 +12,7 @@ export default function TextArea(props) {
   return (
     <div data-hook={props.dataHook}>
       { children.length === 2 ?
-        <div className={styles.textFieldLabel}>
+        <div className={styles.textAreaLabel}>
           {first(children)}
         </div> : null
       }

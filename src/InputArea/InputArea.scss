@@ -2,7 +2,9 @@
 @import './InputAreaMixins.scss';
 @import '../Typography/Typography.scss';
 
-$input-area-padding-icon: 28px;
+$input-area-padding-exclamation: 32px;
+$input-area-padding-horizontal: 12px;
+$input-area-padding-top: 6px;
 $exclamation-horizontal: 8px;
 $exclamation-top: 4px;
 
@@ -22,7 +24,7 @@ $exclamation-top: 4px;
     flex-shrink: 1;
     min-width: 20px;
     min-height: 36px;
-    padding: 0;
+    padding: $input-area-padding-top $input-area-padding-horizontal;
     margin: 0;
     border: 0;
     outline: 0;
@@ -33,7 +35,7 @@ $exclamation-top: 4px;
 }
 
 .hasError > .inputArea {
-    padding-right: $input-area-padding-icon;
+    padding-right: $input-area-padding-exclamation;
 }
 
 .resizable > textarea{
@@ -125,7 +127,7 @@ $exclamation-top: 4px;
     }
 
     .hasError > .inputArea {
-        padding-left: $input-area-padding-icon;
-        padding-right: 0;
+        padding-left: $input-area-padding-exclamation;
+        padding-right: $input-area-padding-horizontal;
     }
 }
