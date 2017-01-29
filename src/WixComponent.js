@@ -7,6 +7,7 @@ class WixComponent extends React.Component {
 
   constructor(params) {
     super(params);
+    this.dataHookIsSet = false;
     this._addDataHook = this._addDataHook.bind(this);
     this._supportOnClickOutside = this._supportOnClickOutside.bind(this);
     this._onMouseEventsHandler = this._onMouseEventsHandler.bind(this);
@@ -30,7 +31,13 @@ class WixComponent extends React.Component {
   }
 
   _addDataHook(dataHook) {
-    ReactDOM.findDOMNode(this).setAttribute('data-hook', dataHook);
+    if (!this.dataHookIsSet) {
+      const node = ReactDOM.findDOMNode(this);
+      if (node) {
+        node.setAttribute('data-hook', dataHook);
+        this.dataHookIsSet = true;
+      }
+    }
   }
 
   _supportOnClickOutside() {
@@ -39,6 +46,13 @@ class WixComponent extends React.Component {
     });
 
     this._boundEvents = MOUSE_EVENTS_SUPPORTED;
+  }
+
+  componentWillUpdate() {
+    const {dataHook} = this.props;
+    if (dataHook) {
+      this._addDataHook(dataHook);
+    }
   }
 
   componentDidMount() {

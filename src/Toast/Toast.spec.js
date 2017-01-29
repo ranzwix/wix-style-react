@@ -75,5 +75,13 @@ describe('Toast', () => {
       const toastTestkit = enzymeToastTestkitFactory({wrapper, dataHook});
       expect(toastTestkit.exists()).toBeTruthy();
     });
+
+    it('should create new driver even when component is not shown', () => {
+      const dataHook = 'myDataHook';
+      const props = Object.assign({}, defaultProps, {show: false});
+      const wrapper = mount(<Toast dataHook={dataHook} {...props}/>);
+      const toastTestkit = enzymeToastTestkitFactory({wrapper, dataHook});
+      expect(toastTestkit.exists()).toBeFalsy();
+    });
   });
 });
