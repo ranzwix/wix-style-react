@@ -36,7 +36,11 @@ $exclamation-top: 4px;
     padding-right: $input-area-padding-icon;
 }
 
-.fixedSize > textarea{
+.resizable > textarea{
+    resize: vertical;
+}
+
+.nonResizable > textarea{
     resize: none;
 }
 

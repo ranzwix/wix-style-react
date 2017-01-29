@@ -43,7 +43,7 @@ class InputArea extends WixComponent {
       value,
       minHeight,
       maxHeight,
-      fixedSize,
+      resizable,
       theme
     } = this.props;
 
@@ -63,7 +63,8 @@ class InputArea extends WixComponent {
       [styles.hasError]: !!error,
       [styles.hasHover]: forceHover,
       [styles.hasFocus]: forceFocus || this.state.focus,
-      [styles.fixedSize]: !!fixedSize
+      [styles.resizable]: !!resizable,
+      [styles.nonResizable]: !resizable
     });
 
     return (
@@ -136,7 +137,7 @@ class InputArea extends WixComponent {
 InputArea.displayName = 'InputArea';
 
 InputArea.defaultProps = {
-  theme: 'normal'
+  theme: 'normal',
 };
 
 InputArea.propTypes = {
@@ -166,7 +167,7 @@ InputArea.propTypes = {
   rows: PropTypes.number,
   minHeight: PropTypes.string,
   maxHeight: PropTypes.string,
-  fixedSize: PropTypes.bool
+  resizable: PropTypes.bool
 };
 
 export default InputArea;

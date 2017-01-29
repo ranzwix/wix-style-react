@@ -19,11 +19,11 @@ const defaultProps = {
 export default () =>
   <div className="ltr">
     <div style={style}>
-      Rows(5) & Max Height & min height<br/>
-      <InputArea {...defaultProps} rows={5} maxHeight="120px" minHeight="50px"/><br/>
+      Rows(3) & Max Height & min height<br/>
+      <InputArea {...defaultProps} rows={3} maxHeight="120px" minHeight="50px" resizable/><br/>
     </div>
     <div style={style}>
       Fixed Size<br/>
-      <InputArea {...defaultProps} fixedSize/><br/>
+      <InputArea {...defaultProps}/><br/>
     </div>
   </div>;

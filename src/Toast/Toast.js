@@ -1,10 +1,11 @@
 import React, {PropTypes} from 'react';
 import classnames from 'classnames';
 import SvgX from '../svg/X.js';
+import WixComponent from '../WixComponent';
 
 import styles from './Toast.scss';
 
-class Toast extends React.Component {
+class Toast extends WixComponent {
 
   constructor(params) {
     super(params);
@@ -41,7 +42,7 @@ class Toast extends React.Component {
     }
 
     return (
-      <div className={className} id={this.props.id} style={style} data-hook="toast">
+      <div className={className} id={this.props.id} style={style}>
         <div className={styles.children} data-hook="toast-text">
           {this.props.children}
         </div>

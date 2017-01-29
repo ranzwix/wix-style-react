@@ -6,4 +6,5 @@ export const labelTestkitFactory = protractorTestkitFactoryCreator(labelDriverFa
 import buttonDriverFactory from '../src/Button/Button.protractor.driver';
 export const buttonTestkitFactory = protractorTestkitFactoryCreator(buttonDriverFactory);
 
-export {protractorToastTestkitFactory} from '../src/Toast/testkit/Toast.protractor';
+import toastDriverFactory from '../src/Toast/Toast.protractor.driver';
+export const toastTestkitFactory = protractorTestkitFactoryCreator(toastDriverFactory);
