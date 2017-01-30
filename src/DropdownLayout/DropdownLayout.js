@@ -108,8 +108,10 @@ class DropdownLayout extends WixComponent {
       }
 
       case 'Tab': {
-        this._onSelect(this.state.hovered);
-        return true;
+        if (this._onSelect(this.state.hovered)) {
+          return true;
+        }
+        return false;
       }
 
       case 'Escape': {
