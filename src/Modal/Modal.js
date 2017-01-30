@@ -84,7 +84,7 @@ Modal.defaultProps = {
   theme: colors.blue,
   shouldCloseOnOverlayClick: false,
   horizontalPosition: 'center',
-  verticalPosition: 'start',
+  verticalPosition: 'center',
 };
 
 export default Modal;
