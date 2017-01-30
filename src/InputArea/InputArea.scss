@@ -2,7 +2,7 @@
 @import './InputAreaMixins.scss';
 @import '../Typography/Typography.scss';
 
-$input-area-padding-exclamation: 32px;
+$input-area-padding-exclamation: 34px;
 $input-area-padding-horizontal: 12px;
 $input-area-padding-top: 6px;
 $exclamation-horizontal: 8px;
@@ -14,7 +14,6 @@ $exclamation-top: 4px;
     align-items: stretch;
     border: solid 1px;
     border-radius: 6px;
-    padding: 2px;
     @include BoxSizing();
     @include FontRoman();
 }
