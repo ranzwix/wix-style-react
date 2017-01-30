@@ -12,6 +12,7 @@
 | value | string | '' | - | The value of the input |
 | predicate | func | () => true | - | Callback predicate for the filtering options function |
 | placeholder | string | '' | - | Shown when no option is selected |
+| disabled | bool | false | - |  when set to true this component is disabled
 | fixedHeader | node | - | - | A fixed header to the list |
 | fixedFooter | node | - | - | A fixed footer to the list |
 | ***All of the InputWithOptions Props are also available for this component*** | | | | |

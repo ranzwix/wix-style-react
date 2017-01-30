@@ -10,6 +10,9 @@ import AllIconsRaw from '!raw!./AllIcons';
 import CustomeIcon from './CustomIcon';
 import CustomeIconRaw from '!raw!./CustomIcon';
 
+import RTLIcon from './RTLIcon';
+import RTLIconRaw from '!raw!./RTLIcon';
+
 storiesOf('6. Common', module)
   .add('6.5 Icons', () => (
     <div>
@@ -20,6 +23,9 @@ storiesOf('6. Common', module)
       </CodeExample>
       <CodeExample title="Custom Icon" code={CustomeIconRaw}>
         <CustomeIcon/>
+      </CodeExample>
+      <CodeExample title="RTL Icon" code={RTLIconRaw}>
+        <RTLIcon/>
       </CodeExample>
     </div>
   ));

@@ -74,7 +74,15 @@ const runInputWithOptionsTest = driverFactory => {
       const {driver, inputDriver} = createDriver(<InputWithOptions options={options} onManuallyInput={onManuallyInput}/>);
       inputDriver.enterText('my text');
       driver.pressEnterKey();
-      expect(onManuallyInput).toBeCalledWith('my text');
+      expect(onManuallyInput).toBeCalledWith('my text', undefined);
+    });
+
+    it('should suggest an option when calling onManuallyInput', () => {
+      const onManuallyInput = jest.fn();
+      const {driver, inputDriver} = createDriver(<InputWithOptions options={options} onManuallyInput={onManuallyInput}/>);
+      inputDriver.enterText('Option 2');
+      driver.pressEnterKey();
+      expect(onManuallyInput).toBeCalledWith('Option 2', {id: 1, value: 'Option 2'});
     });
 
     it('should hide options on selection by default', () => {

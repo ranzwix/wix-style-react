@@ -5,6 +5,10 @@ class Dropdown extends InputWithOptions {
 
   constructor(props) {
     super(props);
+    this.update(props, {isFirstTime: true});
+  }
+
+  update(props, {isFirstTime}) {
     let value = '', selectedId = -1;
     if (props.selectedId) {
       const option = props.options.find(option => {
@@ -16,7 +20,17 @@ class Dropdown extends InputWithOptions {
         selectedId = option.id;
       }
     }
-    this.state = {value, selectedId};
+    if (isFirstTime) {
+      this.state = {value, selectedId};
+    } else {
+      this.setState({value, selectedId});
+    }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (this.props.selectedId !== nextProps.selectedId) {
+      this.update(nextProps, {isFirstTime: false});
+    }
   }
 
   inputClasses() {

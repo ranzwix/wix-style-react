@@ -8,6 +8,7 @@ import {inputTestkitFactory} from '../../testkit';
 import {inputTestkitFactory as enzymeInputTestkitFactory} from '../../testkit/enzyme';
 import {mount} from 'enzyme';
 
+
 describe('Input', () => {
   const createDriver = createDriverFactory(inputDriverFactory);
 
@@ -207,6 +208,13 @@ describe('Input', () => {
     it('should be hovered if forceFocus is false and forceHover is true', () => {
       const driver = createDriver(<Input forceHover forceFocus={false}/>);
       expect(driver.isHoveredStyle()).toBeTruthy();
+    });
+  });
+
+  describe('disable attribute', () => {
+    it('should have disabled class on input if disabled is true', () => {
+      const driver = createDriver(<Input disabled/>);
+      expect(driver.isDisabled()).toBeTruthy();
     });
   });
 

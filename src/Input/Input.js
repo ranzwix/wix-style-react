@@ -20,6 +20,7 @@ class Input extends Component {
     this._onKeyDown = this._onKeyDown.bind(this);
     this._onFocus = this._onFocus.bind(this);
     this._onBlur = this._onBlur.bind(this);
+    this._onChange = this._onChange.bind(this);
     this.focus = this.focus.bind(this);
     this.blur = this.blur.bind(this);
     this.select = this.select.bind(this);
@@ -47,7 +48,6 @@ class Input extends Component {
       menuArrow,
       defaultValue,
       tabIndex,
-      onChange,
       onClear,
       rtl,
       autoFocus,
@@ -58,7 +58,9 @@ class Input extends Component {
       iconLeft,
       prefix,
       suffix,
-      type
+      disabled,
+      type,
+      errorMessage
     } = this.props;
 
     let {theme} = this.props; // When deprecation ends. theme should move to const.
@@ -77,6 +79,7 @@ class Input extends Component {
       [styles[`theme-${theme}`]]: true,
       [styles[`size-${size}`]]: true,
       [styles.rtl]: !!rtl,
+      [styles.disabled]: disabled,
       [styles.hasError]: !!error,
       [styles.hasHover]: forceHover,
       [styles.hasFocus]: forceFocus || this.state.focus
@@ -86,14 +89,20 @@ class Input extends Component {
 
     return (
       <div className={classes} {...myAttr}>
-        <InputPrefix>{iconLeft}{prefix}</InputPrefix>
+        <InputPrefix
+          disabled={disabled}
+          >
+          {iconLeft}
+          {prefix}
+        </InputPrefix>
         <input
           ref={input => this.input = input}
           className={styles.input}
           id={id}
+          disabled={disabled}
           defaultValue={defaultValue}
           value={value}
-          onChange={onChange}
+          onChange={this._onChange}
           onFocus={this._onFocus}
           onBlur={this._onBlur}
           onKeyDown={this._onKeyDown}
@@ -106,6 +115,7 @@ class Input extends Component {
           type={type}
           />
         <InputSuffix
+          disabled={disabled}
           value={value}
           error={error}
           unit={unit}
@@ -114,6 +124,7 @@ class Input extends Component {
           rtl={rtl}
           onClear={onClear}
           onFocus={this._onFocus}
+          errorMessage={errorMessage}
           >
           {suffix}
         </InputSuffix>
@@ -160,13 +171,22 @@ class Input extends Component {
       this.props.onEscapePressed && this.props.onEscapePressed();
     }
   }
+
+  _onChange(e) {
+    if (this.props.type === 'number' && !(/^\d*$/.test(e.target.value))) {
+      return;
+    }
+
+    this.props.onChange && this.props.onChange(e);
+  }
 }
 
 Input.displayName = 'Input';
 
 Input.defaultProps = {
   theme: 'normal',
-  size: 'normal'
+  size: 'normal',
+  errorMessage: ''
 };
 
 Input.propTypes = {
@@ -194,13 +214,15 @@ Input.propTypes = {
   onEnterPressed: PropTypes.func,
   onKeyDown: PropTypes.func,
   onKeyUp: PropTypes.func,
+  disabled: PropTypes.bool,
   iconLeft: PropTypes.object,
   readOnly: PropTypes.bool,
   dataHook: PropTypes.string,
   size: PropTypes.oneOf(['small', 'normal', 'large']),
   prefix: PropTypes.node,
   suffix: PropTypes.node,
-  type: PropTypes.node
+  type: PropTypes.node,
+  errorMessage: PropTypes.string
 };
 
 function deprecated(when, oldProp, newProp) {

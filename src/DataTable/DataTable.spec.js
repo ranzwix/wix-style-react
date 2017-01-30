@@ -1,8 +1,14 @@
-import _ from 'lodash/fp';
-import {componentFactory, tableDriverFactory} from './testkit/DataTable';
+import dataTableDriverFactory from './DataTable.driver';
+import React from 'react';
+import DataTable from './DataTable';
+import ReactTestUtils from 'react-addons-test-utils';
+import {createDriverFactory} from '../test-common';
+import {dataTableTestkitFactory} from '../../testkit';
+import {dataTableTestkitFactory as enzymeDataTableTestkitFactory} from '../../testkit/enzyme';
+import {mount} from 'enzyme';
 
 describe('Table', () => {
-  const createDriver = _.compose(tableDriverFactory, componentFactory);
+  const createDriver = createDriverFactory(dataTableDriverFactory);
 
   const defaultProps = {
     id: 'id',
@@ -16,7 +22,7 @@ describe('Table', () => {
   };
 
   it('should pass id prop to child', () => {
-    const driver = createDriver(defaultProps);
+    const driver = createDriver(<DataTable {...defaultProps}/>);
     expect(driver.hasChildWithId(defaultProps.id)).toBeTruthy();
   });
 
@@ -26,7 +32,7 @@ describe('Table', () => {
       data: []
     };
 
-    const driver = createDriver(props);
+    const driver = createDriver(<DataTable {...props}/>);
     expect(driver.isDisplayingNothing()).toBeTruthy();
   });
 
@@ -37,28 +43,28 @@ describe('Table', () => {
       showHeaderWhenEmpty: true
     };
 
-    const driver = createDriver(props);
+    const driver = createDriver(<DataTable {...props}/>);
     expect(driver.isDisplayingHeaderOnly()).toBeTruthy();
   });
 
   it('should render column titles', () => {
-    const driver = createDriver(defaultProps);
+    const driver = createDriver(<DataTable {...defaultProps}/>);
     expect(driver.getTitles()).toEqual(defaultProps.columns.map(col => col.title));
   });
 
   it('should display correct amount of rows', () => {
-    const driver = createDriver(defaultProps);
+    const driver = createDriver(<DataTable {...defaultProps}/>);
     expect(driver.getRowsCount()).toBe(defaultProps.data.length);
   });
 
   it('should render rows', () => {
-    const driver = createDriver(defaultProps);
+    const driver = createDriver(<DataTable {...defaultProps}/>);
     expect(driver.getRowText(0)).toEqual(['0', 'value 1', 'value 2']);
     expect(driver.getRowText(1)).toEqual(['1', 'value 3', 'value 4']);
   });
 
   it('should assign class to rows', () => {
-    const driver = createDriver(defaultProps);
+    const driver = createDriver(<DataTable {...defaultProps}/>);
     expect(driver.getRowsWithClassCount(defaultProps.rowClass)).toBe(defaultProps.data.length);
   });
 
@@ -68,7 +74,7 @@ describe('Table', () => {
       onRowClick: jest.fn()
     };
 
-    const driver = createDriver(props);
+    const driver = createDriver(<DataTable {...props}/>);
 
     driver.clickRow(0);
 
@@ -86,7 +92,7 @@ describe('Table', () => {
       ...defaultProps
     };
 
-    const driver = createDriver(props);
+    const driver = createDriver(<DataTable {...props}/>);
 
     driver.clickRow(0); // should do nothing
     expect(driver.isRowClickable(0)).toBe(false);
@@ -98,10 +104,29 @@ describe('Table', () => {
       onRowClick: jest.fn()
     };
 
-    const driver = createDriver(props);
+    const driver = createDriver(<DataTable {...props}/>);
     driver.clickRow(0, {isDefaultPrevented: () => true});
 
     expect(driver.isRowClickable(0)).toBe(true);
     expect(props.onRowClick).not.toBeCalled();
+  });
+
+  describe('testkit', () => {
+    it('should exist', () => {
+      const div = document.createElement('div');
+      const dataHook = 'myDataHook';
+      const wrapper = div.appendChild(ReactTestUtils.renderIntoDocument(<div><DataTable dataHook={dataHook} {...defaultProps}/></div>));
+      const dataTableTestkit = dataTableTestkitFactory({wrapper, dataHook});
+      expect(dataTableTestkit.hasChildWithId(defaultProps.id)).toBeTruthy();
+    });
+  });
+
+  describe('enzyme testkit', () => {
+    it('should exist', () => {
+      const dataHook = 'myDataHook';
+      const wrapper = mount(<DataTable {...defaultProps} dataHook={dataHook}/>);
+      const dataTableTestkit = enzymeDataTableTestkitFactory({wrapper, dataHook});
+      expect(dataTableTestkit.hasChildWithId(defaultProps.id)).toBeTruthy();
+    });
   });
 });

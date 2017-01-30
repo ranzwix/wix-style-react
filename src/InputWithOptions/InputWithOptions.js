@@ -97,8 +97,12 @@ class InputWithOptions extends WixComponent {
       this.hideOptions();
     }
 
+    const suggestedOption = this.props.options.find(
+      element => element.value === inputValue
+    );
+
     if (this.props.onManuallyInput) {
-      this.props.onManuallyInput(inputValue);
+      this.props.onManuallyInput(inputValue, suggestedOption);
     }
   }
 

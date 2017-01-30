@@ -1,4 +1,5 @@
 export {default as ArrowDown} from './components/ArrowDown';
+export {default as ArrowDownThin} from './components/ArrowDownThin';
 export {default as ArrowLeft} from './components/ArrowLeft';
 export {default as ArrowLeftThin} from './components/ArrowLeftThin';
 export {default as ArrowRightThin} from './components/ArrowRightThin';
@@ -35,6 +36,7 @@ export {default as Replace} from './components/Replace';
 export {default as Search} from './components/Search';
 export {default as Search2} from './components/Search2';
 export {default as Search3} from './components/Search3';
+export {default as Search4} from './components/Search4';
 export {default as Stop} from './components/Stop';
 export {default as ToggleOff} from './components/ToggleOff';
 export {default as ToggleOn} from './components/ToggleOn';

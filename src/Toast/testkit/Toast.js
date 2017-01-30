@@ -1,12 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import Toast from '../Toast';
 import ReactTestUtils from 'react-addons-test-utils';
-import Toast from './Toast';
 import $ from 'jquery';
 
 const byDataHook = hook => `[data-hook|="${hook}"]`;
 
-const toastDriverFactory = ({component, wrapper}) => {
+const toastDriverFactory = ({component}) => {
   const $component = $(component);
 
   const styleStringToObj = input =>
@@ -21,17 +21,28 @@ const toastDriverFactory = ({component, wrapper}) => {
       }, {});
 
   return {
-    exists: () => !!component,
     hasId: id => $component.attr('id') === id,
     getToastText: () => $component.find(byDataHook('toast-text')).text(),
     clickOnClose: () => ReactTestUtils.Simulate.click($component.find(byDataHook('toast-close'))[0]),
     hasTheme: theme => $component.hasClass(theme),
-    isVisible: () => component.childNodes.length > 0,
-    getTopProperty: () => styleStringToObj($component.attr('style')).top,
-    setProps: props => {
-      ReactDOM.render(<div ref={r => component = r}><Toast {...props}/></div>, wrapper);
-    }
+    toastExists: () => $component.parent().find(byDataHook('toast')).length > 0,
+    getTopProperty: () => styleStringToObj($component.attr('style')).top
   };
 };
 
-export default toastDriverFactory;
+const componentFactory = (props = {}) => {
+  let component;
+  const {children, ...otherProps} = props;
+  const wrapperDiv = document.createElement('div');
+
+  ReactDOM.render(<div ref={r => component = r}><Toast {...otherProps}>{children}</Toast></div>, wrapperDiv);
+
+  return {component: component.childNodes[0], wrapper: wrapperDiv};
+};
+
+const toastTestkitFactory = ({wrapper, id}) => {
+  const component = $(wrapper).find(`#${id}`)[0];
+  return toastDriverFactory({component, wrapper});
+};
+
+export {toastTestkitFactory, componentFactory, toastDriverFactory};

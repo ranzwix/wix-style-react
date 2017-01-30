@@ -11,7 +11,7 @@ import {mount} from 'enzyme';
 describe('Tooltip', () => {
 
   const createDriver = createDriverFactory(tooltipDriverFactory);
-  const _props = {showDelay: 10, hideDelay: 10, content: <TooltipContent children={'I\'m the content'}/>};
+  const _props = {showDelay: 5, hideDelay: 5, content: <TooltipContent children={'I\'m the content'}/>};
   const children = <div>Here there is a children</div>;
 
   beforeEach(() => {
@@ -27,7 +27,7 @@ describe('Tooltip', () => {
     const driver = createDriver(<Tooltip {..._props}>{children}</Tooltip>);
     driver.mouseEnter();
     expect(driver.isShown()).toBeFalsy();
-    return resolveIn(25).then(() => {
+    return resolveIn(30).then(() => {
       expect(driver.isShown()).toBeTruthy();
     });
   });
@@ -76,7 +76,7 @@ describe('Tooltip', () => {
     const driver = createDriver(<Tooltip theme={'error'} {..._props}>{children}</Tooltip>);
     driver.mouseEnter();
     expect(driver.hasErrorTheme()).toBeFalsy();
-    return resolveIn(25).then(() => {
+    return resolveIn(30).then(() => {
       expect(driver.hasErrorTheme()).toBeTruthy();
     });
   });
@@ -85,7 +85,7 @@ describe('Tooltip', () => {
     const driver = createDriver(<Tooltip theme={'dark'} {..._props}>{children}</Tooltip>);
     driver.mouseEnter();
     expect(driver.hasDarkTheme()).toBeFalsy();
-    return resolveIn(25).then(() => {
+    return resolveIn(30).then(() => {
       expect(driver.hasDarkTheme()).toBeTruthy();
     });
   });
@@ -94,7 +94,7 @@ describe('Tooltip', () => {
     const driver = createDriver(<Tooltip theme={'light'} {..._props}>{children}</Tooltip>);
     driver.mouseEnter();
     expect(driver.hasLightTheme()).toBeFalsy();
-    return resolveIn(25).then(() => {
+    return resolveIn(30).then(() => {
       expect(driver.hasLightTheme()).toBeTruthy();
     });
   });
@@ -107,7 +107,7 @@ describe('Tooltip', () => {
   it('should have a content', () => {
     const driver = createDriver(<Tooltip {..._props}>{children}</Tooltip>);
     driver.mouseEnter();
-    return resolveIn(25).then(() => {
+    return resolveIn(30).then(() => {
       expect(driver.getContent()).toBe('I\'m the content');
     });
   });
@@ -117,7 +117,7 @@ describe('Tooltip', () => {
     driver.mouseEnter();
     driver.mouseLeave();
     driver.mouseEnter();
-    return resolveIn(25).then(() => {
+    return resolveIn(30).then(() => {
       expect(driver.isShown()).toBe(true);
     });
   });
@@ -130,7 +130,7 @@ describe('Tooltip', () => {
       const driver = tooltipTestkitFactory({wrapper, dataHook});
       driver.mouseEnter();
       expect(driver.isShown()).toBeFalsy();
-      return resolveIn(25).then(() => {
+      return resolveIn(30).then(() => {
         expect(driver.isShown()).toBeTruthy();
       });
     });
@@ -143,7 +143,7 @@ describe('Tooltip', () => {
       const driver = enzymeTooltipTestkitFactory({wrapper, dataHook});
       driver.mouseEnter();
       expect(driver.isShown()).toBeFalsy();
-      return resolveIn(25).then(() => {
+      return resolveIn(30).then(() => {
         expect(driver.isShown()).toBeTruthy();
       });
     });
@@ -152,7 +152,7 @@ describe('Tooltip', () => {
       const wrapper = mount(<Tooltip dataHook={dataHook} {..._props} hideDelay={1000}>{children}</Tooltip>);
       const driver = enzymeTooltipTestkitFactory({wrapper, dataHook});
       driver.mouseEnter();
-      return resolveIn(25).then(() => {
+      return resolveIn(30).then(() => {
         expect(driver.isShown()).toBeTruthy();
         wrapper.unmount();
         return resolveIn(1);

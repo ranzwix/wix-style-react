@@ -2,3 +2,9 @@
   fill: currentColor;
   vertical-align: middle;
 }
+
+:global(.rtl) {
+  .iconDefault {
+    transform: scaleX(-1);
+  }
+}

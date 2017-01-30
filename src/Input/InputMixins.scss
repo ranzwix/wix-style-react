@@ -25,6 +25,15 @@
     &.hasHover { background-color: $backgroundColor; }
 }
 
+@mixin ThemeDisable($borderColor, $backgroundColor, $color) {
+    &.disabled {
+        border-color: $borderColor;
+        background-color: $backgroundColor;
+        color: $color;
+        .input { color: $color; }
+    }
+}
+
 @mixin ThemeFocus($borderColor, $boxShadow: none) {
     &.hasFocus {
         border-color: $borderColor;

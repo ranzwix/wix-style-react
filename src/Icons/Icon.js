@@ -1,14 +1,14 @@
 import React, {PropTypes} from 'react';
 import s from './Icon.scss';
 
-const Icon = ({children, size, ...props}) => {
+const Icon = ({children, viewBox, size}) => {
 
   return (
     <svg
       className={s.iconDefault}
       width={size}
       height={size}
-      {...props}
+      viewBox={viewBox}
       >
       {children}
     </svg>
@@ -21,7 +21,8 @@ Icon.defaultProps = {
 
 Icon.propTypes = {
   size: PropTypes.string,
-  children: PropTypes.any
+  children: PropTypes.any,
+  viewBox: PropTypes.string.isRequired
 };
 
 export default Icon;

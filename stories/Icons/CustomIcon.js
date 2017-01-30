@@ -10,7 +10,7 @@ export default () => {
   return (
     <div className={s.iconList}>
       <div className={s.singleIconView}>
-        <span><Duplicate2 size="3em" style={style}/></span>
+        <span style={style}><Duplicate2 size="3em"/></span>
         <span className={s.iconName}>Duplicate2 (size x 3, red)</span>
       </div>
     </div>

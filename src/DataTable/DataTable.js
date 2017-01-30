@@ -2,8 +2,9 @@ import React, {PropTypes} from 'react';
 import s from './DataTable.scss';
 import classNames from 'classnames';
 import InfiniteScroll from 'react-infinite-scroller';
+import WixCopmonent from '../WixComponent';
 
-class DataTable extends React.Component {
+class DataTable extends WixCopmonent {
   constructor(props) {
     super(props);
 

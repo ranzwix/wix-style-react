@@ -32,4 +32,7 @@ export default () =>
     <div style={style} className="rtl">
       Right to left<AutoComplete options={rtlOptions}/>
     </div>
+    <div style={style} className="ltr">
+      Disabled<AutoComplete disabled options={rtlOptions}/>
+    </div>
   </div>;

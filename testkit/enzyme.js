@@ -42,5 +42,7 @@ export const checkboxTestkitFactory = enzymeTestkitFactoryCreator(checkboxDriver
 import buttonDriverFactory from '../src/Button/Button.driver';
 export const buttonTestkitFactory = enzymeTestkitFactoryCreator(buttonDriverFactory);
 
-import toastDriverFactory from '../src/Toast/Toast.driver';
-export const toastTestkitFactory = enzymeTestkitFactoryCreator(toastDriverFactory);
+import dataTableDriverFactory from '../src/DataTable/DataTable.driver';
+export const dataTableTestkitFactory = enzymeTestkitFactoryCreator(dataTableDriverFactory);
+
+export {toastTestkitFactory} from '../src/Toast/testkit/Toast.enzyme';
