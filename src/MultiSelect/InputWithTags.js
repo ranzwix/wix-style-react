@@ -3,6 +3,7 @@ import Tag from '../Tag/Tag';
 import Input from '../Input/Input';
 import styles from './InputWithTags.scss';
 import omit from 'lodash.omit';
+import classNames from 'classnames';
 
 class InputWithTags extends React.Component {
   constructor(props) {
@@ -17,10 +18,16 @@ class InputWithTags extends React.Component {
   }
 
   render() {
-    const {tags, onRemoveTag, placeholder, ...inputProps} = this.props;
+    const {tags, onRemoveTag, placeholder, error, ...inputProps} = this.props;
+
+    const className = classNames({
+      [styles.tagsContainer]: true,
+      [styles.error]: error,
+    });
+
     const desiredProps = omit(inputProps, ['onManuallyInput', 'inputElement', 'closeOnSelect', 'predicate', 'menuArrow', 'onClickOutside', 'fixedHeader', 'fixedFooter', 'dataHook']);
     return (
-      <div className={styles.tagsContainer} onClick={() => this.input.focus()}>
+      <div className={className} onClick={() => this.input.focus()}>
 
         {tags.map(({label, ...rest}) => <Tag key={rest.id} onRemove={onRemoveTag} {...rest}>{label}</Tag>)}
         <span className={styles.input}>
@@ -53,7 +60,8 @@ InputWithTags.propTypes = {
   onKeyDown: PropTypes.func,
   placeholder: PropTypes.string,
   onFocus: PropTypes.func,
-  autoFocus: PropTypes.bool
+  autoFocus: PropTypes.bool,
+  error: PropTypes.bool
 };
 
 InputWithTags.defaultProps = {
