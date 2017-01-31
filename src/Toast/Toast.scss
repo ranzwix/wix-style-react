@@ -11,25 +11,28 @@
 .toast.green { background-color: $G20; }
 .toast.yellow { background-color: $Y20; }
 
+$easeOutQuint: cubic-bezier(0.23, 1, 0.32, 1);
+$easeInOutSine: cubic-bezier(0.445, 0.05, 0.55, 0.95);
+
 .enter
 {
-    animation: toast-enter 0.4s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+    animation: toast-enter 0.4s $easeOutQuint forwards;
     .children{
-        animation: children-enter 0.4s cubic-bezier(0.23, 1, 0.32, 1)  0.2s forwards;
+        animation: children-enter 0.4s $easeOutQuint 0.1s forwards;
     }
     .close{
-        animation: close-enter 0.16s cubic-bezier(0.23, 1, 0.32, 1) 0.2s forwards;
+        animation: close-enter 0.16s $easeOutQuint 0.2s forwards;
     }    
 }
 
 .leave
 {
-    animation: toast-leave 0.3s cubic-bezier(0.895, 0.03, 0.685, 0.22) 0.2s forwards;
+    animation: toast-leave 0.25s $easeInOutSine 0.1s forwards;
     .children{
-        animation: children-leave 0.4s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+        animation: children-leave 0.25s $easeInOutSine forwards;
     }    
     .close{
-        animation: close-leave 0.12s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+        animation: close-leave 0.12s $easeInOutSine forwards;
     }       
 }
 
@@ -99,6 +102,7 @@
     background: none;
     border: none;
     outline: none;
+    opacity: 0;
 }
 
 .toast .close {
@@ -162,7 +166,6 @@
 
 @keyframes children-enter {
     0% {
-        transform: translateY(calc(-100% - 12px));
         opacity: 0.5;
     }
     100% {
@@ -177,7 +180,6 @@
         opacity: 1;
     }
     100% {
-        transform: translateY(calc(-100% - 12px));
         opacity: 0.5;
     }
 }
