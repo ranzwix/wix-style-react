@@ -6,8 +6,8 @@ import Markdown from '../utils/Components/Markdown';
 import ReadMe from '../../src/RichTextArea/README.md';
 import RichTextAreaExample from './RichTextAreaExample';
 
-storiesOf('3. Inputs', module)
-  .add('3.2b RichTextAreaExample', () => (
+storiesOf('Core', module)
+  .add('RichTextArea', () => (
     <div>
       <Markdown source={ReadMe}/>
       <InteractiveCodeExample title="Customize a <RichTextArea/>">

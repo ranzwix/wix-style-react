@@ -7,7 +7,7 @@ import Readme from '../../src/TextArea/README.md';
 import ExampleStandard from './ExampleStandard';
 
 storiesOf('3. Inputs', module)
-  .add('3.2a Text Area', () => {
+  .add('3.2 Text Area', () => {
     return (
       <div>
         <Markdown source={Readme}/>

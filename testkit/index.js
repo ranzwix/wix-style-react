@@ -78,5 +78,8 @@ export const rangeTestkitFactory = testkitFactoryCreator(rangeDriverFactory);
 import fieldWithSelectionCompositeDriverFactory from '../src/Composite/FieldWithSelectionComposite/FieldWithSelectionComposite.driver';
 export const fieldWithSelectionCompositeTestkitFactory = testkitFactoryCreator(fieldWithSelectionCompositeDriverFactory);
 
+import richTextAreaCompositeDriverFactory from '../src/RichTextAreaComposite/RichTextAreaComposite.driver';
+export const richTextAreaCompositeTestkitFactory = testkitFactoryCreator(richTextAreaCompositeDriverFactory);
+
 
 export {toastTestkitFactory} from '../src/Toast/testkit/Toast';
