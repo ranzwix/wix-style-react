@@ -6,8 +6,8 @@ import InputAreaWithLabelComposite from '../Composite/InputAreaWithLabelComposit
 
 const RichTextAreaComposite = ({...props, children}) => (
   <InputAreaWithLabelComposite {...props}>
-  {children}
-	</InputAreaWithLabelComposite>
+    {children}
+  </InputAreaWithLabelComposite>
 );
 
 

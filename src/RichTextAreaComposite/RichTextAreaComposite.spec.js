@@ -8,25 +8,30 @@ import {richTextAreaCompositeTestkitFactory as enzymeRichTextAreaCompositeTestki
 import {mount} from 'enzyme';
 
 describe('RichTextAreaComposite', () => {
-	describe('testkit', () => {
-		it('should exist', () => {
-			const div = document.createElement('div');
-			const dataHook = 'compHook';
-			const wrapper = div.appendChild(ReactTestUtils.renderIntoDocument(<div><RichTextAreaComposite
-				dataHook={dataHook}><Label>Label text</Label><RichTextArea></RichTextArea></RichTextAreaComposite>
-			</div>));
-			const richTextAreaCompositeTestkit = richTextAreaCompositeTestkitFactory({wrapper, dataHook});
-			expect(richTextAreaCompositeTestkit.exists()).toBeTruthy();
-		});
+  describe('testkit', () => {
+    it('should exist', () => {
+      const div = document.createElement('div');
+      const dataHook = 'compHook';
+      const wrapper = div.appendChild(ReactTestUtils.renderIntoDocument(
+        <div>
+          <RichTextAreaComposite dataHook={dataHook}>
+            <Label>Label text</Label>
+            <RichTextArea/>
+          </RichTextAreaComposite>
+        </div>
+      ));
+      const richTextAreaCompositeTestkit = richTextAreaCompositeTestkitFactory({wrapper, dataHook});
+      expect(richTextAreaCompositeTestkit.exists()).toBeTruthy();
+    });
 
-		describe('enzyme testkit', () => {
-			it('should exist', () => {
-				const dataHook = 'compHook';
-				const wrapper = mount(<RichTextAreaComposite dataHook={dataHook}><Label>Label
-					text</Label><RichTextArea></RichTextArea></RichTextAreaComposite>);
-				const richTextAreaCompositeTestkit = enzymeRichTextAreaCompositeTestkitFactory({wrapper, dataHook});
-				expect(richTextAreaCompositeTestkit.exists()).toBeTruthy();
-			});
-		});
-	});
+    describe('enzyme testkit', () => {
+      it('should exist', () => {
+        const dataHook = 'compHook';
+        const wrapper = mount(<RichTextAreaComposite dataHook={dataHook}><Label>Label
+          text</Label><RichTextArea/></RichTextAreaComposite>);
+        const richTextAreaCompositeTestkit = enzymeRichTextAreaCompositeTestkitFactory({wrapper, dataHook});
+        expect(richTextAreaCompositeTestkit.exists()).toBeTruthy();
+      });
+    });
+  });
 });
