@@ -9,4 +9,6 @@
 | onChange | func | - | - | Change callback |
 | placeholder | string | - | - | Placeholder text |
 | error  | bool | false | - | Is input value erroneous |
+| resizable | bool | false | - | Is the rich text area vertically resizable |
+| disabled | bool | false | - | Is the rich text area disabled |
 | errorMessage | string | - | - | The error message to display when hovering the error icon, if not given or empty there will be no tooltip |
