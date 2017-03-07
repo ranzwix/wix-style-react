@@ -41,31 +41,21 @@ class RichTextAreaExample extends Component {
             </TextField>
           </div>
           <div className={styles.option}>
-            <Label>Error</Label>
-            <div className={styles.radioGroup}>
-              <RadioGroup
-                display="horizontal"
-                value={this.state.error}
-                onChange={error => this.setState({error})}
-              >
-                <RadioGroup.Radio value={false}>False</RadioGroup.Radio>
-                <RadioGroup.Radio value={true}>True</RadioGroup.Radio>
-              </RadioGroup>
-            </div>
+            <Label>Error: </Label>
+            <ToggleSwitch
+              size="small"
+              checked={this.state.error}
+              onChange={() => this.setState({error: !this.state.error})}
+            />
           </div>
           {this.renderErrorMessageInput()}
           <div className={styles.option}>
-            <Label>Disabled</Label>
-            <div className={styles.radioGroup}>
-              <RadioGroup
-                display="horizontal"
-                value={this.state.disabled}
-                onChange={disabled => this.setState({disabled})}
-                >
-                <RadioGroup.Radio value={false}>False</RadioGroup.Radio>
-                <RadioGroup.Radio value={true}>True</RadioGroup.Radio>
-              </RadioGroup>
-            </div>
+            <Label>Disabled: </Label>
+            <ToggleSwitch
+              size="small"
+              checked={this.state.disabled}
+              onChange={() => this.setState({disabled: !this.state.disabled})}
+            />
           </div>
           <div className={styles.option}>
             <Label>Resizable: </Label>
