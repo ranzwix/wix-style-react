@@ -89,6 +89,18 @@ describe('RichTextArea', () => {
     expect(driver.isDisabled()).toBeTruthy();
   });
 
+  describe('resizable attribute', () => {
+    it('should pass down to the wrapped input', () => {
+      const driver = createComponent({resizable: true});
+      expect(driver.isResizable()).toBeTruthy();
+    });
+
+    it('should pass down to the wrapped input with default false value', () => {
+      const driver = createComponent();
+      expect(driver.isResizable()).toBeFalsy();
+    });
+  });
+
   const createDriver = createDriverFactory(richTextAreaDriverFactory);
   function createComponent(props) {
     const mergedProps = Object.assign({

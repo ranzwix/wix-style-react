@@ -177,7 +177,7 @@ class RichTextArea extends WixComponent {
 
   render = () => {
     const {editorState} = this.state;
-    const {error, placeholder, disabled} = this.props;
+    const {error, placeholder, disabled, resizable} = this.props;
     const className = classNames(styles.container, {
       [styles.withError]: error,
       [styles.isFocused]: editorState.isFocused,
@@ -196,7 +196,7 @@ class RichTextArea extends WixComponent {
             isSelectionExpanded={editorState.isExpanded}
             />
         </div>
-        <div className={classNames(styles.editorWrapper, {[styles.disabled]: disabled})}>
+        <div className={classNames(styles.editorWrapper, {[styles.resizable]: resizable, [styles.disabled]: disabled})} data-hook="editor-wrapper">
           <Editor
             readOnly={disabled}
             placeholder={placeholder}
@@ -237,6 +237,7 @@ RichTextArea.propTypes = {
   errorMessage: PropTypes.string,
   placeholder: PropTypes.string,
   disabled: PropTypes.bool,
+  resizable: PropTypes.bool
 };
 
 RichTextArea.defaultProps = {

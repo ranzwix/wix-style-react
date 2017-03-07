@@ -133,3 +133,8 @@ $marginLeft: $paddingLeft;
     @extend .t1_4;
   }
 }
+
+.resizable {
+  resize: vertical;
+  overflow:auto;
+}

@@ -5,6 +5,7 @@ import TextField from '../../src/TextField';
 import TextArea from '../../src/TextArea';
 import Input from '../../src/Input';
 import InputArea from '../../src/InputArea';
+import ToggleSwitch from '../../src/ToggleSwitch';
 import RichTextAreaTemplate from './RichTextAreaTemplate';
 import styles from './RichTextAreaExample.scss';
 
@@ -12,6 +13,7 @@ class RichTextAreaExample extends Component {
   state = {
     error: false,
     errorMessage: '',
+    resizable: false,
     placeholder: 'Rich placeholder',
     value: '<p>$$$ Rich text area</p><strong>bold text here</strong><ul><li>The amazing fox lives in <a href="wix.com">Lithuania</a></li></ul>'
   };
@@ -64,6 +66,14 @@ class RichTextAreaExample extends Component {
                 <RadioGroup.Radio value={true}>True</RadioGroup.Radio>
               </RadioGroup>
             </div>
+          </div>
+          <div className={styles.option}>
+            <Label>Resizable: </Label>
+            <ToggleSwitch
+              size="small"
+              checked={this.state.resizable}
+              onChange={() => this.setState({resizable: !this.state.resizable})}
+            />
           </div>
         </div>
         <div className={styles.output}>
