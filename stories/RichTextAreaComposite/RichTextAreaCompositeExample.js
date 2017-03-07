@@ -31,36 +31,47 @@ class RichTextAreaCompositeExample extends Component {
     this.setState(prevState => {
       prevState[componentName] = {...this.state[componentName], ...obj};
       Object.keys(prevState[componentName])
-        .forEach(k => !prevState[componentName][k] && delete prevState[componentName][k]);
+          .forEach(k => !prevState[componentName][k] && delete prevState[componentName][k]);
       return prevState;
     });
   }
 
   render() {
-	return (
-	  <from className={styles.form}>
-	    <div className={styles.input}>
-	      <div className={styles.option}>
-            <Label>Show label</Label>
-            <div className={styles.flex}>
-              <Input
-                size="small"
-                value={this.state.label.children}
-                onChange={e => this.setComponentState('label', {children: e.target.value})}/>&nbsp;
+    return (
+        <from className={styles.form}>
+          <div className={styles.input}>
+            <div className={styles.option}>
+              <Label>Show label</Label>
+              <div className={styles.flex}>
+                <Input
+                    size="small"
+                    value={this.state.label.children}
+                    onChange={e => this.setComponentState('label', {children: e.target.value})}/>&nbsp;
                 <ToggleSwitch
-                  size="small"
-                  checked={this.state.withLabel}
-                  onChange={() => this.setState({withLabel: !this.state.withLabel})}/>
+                    size="small"
+                    checked={this.state.withLabel}
+                    onChange={() => this.setState({withLabel: !this.state.withLabel})}/>
+              </div>
             </div>
-		      </div>	       
-        </div>
-			
-        <div className={styles.output} >
-			    <RichTextAreaCompositeTemplate {...this.state} onChange={this.props.onChange} />
-        </div>
-      </from>
-	);
-	}
+            <div className={styles.option}>
+              <Label for="placeholderInput">Placeholder</Label>
+              <div className={styles.flex}>
+                <Input
+                    id="placeholderInput"
+                    size="normal"
+                    theme="normal"
+                    value={this.state.richTextArea.placeholder}
+                    onChange={event => this.setComponentState('richTextArea', {placeholder: event.target.value})}/>
+              </div>
+            </div>
+          </div>
+
+          <div className={styles.output}>
+            <RichTextAreaCompositeTemplate {...this.state} onChange={this.props.onChange}/>
+          </div>
+        </from>
+    );
+  }
 }
 
 export default RichTextAreaCompositeExample;
