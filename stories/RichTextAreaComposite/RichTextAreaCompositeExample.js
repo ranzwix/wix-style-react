@@ -23,6 +23,10 @@ class RichTextAreaCompositeExample extends Component {
     },
     richTextArea: {
       placeholder: 'Please type your text here...',
+      resizable: false,
+      error: false,
+      errorMessage: '',
+      disabled: false,
       resizable: false
     }
   };
@@ -64,12 +68,59 @@ class RichTextAreaCompositeExample extends Component {
                     onChange={event => this.setComponentState('richTextArea', {placeholder: event.target.value})}/>
               </div>
             </div>
+            <div className={styles.option}>
+              <Label>Error: </Label>
+              <ToggleSwitch
+                  size="small"
+                  checked={this.state.richTextArea.error}
+                  onChange={() => this.setComponentState('richTextArea', {error: !this.state.richTextArea.error})}
+              />
+            </div>
+            {this.renderErrorMessageInput()}
+            <div className={styles.option}>
+              <Label>Disabled: </Label>
+              <ToggleSwitch
+                  size="small"
+                  checked={this.state.richTextArea.disabled}
+                  onChange={() => this.setComponentState('richTextArea', {disabled: !this.state.richTextArea.disabled})}
+              />
+            </div>
+            <div className={styles.option}>
+              <Label>Resizable: </Label>
+              <ToggleSwitch
+                  size="small"
+                  checked={this.state.richTextArea.resizable}
+                  onChange={() => this.setComponentState('richTextArea', {resizable: !this.state.richTextArea.resizable})}
+              />
+            </div>
           </div>
-
           <div className={styles.output}>
             <RichTextAreaCompositeTemplate {...this.state} onChange={this.props.onChange}/>
           </div>
         </from>
+    );
+  }
+
+  renderErrorMessageInput() {
+    const {error, errorMessage} = this.state.richTextArea;
+
+    if (!error) {
+      return null;
+    }
+
+    return (
+        <div className={styles.output}>
+          <TextField>
+            <Label for="errorMessageInput">Error message</Label>
+            <Input
+                id="errorMessageInput"
+                size="normal"
+                theme="normal"
+                value={errorMessage}
+                onChange={event => this.setComponentState('richTextArea', {errorMessage: event.target.value})}
+            />
+          </TextField>
+        </div>
     );
   }
 }
