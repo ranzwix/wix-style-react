@@ -15,7 +15,7 @@ class RichTextAreaExample extends Component {
     errorMessage: '',
     resizable: false,
     placeholder: 'Rich placeholder',
-    value: '<p>$$$ Rich text area</p><strong>bold text here</strong><ul><li>The amazing fox lives in <a href="wix.com">Lithuania</a></li></ul>'
+     value: '<p>$$$ Rich text area</p><strong>bold text here</strong><ul><li>The amazing fox lives in <a href="wix.com">Lithuania</a></li></ul>'
   };
 
   handleRichTextAreaChange = value => {

@@ -1,14 +1,22 @@
 import React, {PropTypes} from 'react';
 import classNames from 'classnames';
-import {Editor} from 'slate';
+import {Editor, Block} from 'slate';
 import WixComponent from '../WixComponent';
 import Tooltip from '../Tooltip';
 import SvgExclamation from '../svg/Exclamation.js';
 import RichTextEditorToolbar from './RichTextAreaToolbar';
 import htmlSerializer from './htmlSerializer';
 import styles from './RichTextArea.scss';
+import isImage from 'is-image';
+import isUrl from 'is-url';
 
 const DEFAULT_NODE = 'paragraph';
+
+const defaultBlock = {
+  type: 'paragraph',
+  isVoid: false,
+  data: {}
+};
 
 class RichTextArea extends WixComponent {
   /* eslint-disable react/prop-types */
@@ -21,8 +29,40 @@ class RichTextArea extends WixComponent {
         const {data} = props.node;
         const href = data.get('href');
         return <a className={styles.link} {...props.attributes} href={href}>{props.children}</a>;
+      },
+      image: props => {
+        const {node, state} = props;
+        const isFocused = state.selection.hasEdgeIn(node);
+        const src = node.data.get('src');
+        //className={classNames(styles.editorImage, {[styles.resizable]: isFocused})}
+        return <img data-hook="editor-image" src={src} className={classNames(styles.editorImage, {[styles.activeEditorImage]: isFocused})} {...props.attributes}/>;
       }
     },
+
+    rules: [
+      // Rule to insert a paragraph block if the document is empty
+      {
+        match: node => node.kind === 'document',
+        validate: document => document.nodes.size ? null : true,
+        normalize: (transform, document) => {
+          const block = Block.create(defaultBlock);
+          transform.insertNodeByKey(document.key, 0, block);
+        }
+      },
+      // Rule to insert a paragraph below a void node (the image)
+      // if that node is the last one in the document
+      {
+        match: node => node.kind === 'document',
+        validate: document => {
+          const lastNode = document.nodes.last();
+          return lastNode && lastNode.isVoid ? true : null;
+        },
+        normalize: (transform, document) => {
+          const block = Block.create(defaultBlock);
+          transform.insertNodeByKey(document.key, document.nodes.size, block);
+        }
+      }
+    ],
     marks: {
       bold: {
         fontWeight: 'bold'
@@ -94,6 +134,29 @@ class RichTextArea extends WixComponent {
 
     this.setEditorState(editorState);
   };
+
+  onPaste = (e, data, state, editor) => {
+    switch (data.type) {
+      case 'text': return this.onPasteText(e, data, state)
+    }
+  }
+
+  onPasteText = (e, data, state) => {
+    if (!isUrl(data.text)) return
+    if (!isImage(data.text)) return
+    return this.insertImage(state, data.text)
+  }
+
+   insertImage = (state, src) => {
+    return state
+      .transform()
+      .insertBlock({
+        type: 'image',
+        isVoid: true,
+        data: { src }
+      })
+      .apply();
+  }
 
   handleBlockButtonClick = type => {
     let {editorState} = this.state;
@@ -204,6 +267,7 @@ class RichTextArea extends WixComponent {
             className={classNames(styles.editor, {[styles.disabled]: disabled})}
             schema={this.schema}
             state={editorState}
+            onPaste={this.onPaste}
             onChange={this.setEditorState}/>
           {this.renderError()}
         </div>

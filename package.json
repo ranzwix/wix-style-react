@@ -82,6 +82,8 @@
     "classnames": "^2.2.5",
     "github-markdown-css": "^2.4.1",
     "highlight.js": "^9.8.0",
+    "is-image": "^1.0.1",
+    "is-url": "^1.2.2",
     "jquery": "^1.12.4",
     "lodash.defer": "^4.1.0",
     "lodash.difference": "^4.5.0",
