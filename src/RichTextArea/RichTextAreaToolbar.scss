@@ -7,7 +7,7 @@
 
 .button {
   flex: 0 0 auto;
-  border-right: 1px solid $B30;
+  border-right: none;
 
   &.disabled {
     border-right: 1px solid $D60;
