@@ -26,8 +26,7 @@ class RichTextAreaCompositeExample extends Component {
       resizable: false,
       error: false,
       errorMessage: '',
-      disabled: false,
-      resizable: false
+      disabled: false
     }
   };
 
