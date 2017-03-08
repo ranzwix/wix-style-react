@@ -1,7 +1,7 @@
 import React, {Component, PropTypes} from 'react';
 import classNames from 'classnames';
 import Tooltip from '../Tooltip';
-import {Bold, Italic, Underline, UnorderedList, OrderedList, Link} from '../Icons/dist';
+import {Bold, Italic, Underline, UnorderedList, OrderedList, Link, Image} from '../Icons/dist';
 import styles from './RichTextAreaButton.scss';
 
 const buttons = {
@@ -41,6 +41,12 @@ const buttons = {
     iconWidth: 15,
     iconHeight: 16,
   },
+  image : {
+    icon: Image,
+    tooltipText: 'Image',
+    iconWidth: 15,
+    iconHeight: 16
+  }
 };
 
 class RichTextAreaButton extends Component {

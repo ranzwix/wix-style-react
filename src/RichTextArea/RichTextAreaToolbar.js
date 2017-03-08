@@ -15,6 +15,7 @@ class RichTextAreaToolbar extends WixComponent {
         {this.renderLinkButton()}
         {this.renderButton('block', 'unordered-list')}
         {this.renderButton('block', 'ordered-list')}
+        {this.renderButton('block', 'image')}
       </div>
     );
   }
