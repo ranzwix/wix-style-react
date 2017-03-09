@@ -26,6 +26,11 @@ class RichTextAreaCompositeExample extends Component {
       resizable: false,
       error: false,
       errorMessage: '',
+      onImageRequest: callback => {
+        const src = window.prompt('Enter the URL of the image:');
+        if (!src) return;
+        callback(src);
+      },
       disabled: false
     }
   };

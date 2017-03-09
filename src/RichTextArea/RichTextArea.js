@@ -34,7 +34,7 @@ class RichTextArea extends WixComponent {
         const {node, state} = props;
         const isFocused = state.selection.hasEdgeIn(node);
         const src = node.data.get('src');
-        return <img data-hook="editor-image" src={src} className={classNames(styles.editorImage, {[styles.activeEditorImage]: isFocused})} />;
+        return (<img data-hook="editor-image" src={src} className={classNames(styles.editorImage, {[styles.activeEditorImage]: isFocused})}/>);
       }
     },
 
@@ -260,7 +260,7 @@ class RichTextArea extends WixComponent {
       [styles.withError]: error,
       [styles.isFocused]: editorState.isFocused,
     });
-
+    
     return (
       <div className={className}>
         <div className={classNames(styles.toolbar, {[styles.disabled]: disabled})}>
