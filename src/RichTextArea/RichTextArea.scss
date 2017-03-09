@@ -117,6 +117,10 @@ $marginLeft: $paddingLeft;
     position: absolute;
     top: 6px;
     right: 6px;
+
+    &:hover {
+      background-color: $R10;
+    }
   }
 }
 
