@@ -101,6 +101,17 @@ describe('RichTextArea', () => {
     });
   });
 
+  // describe('insert image', () => {
+  //   it('should insert image to the editor', () => {
+  //     const onImageRequest = callback => {
+  //       callback('https://some-dom.com/ddec1e4d26f94cae963c8c54e9838749/600x600.jpg');
+  //     };
+  //     const driver = createComponent({onImageRequest});
+  //     driver.clickImageButton();
+  //     expect(driver.isImageExist()).toBeTruthy();
+  //   });
+  // });
+
   const createDriver = createDriverFactory(richTextAreaDriverFactory);
   function createComponent(props) {
     const mergedProps = Object.assign({

@@ -34,8 +34,7 @@ class RichTextArea extends WixComponent {
         const {node, state} = props;
         const isFocused = state.selection.hasEdgeIn(node);
         const src = node.data.get('src');
-        //className={classNames(styles.editorImage, {[styles.resizable]: isFocused})}
-        return <img data-hook="editor-image" src={src} className={classNames(styles.editorImage, {[styles.activeEditorImage]: isFocused})} {...props.attributes}/>;
+        return <img data-hook="editor-image" src={src} className={classNames(styles.editorImage, {[styles.activeEditorImage]: isFocused})} />;
       }
     },
 
@@ -123,6 +122,8 @@ class RichTextArea extends WixComponent {
         return this.handleBlockButtonClick(type);
       case 'link':
         return this.handleLinkButtonClick(type);
+      case 'image':
+        return this.handleImageButtonClick(type);
     }
   };
 
@@ -135,19 +136,33 @@ class RichTextArea extends WixComponent {
     this.setEditorState(editorState);
   };
 
-  onPaste = (e, data, state, editor) => {
-    switch (data.type) {
-      case 'text': return this.onPasteText(e, data, state)
+  handleImageButtonClick = type => {
+    this.props.onImageRequest(this.handleImageInput.bind(this));
+  }
+
+  handleImageInput = text => {
+    if (this.isValidImage(text)) {
+      const editorState = this.insertImage(this.state.editorState, text);
+      this.setEditorState(editorState);
     }
   }
 
-  onPasteText = (e, data, state) => {
-    if (!isUrl(data.text)) return
-    if (!isImage(data.text)) return
-    return this.insertImage(state, data.text)
+  onPaste = (e, data, state, editor) => {
+    switch (data.type) {
+      case 'text': return this.onPasteText(data.text, state)
+    }
   }
 
-   insertImage = (state, src) => {
+  onPasteText = (text, state) => {
+    if (this.isValidImage(text)) {
+      return this.insertImage(state, text);
+    }
+    return;
+  }
+
+  isValidImage = (text) => isUrl(text) && isImage(text);
+
+  insertImage = (state, src) => {
     return state
       .transform()
       .insertBlock({
@@ -240,7 +255,7 @@ class RichTextArea extends WixComponent {
 
   render = () => {
     const {editorState} = this.state;
-    const {error, placeholder, disabled, resizable} = this.props;
+    const {error, placeholder, disabled, resizable, onImageRequest} = this.props;
     const className = classNames(styles.container, {
       [styles.withError]: error,
       [styles.isFocused]: editorState.isFocused,
@@ -253,6 +268,7 @@ class RichTextArea extends WixComponent {
             disabled={disabled}
             onClick={this.handleButtonClick}
             onLinkButtonClick={this.handleLinkButtonClick}
+            onImageButtonClick={onImageRequest ? this.handleImageButtonClick : null }
             hasMark={this.hasMark}
             hasListBlock={this.hasListBlock}
             hasLink={this.hasLink}
@@ -296,6 +312,7 @@ class RichTextArea extends WixComponent {
 RichTextArea.propTypes = {
   value: PropTypes.string,
   onChange: PropTypes.func,
+  onImageRequest: PropTypes.func,
   buttons: PropTypes.arrayOf(PropTypes.string), // TODO: use PropTypes.oneOf(),
   error: PropTypes.bool,
   errorMessage: PropTypes.string,

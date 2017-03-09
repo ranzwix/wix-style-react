@@ -41,7 +41,7 @@ const buttons = {
     iconWidth: 15,
     iconHeight: 16,
   },
-  image : {
+  image: {
     icon: Image,
     tooltipText: 'Image',
     iconWidth: 15,

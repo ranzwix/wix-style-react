@@ -6,6 +6,7 @@ import styles from './RichTextArea.scss';
 const richTextAreaDriverFactory = ({element, wrapper, component, componentInstance}) => {
   const getButtons = () => [...element.querySelectorAll('[data-hook*="rich-text-area-button"]')];
   const getEditorWrapper = () => element.querySelector('[data-hook=editor-wrapper]');
+  const getImage = () => element.querySelector('[data-hook=editor-image]');
   const getButtonType = button => button.getAttribute('data-hook').replace(/^rich-text-area-button-/, '');
   const getButtonByType = type => getButtons().find(button => getButtonType(button) === type);
   const clickButtonByType = type => () => ReactTestUtils.Simulate.mouseDown(getButtonByType(type));
@@ -16,6 +17,7 @@ const richTextAreaDriverFactory = ({element, wrapper, component, componentInstan
     clickBoldButton: clickButtonByType('bold'),
     clickItalicButton: clickButtonByType('italic'),
     clickUnderlineButton: clickButtonByType('underline'),
+    clickImageButton: clickButtonByType('image'),
     clickUnorderedListButton: clickButtonByType('unordered-list'),
     clickOrderedListButton: clickButtonByType('ordered-list'),
     getContent: () => element.childNodes[1].textContent,
@@ -33,6 +35,7 @@ const richTextAreaDriverFactory = ({element, wrapper, component, componentInstan
       getButtons().every(button => button.classList.contains(styles.disabled)) &&
       element.childNodes[1].classList.contains(styles.disabled)
     ),
+    isImageExist: () => getImage().length > 0,
     isResizable: () => (getEditorWrapper().classList.contains(styles.resizable)),
     setProps: props => {
       const ClonedWithProps = React.cloneElement(component, Object.assign({}, component.props, props), ...(component.props.children || []));
