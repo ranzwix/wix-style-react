@@ -98,6 +98,8 @@ $marginLeft: $paddingLeft;
   @extend .t1;
   flex: 1;
   padding: $paddingTop $paddingLeft;
+  border-bottom-left-radius: $borderRadius;
+  border-bottom-right-radius: $borderRadius;
 }
 
 .exclamation {
@@ -115,6 +117,10 @@ $marginLeft: $paddingLeft;
     position: absolute;
     top: 6px;
     right: 6px;
+
+    &:hover {
+      background-color: $R10;
+    }
   }
 }
 
