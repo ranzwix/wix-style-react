@@ -2,6 +2,7 @@ import 'react';
 import {componentFactory} from './GoogleAddressInput.driver';
 import _ from 'lodash/fp';
 import sinon from 'sinon';
+import waitFor from 'wait-for-cond';
 
 const GEOCODE_RESULT = JSON.parse('{"formatted_address":"_formatted_address_","address_components":[{"types":["street_number"],"long_name":123}]}');
 GEOCODE_RESULT.geometry = {
@@ -56,11 +57,12 @@ describe('GoogleAddressInput', () => {
       expect(component.find('InputWithOptions').props().readOnly).toEqual(true);
     });
     it('should show a footer', () => {
-      const component = createShallow({Client: GmapsTestClient, readOnly: true, footer: 'foo bar'});
+      const component = createShallow({Client: GmapsTestClient, readOnly: true, footer: 'foo bar', footerOptions: {overrideStyle: true, disabled: true}});
       expect(component.find('InputWithOptions').props().options).toEqual([{
         id: 0,
         value: 'foo bar',
-        overrideStyle: true
+        overrideStyle: true,
+        disabled: true
       }]);
     });
   });
@@ -190,6 +192,23 @@ describe('GoogleAddressInput', () => {
           done.fail(e);
         }
       });
+    });
+
+    it('clear suggestions on blur', () => {
+      const component = createShallow({Client: GmapsTestClient, countryCode: 'XX'});
+      component.setState({suggestions: [JSON.parse('{"description": "my address", "place_id": 123}')]});
+      component.find('InputWithOptions').props().onBlur();
+      return waitFor(() => component.find('InputWithOptions').props().options.length === 0);
+    });
+
+    it('don\'t clear suggestions if clearSuggestionsOnBlur === false', done => {
+      const component = createShallow({Client: GmapsTestClient, countryCode: 'XX', clearSuggestionsOnBlur: false});
+      component.setState({suggestions: [JSON.parse('{"description": "my address", "place_id": 123}')]});
+      component.find('InputWithOptions').props().onBlur();
+      setTimeout(() => {
+        expect(component.find('InputWithOptions').props().options.length).toEqual(1);
+        done();
+      }, 300);
     });
   });
 });

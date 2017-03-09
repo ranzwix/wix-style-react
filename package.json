@@ -68,6 +68,7 @@
     "react-test-utils": "0.0.1",
     "sinon": "^1.17.6",
     "svg2react-icon": "^1.0.0",
+    "wait-for-cond": "^1.0.3",
     "yoshi": "latest"
   },
   "peerDependencies": {

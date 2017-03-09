@@ -154,7 +154,7 @@ export default () =>
 
       <Row>
         <Col span={4}>
-          <Card title="Card header">
+          <Card link={{link: 'http://www.wix.com/', title: 'Link to Wix'}}>
             <Row>
               <Col span={12}>
                 {renderStandardInput()}
@@ -163,7 +163,7 @@ export default () =>
           </Card>
         </Col>
         <Col span={4}>
-          <Card title="Card header">
+          <Card title="Card header" link={{link: 'http://www.wix.com/', title: 'Link to Wix'}}>
             <Row>
               <Col span={6}>
                 {renderStandardInput()}
@@ -172,7 +172,7 @@ export default () =>
           </Card>
         </Col>
         <Col span={4}>
-          <Card title="Card header">
+          <Card title="Card header" subtitle="Card subtitle" link={{link: 'http://www.wix.com/', title: 'Link to Wix'}}>
             <Row>
               <Col span={6}>
                 {renderStandardInput()}

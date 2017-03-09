@@ -53,7 +53,7 @@ class GoogleAddressInput extends React.Component {
       options = options.concat({
         id: options.length,
         value: this.props.footer,
-        overrideStyle: true
+        ...this.props.footerOptions
       });
     }
 
@@ -103,9 +103,11 @@ class GoogleAddressInput extends React.Component {
   onBlur() {
     this.props.onBlur && this.props.onBlur();
 
-    this.timer = setTimeout(() => {
-      this.setState({suggestions: []});
-    }, 250);
+    if (this.props.clearSuggestionsOnBlur) {
+      this.timer = setTimeout(() => {
+        this.setState({suggestions: []});
+      }, 250);
+    }
   }
 
   onFocus() {
@@ -264,7 +266,9 @@ function google2address(google) {
 GoogleAddressInput.defaultProps = {
   magnifyingGlass: true,
   theme: Input.defaultProps.theme,
-  autoSelect: true
+  autoSelect: true,
+  footerOptions: {},
+  clearSuggestionsOnBlur: true
 };
 
 GoogleAddressInput.propTypes = {
@@ -285,7 +289,9 @@ GoogleAddressInput.propTypes = {
   theme: Input.propTypes.theme,
   readOnly: React.PropTypes.bool,
   autoSelect: React.PropTypes.bool,
-  footer: React.PropTypes.any
+  footer: React.PropTypes.any,
+  footerOptions: React.PropTypes.object,
+  clearSuggestionsOnBlur: React.PropTypes.bool
 };
 
 export default GoogleAddressInput;

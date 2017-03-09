@@ -1,11 +1,16 @@
 import React, {Component} from 'react';
 import styles from './Card.scss';
 import classNames from 'classnames';
+import TextLink from '../TextLink';
 
 export default class Card extends Component {
 
   static propTypes = {
     title: React.PropTypes.string,
+    link: React.PropTypes.shape({
+      link: React.PropTypes.string.isRequired,
+      title: React.PropTypes.string.isRequired
+    }),
     subtitle: React.PropTypes.string,
     withoutDivider: React.PropTypes.bool,
     children: React.PropTypes.node
@@ -13,12 +18,13 @@ export default class Card extends Component {
 
   static defaultProps = {
     title: null,
+    link: null,
     subtitle: null,
     withoutDivider: false
   };
 
   render() {
-    const {title, subtitle, withoutDivider} = this.props;
+    const {title, subtitle, withoutDivider, link} = this.props;
     let header = null;
     if (title || subtitle) {
       const headerClasses = classNames({
@@ -26,9 +32,14 @@ export default class Card extends Component {
         [styles.withDivider]: !withoutDivider,
       });
 
+      const linkElement = link ? (
+        <TextLink link={link.link}>{link.title}</TextLink>
+        ) : null;
+
       const titleElement = title ? (
         <div className={styles.title}>
-          {this.props.title}
+          {title}
+          {linkElement}
         </div>
         ) : null;
 

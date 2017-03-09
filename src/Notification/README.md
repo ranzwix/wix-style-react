@@ -11,8 +11,8 @@
 | size | string (small, big) | small | - | The size of the notification. big for a full action button |
 | type | string (global, local) | global | - | global pushes the content while local is above it and fades after timeout |
 | timeout | number | 6000 | - | time in msec for local notification to disappear (will be ignored in global notification) |
-| zIndex | number | - | - | z-index property | 
-
+| zIndex | number | - | - | z-index property |
+| onClose | func | - | - | callback when the notification is close, will pass a 'reason' var that can one of 'hide-by-close-click' or 'hide-by-timer' |  
 
 ## Notification.TextLabel (required)
 > Use this component to display the notification message

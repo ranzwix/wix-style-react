@@ -78,6 +78,9 @@ export const rangeTestkitFactory = enzymeTestkitFactoryCreator(rangeDriverFactor
 import fieldWithSelectionCompositeDriverFactory from '../src/Composite/FieldWithSelectionComposite/FieldWithSelectionComposite.driver';
 export const fieldWithSelectionCompositeTestkitFactory = enzymeTestkitFactoryCreator(fieldWithSelectionCompositeDriverFactory);
 
+import googleAddressWithInputDriverFactory from '../src/GoogleAddressInputWithLabel/GoogleAddressInputWithLabel.driver';
+export const googleAddressWithInputTestkitFactory = enzymeTestkitFactoryCreator(googleAddressWithInputDriverFactory);
+
 import richTextAreaCompositeDriverFactory from '../src/RichTextAreaComposite/RichTextAreaComposite.driver';
 export const richTextAreaCompositeTestkitFactory = enzymeTestkitFactoryCreator(richTextAreaCompositeDriverFactory);
 

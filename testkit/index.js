@@ -78,6 +78,8 @@ export const rangeTestkitFactory = testkitFactoryCreator(rangeDriverFactory);
 import fieldWithSelectionCompositeDriverFactory from '../src/Composite/FieldWithSelectionComposite/FieldWithSelectionComposite.driver';
 export const fieldWithSelectionCompositeTestkitFactory = testkitFactoryCreator(fieldWithSelectionCompositeDriverFactory);
 
+import googleAddressWithInputDriverFactory from '../src/GoogleAddressInputWithLabel/GoogleAddressInputWithLabel.driver';
+export const googleAddressWithInputTestkitFactory = testkitFactoryCreator(googleAddressWithInputDriverFactory);
 import richTextAreaCompositeDriverFactory from '../src/RichTextAreaComposite/RichTextAreaComposite.driver';
 export const richTextAreaCompositeTestkitFactory = testkitFactoryCreator(richTextAreaCompositeDriverFactory);
 

@@ -21,4 +21,7 @@ export const rangeTestkitFactory = protractorTestkitFactoryCreator(rangeDriverFa
 import fieldWithSelectionCompositeDriverFactory from '../src/Composite/FieldWithSelectionComposite/FieldWithSelectionComposite.protractor.driver';
 export const fieldWithSelectionCompositeTestkitFactory = protractorTestkitFactoryCreator(fieldWithSelectionCompositeDriverFactory);
 
+import googleAddressWithInputDriverFactory from '../src/GoogleAddressInputWithLabel/GoogleAddressInputWithLabel.protractor.driver';
+export const googleAddressWithInputTestkitFactory = protractorTestkitFactoryCreator(googleAddressWithInputDriverFactory);
+
 export {protractorToastTestkitFactory} from '../src/Toast/testkit/Toast.protractor';

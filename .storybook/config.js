@@ -50,6 +50,7 @@ function loadStories() {
   require('../stories/FieldWithSelectionComposite');
   require('../stories/Range');
   require('../stories/AutoCompleteComposite');
+  require('../stories/GoogleAddressInputWithLabel');
   require('../stories/Button/CompositeStory');
   require('../stories/Breadcrubms/CompositeStory');
   require('../stories/Tabs');

@@ -21,6 +21,14 @@ Use ".wix-container" instead of bootstrap's ".container".
 | title | string | - | - | The title of the card |
 | subtitle | string | - | - | The subtitle of the card |
 | withoutDivider | bool | - | - | Whether to draw divider between the titles and the content or not |
+| link | Object of Card Link | - | - | show a link in the header, will be shown only if a title is set |
+
+#### Card Link
+
+| propName | propType | defaultValue | isRequired | description |
+|----------|----------|--------------|------------|-------------|
+| link | string | - | - | The link itself |
+| title | string | - | - | the title to this link |
 
 #### Row
 

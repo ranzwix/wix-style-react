@@ -21,3 +21,6 @@
 | onBlur | func | - | - |  |
 | magnifyingGlass | bool | true | - | Show or hide magnifying glass icon |
 | readOnly | bool | false | - | Sets the input to readOnly |
+| footer | any | - | - | Display a footer as the last suggestion in the list |
+| footerOptions  | object | - | - | Set the footer's options (e.g. disabled, overrideStyles, etc. ) |
+| clearSuggestionsOnBlur | bool | true | - | Clear the suggestions list upon input blur |

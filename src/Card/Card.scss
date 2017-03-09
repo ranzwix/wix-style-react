@@ -6,7 +6,7 @@
 
   $border-radius: 8px;
   $content-padding: 30px;
-  $header-padding: 28px 30px;
+  $header-padding: 27px 30px 26px;
 
   background: $D80;
   border-radius: $border-radius;
@@ -21,7 +21,13 @@
 
     .title {
       @extend .h2;
+      display: flex;
+      justify-content: space-between;
 	    line-height: 1.2;
+    }
+
+    .link {
+      @extend .t1_1;
     }
 
     .subtitle {
