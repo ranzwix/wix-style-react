@@ -93,6 +93,7 @@
     "lodash.findindex": "^4.6.0",
     "lodash.foreach": "^4.5.0",
     "lodash.has": "^4.5.2",
+    "lodash.head": "^4.0.1",
     "lodash.includes": "^4.3.0",
     "lodash.initial": "^4.1.1",
     "lodash.isequal": "^4.4.0",

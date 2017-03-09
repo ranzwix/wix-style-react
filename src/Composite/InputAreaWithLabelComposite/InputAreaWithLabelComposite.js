@@ -1,5 +1,6 @@
 import React, {Children} from 'react';
-import {first, last} from 'lodash/fp';
+import head from 'lodash.head';
+import last from 'lodash.last';
 import WixComponent from '../../WixComponent';
 import styles from './InputAreaWithLabelComposite.scss';
 
@@ -10,7 +11,7 @@ class InputAreaWithLabelComposite extends WixComponent {
       <div>
         { children.length === 2 ?
           <div className={styles.label}>
-            {first(children)}
+            {head(children)}
           </div> : null
         }
         { last(children) }

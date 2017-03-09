@@ -1,5 +1,5 @@
 import React from 'react';
-import _ from 'lodash';
+import isUndefined from 'lodash.isundefined';
 import Input from '../Input/Input';
 import classNames from 'classnames';
 import moment from 'moment';
@@ -19,7 +19,7 @@ export default React.createClass({
   getDefaultProps() {
     return {
       defaultValue: moment(),
-      onChange: _.noop,
+      onChange: () => {},
       style: {},
       disableAmPm: false
     };
@@ -196,7 +196,7 @@ export default React.createClass({
   },
 
   updateDate({time, am}) {
-    am = _.isUndefined(am) ? this.state.am : am;
+    am = isUndefined(am) ? this.state.am : am;
     let newTime = moment(time, 'HH:mm');
     newTime = newTime.isValid() ? newTime : this.state.time;
     const normalizedTime = this.normalizeTime(am, newTime);
