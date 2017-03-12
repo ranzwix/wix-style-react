@@ -6,6 +6,7 @@ const BLOCK_TAGS = {
   ul: 'unordered-list',
   li: 'list-item',
   ol: 'ordered-list',
+  img: 'image',
 };
 
 const MARK_TAGS = {
@@ -26,9 +27,17 @@ const rules = [
         return;
       }
 
+      let data = {};
+      switch (type) {
+        case 'image': {
+          data.src = el.attribs.src;
+        }
+      }
+
       return {
         kind: 'block',
         type,
+        data,
         nodes: next(el.children)
       };
     },
@@ -41,7 +50,8 @@ const rules = [
         case 'paragraph': return <p>{children}</p>;
         case 'list-item': return <li>{children}</li>;
         case 'ordered-list': return <ol>{children}</ol>;
-        case 'unordered-list': return <ul>{children}</ul>;
+        case 'unordered-list': return <ul>{children}</ul>;//data-hook="editor-image"
+        case 'image': return <img data-hook="editor-image" src={object.data.get('src')}/>;
         default: return {children};
       }
     }
