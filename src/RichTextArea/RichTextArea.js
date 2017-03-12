@@ -1,6 +1,6 @@
 import React, {PropTypes} from 'react';
 import classNames from 'classnames';
-import {Editor, Block} from 'slate';
+import {Editor} from 'slate';
 import WixComponent from '../WixComponent';
 import Tooltip from '../Tooltip';
 import SvgExclamation from '../svg/Exclamation.js';
@@ -11,12 +11,6 @@ import isImage from 'is-image';
 import isUrl from 'is-url';
 
 const DEFAULT_NODE = 'paragraph';
-
-const defaultBlock = {
-  type: 'paragraph',
-  isVoid: false,
-  data: {}
-};
 
 class RichTextArea extends WixComponent {
   /* eslint-disable react/prop-types */

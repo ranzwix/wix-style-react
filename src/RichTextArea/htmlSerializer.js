@@ -27,11 +27,13 @@ const rules = [
         return;
       }
 
-      let data = {};
+      const data = {};
       switch (type) {
         case 'image': {
           data.src = el.attribs.src;
+          break;
         }
+        default: break;
       }
 
       return {

@@ -102,11 +102,10 @@ describe('RichTextArea', () => {
   });
 
   describe('insert image', () => {
-    
     const onImageRequest = callback => {
-        callback('https://some-dom.com/ddec1e4d26f94cae963c8c54e9838749/600x600.jpg');
-      };
-    
+      callback('https://some-dom.com/ddec1e4d26f94cae963c8c54e9838749/600x600.jpg');
+    };
+
     it('should not show insert image icon only when props does not contain \'onImageRequest\' callback', () => {
       const driver = createComponent();
       expect(driver.isAddImageButtonExist()).toBeFalsy();
@@ -116,7 +115,7 @@ describe('RichTextArea', () => {
       const driver = createComponent({onImageRequest});
       expect(driver.isAddImageButtonExist()).toBeTruthy();
     });
-    
+
     it('should insert image to the editor', () => {
       const driver = createComponent({onImageRequest});
       expect(driver.isImageExist()).toBeFalsy();
